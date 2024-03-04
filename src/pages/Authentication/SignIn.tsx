@@ -24,7 +24,7 @@ const SignIn: React.FC = () => {
               </p>
 
               <span className="mt-15 inline-block">
-                <svg
+                {/* <svg
                   width="350"
                   height="350"
                   viewBox="0 0 350 350"
@@ -143,8 +143,10 @@ const SignIn: React.FC = () => {
                     d="M310.566 183.213C309.132 182.066 307.174 184.151 307.174 184.151L306.026 173.828C306.026 173.828 298.853 174.687 294.261 173.542C289.67 172.396 288.953 177.7 288.953 177.7C288.716 175.557 288.668 173.399 288.81 171.248C289.096 168.667 292.827 166.087 299.427 164.366C306.026 162.646 309.47 170.101 309.47 170.101C314.061 172.395 312.001 184.36 310.566 183.213Z"
                     fill="#1C2434"
                   />
-                </svg>
-                {/* <img src='/images/1.png' /> */}
+                </svg> */}
+                <div className='w-full flex justify-center items-center' style={{ width: '100%', height: '50%' }}>
+                  <img src='/images/3.jpg' style={{ width: '80%', height: '50%' }} />
+                </div>
               </span>
             </div>
           </div>
