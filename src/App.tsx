@@ -15,6 +15,7 @@ import Settings from './pages/Settings';
 import Tables from './pages/Tables';
 import Alerts from './pages/UiElements/Alerts';
 import Buttons from './pages/UiElements/Buttons';
+import Hero from './pages/Hero/Hero';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -37,7 +38,35 @@ function App() {
           index
           element={
             <>
-              <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <PageTitle title="Hero | Paywyer" />
+              <Hero />
+            </>
+          }
+        />
+
+        <Route
+          path="/auth/signin"
+          element={
+            <>
+              <PageTitle title="Signin | Paywyer" />
+              <SignIn />
+            </>
+          }
+        />
+        <Route
+          path="/auth/signup"
+          element={
+            <>
+              <PageTitle title="Signup | Paywyer" />
+              <SignUp />
+            </>
+          }
+        />
+        <Route
+          path="/dashboard"
+          element={
+            <>
+              <PageTitle title="eCommerce Dashboard | Paywyer" />
               <ECommerce />
             </>
           }
@@ -46,7 +75,7 @@ function App() {
           path="/calendar"
           element={
             <>
-              <PageTitle title="Calendar | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <PageTitle title="Calendar | Paywyer" />
               <Calendar />
             </>
           }
@@ -55,7 +84,7 @@ function App() {
           path="/profile"
           element={
             <>
-              <PageTitle title="Profile | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <PageTitle title="Profile | Paywyer" />
               <Profile />
             </>
           }
@@ -64,7 +93,7 @@ function App() {
           path="/forms/form-elements"
           element={
             <>
-              <PageTitle title="Form Elements | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <PageTitle title="Form Elements | Paywyer" />
               <FormElements />
             </>
           }
@@ -73,7 +102,7 @@ function App() {
           path="/forms/form-layout"
           element={
             <>
-              <PageTitle title="Form Layout | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <PageTitle title="Form Layout | Paywyer" />
               <FormLayout />
             </>
           }
@@ -82,7 +111,7 @@ function App() {
           path="/tables"
           element={
             <>
-              <PageTitle title="Tables | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <PageTitle title="Tables | Paywyer" />
               <Tables />
             </>
           }
@@ -91,7 +120,7 @@ function App() {
           path="/settings"
           element={
             <>
-              <PageTitle title="Settings | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <PageTitle title="Settings | Paywyer" />
               <Settings />
             </>
           }
@@ -100,7 +129,7 @@ function App() {
           path="/chart"
           element={
             <>
-              <PageTitle title="Basic Chart | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <PageTitle title="Basic Chart | Paywyer" />
               <Chart />
             </>
           }
@@ -109,7 +138,7 @@ function App() {
           path="/ui/alerts"
           element={
             <>
-              <PageTitle title="Alerts | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <PageTitle title="Alerts | Paywyer" />
               <Alerts />
             </>
           }
@@ -118,12 +147,12 @@ function App() {
           path="/ui/buttons"
           element={
             <>
-              <PageTitle title="Buttons | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <PageTitle title="Buttons | Paywyer" />
               <Buttons />
             </>
           }
         />
-        <Route
+        {/* <Route
           path="/auth/signin"
           element={
             <>
@@ -140,7 +169,7 @@ function App() {
               <SignUp />
             </>
           }
-        />
+        /> */}
       </Routes>
     </>
   );
