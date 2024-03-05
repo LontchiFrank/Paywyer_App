@@ -16,6 +16,7 @@ import Tables from './pages/Tables';
 import Alerts from './pages/UiElements/Alerts';
 import Buttons from './pages/UiElements/Buttons';
 import ForgotPass from './pages/ForgotPassword/ForgotPass';
+import Reset from './pages/ResetPass/Reset';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -68,6 +69,15 @@ function App() {
             <>
               <PageTitle title="Forgot Password | Paywyer" />
               <ForgotPass />
+            </>
+          }
+        />
+        <Route
+          path="/reset-password"
+          element={
+            <>
+              <PageTitle title="Forgot Password | Paywyer" />
+              <Reset />
             </>
           }
         />
