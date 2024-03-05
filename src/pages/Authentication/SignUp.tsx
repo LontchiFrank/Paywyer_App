@@ -146,7 +146,7 @@ const SignUp: React.FC = () => {
 
               </span>
               <div className='w-full flex justify-center items-center' style={{ width: '100%', height: '50%' }}>
-                <img src='/images/3.svg' style={{ width: '80%', height: '50%' }} />
+                <img src='/images/4.svg' style={{ width: '40%', height: '10%' }} />
               </div>
 
             </div>

@@ -15,7 +15,7 @@ import Settings from './pages/Settings';
 import Tables from './pages/Tables';
 import Alerts from './pages/UiElements/Alerts';
 import Buttons from './pages/UiElements/Buttons';
-import Hero from './pages/Hero/Hero';
+import ForgotPass from './pages/ForgotPassword/ForgotPass';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -59,6 +59,15 @@ function App() {
             <>
               <PageTitle title="Signup | Paywyer" />
               <SignUp />
+            </>
+          }
+        />
+        <Route
+          path="/forgot-password"
+          element={
+            <>
+              <PageTitle title="Forgot Password | Paywyer" />
+              <ForgotPass />
             </>
           }
         />
