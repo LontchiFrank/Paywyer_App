@@ -76,7 +76,7 @@ function App() {
           path="/reset-password"
           element={
             <>
-              <PageTitle title="Forgot Password | Paywyer" />
+              <PageTitle title="Reset Password | Paywyer" />
               <Reset />
             </>
           }
