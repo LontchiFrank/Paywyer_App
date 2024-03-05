@@ -3,13 +3,16 @@ import React from 'react'
 const Reset: React.FC = () => {
     return (
         <div className='w-full h-screen flex bg-[#f1f5f9] justify-center items-center'>
-            <div className=' bg-white rounded-sm border-stroke'>
+            <div className=' bg-white rounded-md border-stroke'>
 
                 <div className='flex flex-wrap flex-col items-center'>
                     <div className='w-full p-4 sm:p-12.5 xl:p-17.'>
-                        <h2 className="mb-9 text-2xl font-bold text-black dark:text-white sm:text-title-xl2">
+                        <h2 className="mb-3 text-2xl text-center font-bold text-black dark:text-white sm:text-title-xl2">
                             Change Password
                         </h2>
+                        <p className="2xl:px-20 mb-4">
+                            Please enter your new password below to complete the password change process.
+                        </p>
 
                         <div className="mb-4">
                             <label className="mb-2.5 block font-medium text-black dark:text-white">
