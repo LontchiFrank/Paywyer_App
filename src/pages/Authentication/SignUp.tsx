@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
+// import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
 // import LogoDark from '../../images/logo/logo-dark.svg';
 // import Logo from '../../images/logo/logo.svg';
 // import DefaultLayout from '../../layout/DefaultLayout';
@@ -8,7 +8,7 @@ import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
 const SignUp: React.FC = () => {
   return (
     <div className='p-14'>
-      <Breadcrumb pageName="Sign Up" />
+      {/* <Breadcrumb pageName="Sign Up" /> */}
 
       <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <div className="flex flex-wrap items-center">
@@ -146,7 +146,7 @@ const SignUp: React.FC = () => {
 
               </span>
               <div className='w-full flex justify-center items-center' style={{ width: '100%', height: '50%' }}>
-                <img src='/images/1.svg' style={{ width: '80%', height: '50%' }} />
+                <img src='/images/3.svg' style={{ width: '80%', height: '50%' }} />
               </div>
 
             </div>

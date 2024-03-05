@@ -38,8 +38,8 @@ function App() {
           index
           element={
             <>
-              <PageTitle title="Hero | Paywyer" />
-              <Hero />
+              <PageTitle title="Sign In | Paywyer" />
+              <SignIn />
             </>
           }
         />
