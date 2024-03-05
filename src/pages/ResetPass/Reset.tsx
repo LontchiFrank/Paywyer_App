@@ -84,7 +84,7 @@ const Reset: React.FC = () => {
                         <div className="mb-5">
                             <input
                                 type="submit"
-                                value="Submit"
+                                value="Reset Password"
                                 className="w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90"
                             />
                         </div>
