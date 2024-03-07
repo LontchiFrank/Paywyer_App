@@ -18,6 +18,7 @@ import Buttons from './pages/UiElements/Buttons';
 import ForgotPass from './pages/ForgotPassword/ForgotPass';
 import Reset from './pages/ResetPass/Reset';
 import Hero from './pages/Hero/Hero';
+import Payment from './pages/Payment/Payment';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -82,15 +83,15 @@ function App() {
             </>
           }
         />
-        {/* <Route
-          path="/hero"
+        <Route
+          path="/payment"
           element={
             <>
               <PageTitle title="Reset Password | Paywyer" />
-              <Hero />
+              <Payment />
             </>
           }
-        /> */}
+        />
         <Route
           path="/dashboard"
           element={
