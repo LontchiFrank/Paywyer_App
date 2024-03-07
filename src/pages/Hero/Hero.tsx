@@ -6,7 +6,6 @@ import { FaTimes } from 'react-icons/fa';
 type Prop = {
     open: boolean,
     children: any,
-    // close:boolean
 }
 
 function BusinessCreate({ open, children }: Prop) {
