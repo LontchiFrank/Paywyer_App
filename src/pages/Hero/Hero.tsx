@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import DefaultLayout from '../../layout/DefaultLayout';
 import Card from '../../components/Cards/Card';
 import ReactDOM from "react-dom";
 import { FaTimes } from 'react-icons/fa';
