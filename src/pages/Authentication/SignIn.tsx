@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 const SignIn: React.FC = () => {
   return (
-    <div className='p-14'>
+    <div className='w-full h-screen flex justify-center items-center'>
       {/* <Breadcrumb pageName="Sign In" /> */}
 
       <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -105,7 +105,7 @@ const SignIn: React.FC = () => {
                     </span>
                   </div>
                   <span className='w-full flex justify-end pt-3'>
-                    <Link to="/forgot-password" className='text-[#3f8ae0] font-medium hover:text-[#65abfb]'>Forgot Password</Link>
+                    <Link to="/forgot-password" className='text-primary font-medium hover:text-opacity-50'>Forgot Password</Link>
                   </span>
                 </div>
 

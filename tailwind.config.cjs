@@ -217,7 +217,8 @@ module.exports = {
       },
       boxShadow: {
         default: '0px 8px 13px -3px rgba(0, 0, 0, 0.07)',
-        card: '0px 1px 3px rgba(0, 0, 0, 0.12)',
+        card: '0px 1px 3px #011638',
+        // rgba(0, 0, 0, 0.12)',
         'card-2': '0px 1px 2px rgba(0, 0, 0, 0.05)',
         switcher:
           '0px 2px 4px rgba(0, 0, 0, 0.2), inset 0px 2px 2px #FFFFFF, inset 0px -1px 1px rgba(0, 0, 0, 0.1)',

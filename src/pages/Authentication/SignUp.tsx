@@ -7,13 +7,13 @@ import { Link } from 'react-router-dom';
 
 const SignUp: React.FC = () => {
   return (
-    <div className='p-14'>
+    <div className='w-full h-screen flex justify-center items-center'>
       {/* <Breadcrumb pageName="Sign Up" /> */}
 
       <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <div className="flex flex-wrap items-center">
           <div className="hidden w-full xl:block xl:w-1/2">
-            <div className="py-0.5 px-26 text-center">
+            <div className="py-0.5 px-14 text-center">
               <Link className="mb-5.5 inline-block" to="">
                 <div className='w-full flex justify-center items-center'>  <img className="dark:hidden" src='/images/5.png' alt="Logo" style={{ width: '60%', height: '10%' }} /></div>
               </Link>

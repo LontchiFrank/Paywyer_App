@@ -17,6 +17,7 @@ import Alerts from './pages/UiElements/Alerts';
 import Buttons from './pages/UiElements/Buttons';
 import ForgotPass from './pages/ForgotPassword/ForgotPass';
 import Reset from './pages/ResetPass/Reset';
+import Hero from './pages/Hero/Hero';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -81,6 +82,15 @@ function App() {
             </>
           }
         />
+        {/* <Route
+          path="/hero"
+          element={
+            <>
+              <PageTitle title="Reset Password | Paywyer" />
+              <Hero />
+            </>
+          }
+        /> */}
         <Route
           path="/dashboard"
           element={

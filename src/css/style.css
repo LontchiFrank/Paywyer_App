@@ -213,3 +213,16 @@ span.flatpickr-weekday,
 [x-cloak] {
   display: none !important;
 }
+
+.back{
+  background-image: url(../../public/images/b1.svg);
+  background-position: center;
+  background-size:cover ;
+  background-repeat: no-repeat;
+}
+.back1{
+  background-image: linear-gradient(rgba(188, 194, 255, 0.468),rgba(175, 182, 254, 0.399),rgba(188, 194, 255, 0.3)) ,url(../../public/images/b1.svg);
+  background-position: center;
+  background-size:cover ;
+  background-repeat: no-repeat;
+}
