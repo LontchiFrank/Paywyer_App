@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FaEye, FaEyeSlash } from 'react-icons/fa6';
 // import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
 // import LogoDark from '../../images/logo/logo-dark.svg';
 // import Logo from '../../images/logo/logo.svg';
 // import DefaultLayout from '../../layout/DefaultLayout';
 
 const SignUp: React.FC = () => {
+  const [toggle, setToggle] = useState(false)
+  const [toggle1, setToggle1] = useState(false)
+  const handleClick: any = () => {
+    setToggle(!toggle)
+  }
+  const handleClick1: any = () => {
+    setToggle1(!toggle1)
+  }
   return (
     <div className='w-full h-screen flex justify-center items-center'>
       {/* <Breadcrumb pageName="Sign Up" /> */}
@@ -232,13 +241,13 @@ const SignUp: React.FC = () => {
                   </label>
                   <div className="relative">
                     <input
-                      type="password"
+                      type={toggle ? "text" : "password"}
                       placeholder="Enter your password"
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
 
-                    <span className="absolute right-4 top-4">
-                      <svg
+                    <span className="absolute right-4 top-4" onClick={handleClick}>
+                      {/* <svg
                         className="fill-current"
                         width="22"
                         height="22"
@@ -256,7 +265,8 @@ const SignUp: React.FC = () => {
                             fill=""
                           />
                         </g>
-                      </svg>
+                      </svg> */}
+                      {toggle ? <FaEye style={{ color: '#b2b9c5', fontSize: '20px' }} /> : <FaEyeSlash style={{ color: '#b2b9c5', fontSize: '20px' }} />}
                     </span>
                   </div>
                 </div>
@@ -267,13 +277,13 @@ const SignUp: React.FC = () => {
                   </label>
                   <div className="relative">
                     <input
-                      type="password"
+                      type={toggle1 ? "text" : "password"}
                       placeholder="Re-enter your password"
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
 
-                    <span className="absolute right-4 top-4">
-                      <svg
+                    <span className="absolute right-4 top-4" onClick={handleClick1}>
+                      {/* <svg
                         className="fill-current"
                         width="22"
                         height="22"
@@ -291,7 +301,8 @@ const SignUp: React.FC = () => {
                             fill=""
                           />
                         </g>
-                      </svg>
+                      </svg> */}
+                      {toggle1 ? <FaEye style={{ color: '#b2b9c5', fontSize: '20px' }} /> : <FaEyeSlash style={{ color: '#b2b9c5', fontSize: '20px' }} />}
                     </span>
                   </div>
                 </div>
