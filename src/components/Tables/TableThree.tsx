@@ -66,7 +66,7 @@ const TableThree: React.FC = () => {
           </thead>
           {packageData.length <= 0 &&
             <tbody className='w-full flex items-center translate-x-[58%]'>
-              <div className='w-full flex flex-col justify-center items-center  py-6 '>
+              <div className='w-full flex flex-col justify-center items-center  py-6  gap-2'>
                 <span>You don’t have any complete payments yet.</span>
                 <div className="mb-5">
                   <input
