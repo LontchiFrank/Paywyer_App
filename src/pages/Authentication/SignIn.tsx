@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { FaEye, FaEyeSlash } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 // import Breadcrumb from '../../components/Breadcrumbs/Breadcrumb';
 // import LogoDark from '../../images/logo/logo-dark.svg';
@@ -6,6 +7,10 @@ import { Link } from 'react-router-dom';
 // import DefaultLayout from '../../layout/DefaultLayout';
 
 const SignIn: React.FC = () => {
+  const [toggle, setToggle] = useState(false)
+  const handleClick: any = () => {
+    setToggle(!toggle)
+  }
   return (
     <div className='w-full h-screen flex justify-center items-center'>
       {/* <Breadcrumb pageName="Sign In" /> */}
@@ -67,6 +72,7 @@ const SignIn: React.FC = () => {
                           />
                         </g>
                       </svg>
+
                     </span>
                   </div>
                 </div>
@@ -77,13 +83,13 @@ const SignIn: React.FC = () => {
                   </label>
                   <div className="relative">
                     <input
-                      type="password"
+                      type={toggle ? "text" : "password"}
                       placeholder="6+ Characters, 1 Capital letter"
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
 
-                    <span className="absolute right-4 top-4">
-                      <svg
+                    <span className="absolute right-4 top-4" onClick={handleClick}>
+                      {/* <svg
                         className="fill-current"
                         width="22"
                         height="22"
@@ -101,7 +107,8 @@ const SignIn: React.FC = () => {
                             fill=""
                           />
                         </g>
-                      </svg>
+                      </svg> */}
+                      {toggle ? <FaEye style={{ color: '#b2b9c5', fontSize: '20px' }} /> : <FaEyeSlash style={{ color: '#b2b9c5', fontSize: '20px' }} />}
                     </span>
                   </div>
                   <span className='w-full flex justify-end pt-3'>
