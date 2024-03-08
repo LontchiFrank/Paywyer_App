@@ -9,7 +9,7 @@ const options = [
     { value: "Honeybee", label: "🐝 Honeybee" }
 ];
 
-const Step2 = () => {
+const Step2: React.FC = () => {
     const [animal, setAnimal] = useState(null);
 
     const handleChange = (value: any) => {

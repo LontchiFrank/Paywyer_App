@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-const Step1 = () => {
+const Step1: React.FC = () => {
     return (
         <div className='mb-7'>
             <div className="mb-6">
