@@ -34,9 +34,9 @@ const Modal = ({ open, offModal }: Props) => {
                                             >
                                                 Create Payment
                                             </h3>
-                                            <form >
-                                                <div className="flex items-start mb-6"></div>
-                                                {/* <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                                            {/* <form > */}
+                                            {/* <div className="flex items-start mb-6"></div> */}
+                                            {/* <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                                                     <button
                                                         type="submit"
                                                         // onClick={(e) => handleSubmit(e)}
@@ -53,7 +53,7 @@ const Modal = ({ open, offModal }: Props) => {
                                                         Cancel
                                                     </button>
                                                 </div> */}
-                                            </form>
+                                            {/* </form> */}
                                             <FormComponent offModal={sum} />
                                         </div>
                                     </div>

@@ -4,7 +4,7 @@ import React from 'react';
 
 const Step1 = () => {
     return (
-        <div className='mb-12'>
+        <div className='mb-7'>
             <div className="mb-6">
                 <label
                     // for="title"
@@ -35,9 +35,9 @@ const Step1 = () => {
                     className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-300 dark:placeholder-gray-400 dark:text-gray-800  dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 >
                     <option>Choose Category</option>
-                    <option>Ecommerce</option>
-                    <option>Business</option>
-                    <option>Education</option>
+                    <option>Donations</option>
+                    <option>Subscriptions</option>
+                    <option>POS Terminal link</option>
                     {/* {Category.map((item: any) => (
                               // console.log(first)
                               <option key={item} value={item}>
