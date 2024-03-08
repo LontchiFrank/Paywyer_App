@@ -2,36 +2,6 @@ import React, { useState } from 'react';
 import { Package } from '../../types/package';
 import Modal from '../Modal/Modal';
 
-// const packageData: Package[] = [
-//   {
-//     payment_id: 'Free package',
-//     order_id: '1',
-//     price: 0.0,
-//     invoiceDate: `Jan 13,2023`,
-//     status: 'Paid',
-//   },
-//   {
-//     payment_id: 'Standard Package',
-//     order_id: '1',
-//     price: 59.0,
-//     invoiceDate: `Jan 13,2023`,
-//     status: 'Paid',
-//   },
-//   {
-//     payment_id: 'Business Package',
-//     order_id: '1',
-//     price: 99.0,
-//     invoiceDate: `Jan 13,2023`,
-//     status: 'Unpaid',
-//   },
-//   {
-//     payment_id: 'Standard Package',
-//     order_id: '1',
-//     price: 59.0,
-//     invoiceDate: `Jan 13,2023`,
-//     status: 'Pending',
-//   },
-// ];
 const packageData: Package[] = []
 
 const TableThree: React.FC = () => {
