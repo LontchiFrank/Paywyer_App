@@ -22,9 +22,7 @@ const FormComponent = ({ offModal }: Props) => {
     const prevStep = () => {
         setCurrentStep(currentStep - 1);
     };
-    const handleClick = () => {
-        console.log(currentStep, 'man')
-    }
+
 
     return (
         <div>
