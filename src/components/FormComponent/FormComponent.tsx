@@ -8,7 +8,17 @@ import Step2 from '../Steps/Step2';
 type Props = {
     offModal: any;
 }
+interface Payment {
+    name: string;
+    category: string;
+}
+
 const FormComponent = ({ offModal }: Props) => {
+    const [formData, setFormData] = useState<Payment>({
+        name: "",
+        category: ""
+    })
+
     // State to track the current step
     const [currentStep, setCurrentStep] = useState(1);
 
@@ -22,9 +32,10 @@ const FormComponent = ({ offModal }: Props) => {
     const prevStep = () => {
         setCurrentStep(currentStep - 1);
     };
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         event.preventDefault();
-        console.log(event)
+        console.log(formData)
+        offModal(false)
         // console.log(formData);
 
     }
@@ -56,13 +67,13 @@ const FormComponent = ({ offModal }: Props) => {
 
 
             {/* Your form fields */}
-            {currentStep === 1 && <Step1 submit={handleSubmit} />}
+            {currentStep === 1 && <Step1 setData={setFormData} data={formData} />}
             {currentStep === 2 && <Step2 />}
             {/* Add more steps as needed */}
             {/* Stepper component */}
             <div className="flex justify-between mt-24">
                 <button onClick={prevStep} disabled={currentStep === 1} className="bg-gray-200 px-4 py-2 rounded-lg">Previous</button>
-                <button onClick={currentStep == 2 ? (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => handleSubmit(e) : nextStep} className="bg-[#eec643] text-primary px-4 py-2 cursor-pointer rounded-lg">{currentStep !== 2 ? 'Next' : "Submit"}</button>
+                <button onClick={currentStep == 2 ? handleSubmit : nextStep} className="bg-[#eec643] text-primary px-4 py-2 cursor-pointer rounded-lg">{currentStep !== 2 ? 'Next' : "Submit"}</button>
             </div>
         </div>
     );

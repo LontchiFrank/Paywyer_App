@@ -1,30 +1,31 @@
 // Step1.js
 
-import React, { useState } from 'react';
+import React from 'react';
 
 type Props = {
-    submit: any
+    setData: any,
+    data: any
 }
-interface Payment {
-    name: string;
-    category: string;
-}
+// interface Payment {
+//     name: string;
+//     category: string;
+// }
 
-const Step1 = ({ submit }: Props) => {
-    const [formData, setFormData] = useState<Payment>({
-        name: "",
-        category: ""
-    })
+const Step1 = ({ data, setData }: Props) => {
+    // const [formData, setFormData] = useState<Payment>({
+    //     name: "",
+    //     category: ""
+    // })
 
-    const { name, category } = formData;
+    const { name } = data;
     const Category = ["Donations", "Subscriptions", "POS Terminal link"];
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        setData({ ...data, [e.target.name]: e.target.value });
         // console.log(event);
     };
 
     const handleCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setFormData({ ...formData, category: e.target.value });
+        setData({ ...data, category: e.target.value });
     };
 
 
