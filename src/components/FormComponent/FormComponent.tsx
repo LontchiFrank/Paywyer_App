@@ -11,12 +11,20 @@ type Props = {
 interface Payment {
     name: string;
     category: string;
+    total_Revenue: {
+        name: string,
+        network: string
+    }
 }
 
 const FormComponent = ({ offModal }: Props) => {
     const [formData, setFormData] = useState<Payment>({
         name: "",
-        category: ""
+        category: "",
+        total_Revenue: {
+            name: '',
+            network: ""
+        },
     })
 
     // State to track the current step
@@ -68,7 +76,7 @@ const FormComponent = ({ offModal }: Props) => {
 
             {/* Your form fields */}
             {currentStep === 1 && <Step1 setData={setFormData} data={formData} />}
-            {currentStep === 2 && <Step2 />}
+            {currentStep === 2 && <Step2 setDatas={setFormData} datas={formData} />}
             {/* Add more steps as needed */}
             {/* Stepper component */}
             <div className="flex justify-between mt-24">

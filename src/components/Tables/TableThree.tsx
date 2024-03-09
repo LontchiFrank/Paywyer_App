@@ -29,13 +29,16 @@ const TableThree: React.FC = () => {
               <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
                 Total Revenue
               </th>
+              <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
+                Status
+              </th>
               <th className="py-4 px-4 font-medium text-black dark:text-white">
                 Actions
               </th>
             </tr>
           </thead>
           {packageData.length <= 0 &&
-            <tbody className='w-full flex items-center translate-x-[58%]'>
+            <tbody className='w-full flex items-center translate-x-[75%]'>
               <div className='w-full flex flex-col justify-center items-center  py-6  gap-2'>
                 <span>You don’t have any complete payments yet.</span>
                 <div className="mb-5">
@@ -56,13 +59,13 @@ const TableThree: React.FC = () => {
                 <tr key={key}>
                   <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
                     <h5 className="font-medium text-black dark:text-white">
-                      {packageItem.payment_id}
+                      {packageItem.name}
                     </h5>
-                    <p className="text-sm">${packageItem.price}</p>
+                    <p className="text-sm">${packageItem.category}</p>
                   </td>
                   <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                     <p className="text-black dark:text-white">
-                      {packageItem.invoiceDate}
+                      {packageItem.total_Revenue}
                     </p>
                   </td>
                   <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">

@@ -11,13 +11,17 @@ const options = [
     { value: "Butterfly", label: "🦋 Butterfly" },
     { value: "Honeybee", label: "🐝 Honeybee" }
 ];
+type Props = {
+    setDatas: any,
+    datas: any
+}
 
-const Step2: React.FC = () => {
-    const [animal, setAnimal] = useState(null);
+const Step2 = ({ datas, setDatas }: Props) => {
+    // const [animal, setAnimal] = useState(null);
 
     const handleChange = (value: any) => {
         console.log("value:", value);
-        setAnimal(value);
+        setDatas(value);
     };
     const [data, setData] = useState<{ id: string }[]>([{ id: '' }]);
 
@@ -27,7 +31,7 @@ const Step2: React.FC = () => {
         console.log(data)
 
     }
-
+    const { total_Revenue } = datas;
     const handleClick: any = () => {
         setData([...data, { id: nanoid() }])
     }
@@ -61,7 +65,7 @@ const Step2: React.FC = () => {
                                     </label>
                                     <Select
                                         primaryColor='primary'
-                                        value={animal}
+                                        value={total_Revenue.name}
                                         onChange={handleChange}
                                         options={options}
                                         isSearchable
@@ -73,7 +77,7 @@ const Step2: React.FC = () => {
                                     </label>
                                     <Select
                                         primaryColor='primary'
-                                        value={animal}
+                                        value={total_Revenue.network}
                                         onChange={handleChange}
                                         options={options}
                                         isSearchable
