@@ -21,7 +21,11 @@ const Step2 = ({ datas, setDatas }: Props) => {
 
     const handleChange = (value: any) => {
         console.log("value:", value);
-        setDatas(value);
+        setDatas({ ...datas, total_Revenue: { ...total_Revenue, name: value } });
+    };
+    const handleChange1 = (value: any) => {
+        console.log("value:", value);
+        setDatas({ ...datas, total_Revenue: { ...total_Revenue, network: value } });
     };
     const [data, setData] = useState<{ id: string }[]>([{ id: '' }]);
 
@@ -65,7 +69,7 @@ const Step2 = ({ datas, setDatas }: Props) => {
                                     </label>
                                     <Select
                                         primaryColor='primary'
-                                        value={total_Revenue.name}
+                                        value={total_Revenue?.name}
                                         onChange={handleChange}
                                         options={options}
                                         isSearchable
@@ -77,8 +81,8 @@ const Step2 = ({ datas, setDatas }: Props) => {
                                     </label>
                                     <Select
                                         primaryColor='primary'
-                                        value={total_Revenue.network}
-                                        onChange={handleChange}
+                                        value={total_Revenue?.network}
+                                        onChange={handleChange1}
                                         options={options}
                                         isSearchable
                                     />

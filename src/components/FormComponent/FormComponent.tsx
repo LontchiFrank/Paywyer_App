@@ -1,12 +1,14 @@
 // FormComponent.js
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Step1 from '../Steps/Step1';
 import Step2 from '../Steps/Step2';
 
 
 type Props = {
     offModal: any;
+    setInfo: any;
+    info: any;
 }
 interface Payment {
     name: string;
@@ -17,7 +19,7 @@ interface Payment {
     }
 }
 
-const FormComponent = ({ offModal }: Props) => {
+const FormComponent = ({ offModal, setInfo, info }: Props) => {
     const [formData, setFormData] = useState<Payment>({
         name: "",
         category: "",
@@ -35,6 +37,8 @@ const FormComponent = ({ offModal }: Props) => {
         setCurrentStep(currentStep + 1);
 
     };
+
+
     console.log(currentStep)
     // Function to handle moving to the previous step
     const prevStep = () => {
@@ -42,7 +46,8 @@ const FormComponent = ({ offModal }: Props) => {
     };
     const handleSubmit = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         event.preventDefault();
-        console.log(formData)
+
+        setInfo(formData)
         offModal(false)
         // console.log(formData);
 

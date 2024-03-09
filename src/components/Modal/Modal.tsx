@@ -4,8 +4,10 @@ import FormComponent from '../FormComponent/FormComponent';
 type Props = {
     open: boolean;
     offModal: any;
+    info: any,
+    setInfo: any
 }
-const Modal = ({ open, offModal }: Props) => {
+const Modal = ({ open, offModal, info, setInfo }: Props) => {
     // const [offModals, setOffModals] = useState(false)
     const sum = (num: any) => {
         offModal(num)
@@ -54,7 +56,7 @@ const Modal = ({ open, offModal }: Props) => {
                                                     </button>
                                                 </div> */}
                                             {/* </form> */}
-                                            <FormComponent offModal={sum} />
+                                            <FormComponent offModal={sum} info={info} setInfo={setInfo} />
                                         </div>
                                     </div>
                                 </div>

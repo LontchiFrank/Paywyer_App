@@ -1,21 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Package } from '../../types/package';
 import Modal from '../Modal/Modal';
 
 const packageData: Package[] = []
+type Mystate = any;
 
 const TableThree: React.FC = () => {
   const [openModal, setOpenModal] = useState(false);
+  const [info, setInfo] = useState<Mystate>()
 
+  useEffect(() => {
+    console.log(info)
+  })
   const onModal: any = () => {
     setOpenModal(true);
   };
   const offModal: any = (num: boolean) => {
     setOpenModal(num);
   };
+
   return (
     <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
-      <Modal open={openModal} offModal={offModal} />
+      <Modal open={openModal} offModal={offModal} info={info} setInfo={setInfo} />
       <div className="max-w-full overflow-x-auto">
         <table className="w-full table-auto">
           <thead>
