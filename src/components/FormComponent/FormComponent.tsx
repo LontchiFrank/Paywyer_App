@@ -22,7 +22,12 @@ const FormComponent = ({ offModal }: Props) => {
     const prevStep = () => {
         setCurrentStep(currentStep - 1);
     };
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        console.log(event)
+        // console.log(formData);
 
+    }
 
     return (
         <div>
@@ -51,14 +56,13 @@ const FormComponent = ({ offModal }: Props) => {
 
 
             {/* Your form fields */}
-            {currentStep === 1 && <Step1 />}
+            {currentStep === 1 && <Step1 submit={handleSubmit} />}
             {currentStep === 2 && <Step2 />}
             {/* Add more steps as needed */}
-
             {/* Stepper component */}
             <div className="flex justify-between mt-24">
                 <button onClick={prevStep} disabled={currentStep === 1} className="bg-gray-200 px-4 py-2 rounded-lg">Previous</button>
-                <button onClick={currentStep == 2 ? () => offModal(false) : nextStep} className="bg-[#eec643] text-primary px-4 py-2 cursor-pointer rounded-lg">{currentStep !== 2 ? 'Next' : "Submit"}</button>
+                <button onClick={currentStep == 2 ? (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => handleSubmit(e) : nextStep} className="bg-[#eec643] text-primary px-4 py-2 cursor-pointer rounded-lg">{currentStep !== 2 ? 'Next' : "Submit"}</button>
             </div>
         </div>
     );

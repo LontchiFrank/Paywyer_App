@@ -1,10 +1,35 @@
 // Step1.js
 
-import React from 'react';
+import React, { useState } from 'react';
 
-const Step1: React.FC = () => {
+type Props = {
+    submit: any
+}
+interface Payment {
+    name: string;
+    category: string;
+}
+
+const Step1 = ({ submit }: Props) => {
+    const [formData, setFormData] = useState<Payment>({
+        name: "",
+        category: ""
+    })
+
+    const { name, category } = formData;
+    const Category = ["Donations", "Subscriptions", "POS Terminal link"];
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+        // console.log(event);
+    };
+
+    const handleCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setFormData({ ...formData, category: e.target.value });
+    };
+
+
     return (
-        <div className='mb-7'>
+        <form className='mb-7' >
             <div className="mb-6">
                 <label
                     // for="title"
@@ -18,8 +43,8 @@ const Step1: React.FC = () => {
                     name="name"
                     className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-300 dark:placeholder-gray-800 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="Name"
-                    //   value={name}
-                    //   onChange={(e) => handleChange(e)}
+                    value={name}
+                    onChange={(e) => handleChange(e)}
                     required
                 />
             </div>
@@ -31,22 +56,18 @@ const Step1: React.FC = () => {
                     id="countries"
                     name="category"
                     // onClick={(e) => console.log(e, "select")}
-                    // onChange={(e) => handleCategory(e)}
+                    onChange={(e) => handleCategory(e)}
                     className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-300 dark:placeholder-gray-400 dark:text-gray-800  dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 >
                     <option>Choose Category</option>
-                    <option>Donations</option>
-                    <option>Subscriptions</option>
-                    <option>POS Terminal link</option>
-                    {/* {Category.map((item: any) => (
-                              // console.log(first)
-                              <option key={item} value={item}>
-                                {item}{" "}
-                              </option>
-                            ))} */}
+                    {Category.map((item: any) => (
+                        <option key={item} value={item}>
+                            {item}{" "}
+                        </option>
+                    ))}
                 </select>
             </div>
-        </div>
+        </form>
     );
 };
 

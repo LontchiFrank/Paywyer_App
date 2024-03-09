@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Reset: React.FC = () => {
     return (
@@ -85,11 +86,13 @@ const Reset: React.FC = () => {
                         </div>
 
                         <div className="mb-5">
-                            <input
-                                type="submit"
-                                value="Reset Password"
-                                className="w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90"
-                            />
+                            <Link to='/dashboard' >
+                                <input
+                                    type="submit"
+                                    value="Reset Password"
+                                    className="w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 text-white transition hover:bg-opacity-90"
+                                />
+                            </Link>
                         </div>
 
                     </div>
