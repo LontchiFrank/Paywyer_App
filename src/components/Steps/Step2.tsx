@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { FaPlusCircle, } from 'react-icons/fa';
 import { nanoid } from 'nanoid';
 import Select from "react-tailwindcss-select";
-import { BsTrash2Fill, BsTrash3 } from 'react-icons/bs';
+import { BsTrash3 } from 'react-icons/bs';
 
 const options = [
     { value: "fox", label: "🦊 Fox" },
