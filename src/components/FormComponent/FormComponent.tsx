@@ -3,14 +3,18 @@
 import React, { useEffect, useState } from 'react';
 import Step1 from '../Steps/Step1';
 import Step2 from '../Steps/Step2';
+import { nanoid } from 'nanoid';
 
 
 type Props = {
     offModal: any;
     setInfo: any;
     info: any;
+    packages: any;
+    setPackages: any
 }
 interface Payment {
+    id: string;
     name: string;
     category: string;
     total_Revenue: {
@@ -19,8 +23,9 @@ interface Payment {
     }
 }
 
-const FormComponent = ({ offModal, setInfo, info }: Props) => {
+const FormComponent = ({ offModal, info, setInfo, packages, setPackages }: Props) => {
     const [formData, setFormData] = useState<Payment>({
+        id: '',
         name: "",
         category: "",
         total_Revenue: {
@@ -38,21 +43,25 @@ const FormComponent = ({ offModal, setInfo, info }: Props) => {
 
     };
 
-
-    console.log(currentStep)
     // Function to handle moving to the previous step
     const prevStep = () => {
         setCurrentStep(currentStep - 1);
     };
+
+
+    console.log("Updated array:", packages);
+
     const handleSubmit = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         event.preventDefault();
-
-        setInfo(formData)
+        const data = { ...formData, id: nanoid() }
+        setInfo(data);
+        setPackages((prevState: any) => [...prevState, data]);
         offModal(false)
-        // console.log(formData);
 
     }
-
+    useEffect(() => {
+        console.log('New Array', packages)
+    }, [packages])
     return (
         <div>
 

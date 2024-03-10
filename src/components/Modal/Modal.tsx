@@ -6,12 +6,17 @@ type Props = {
     offModal: any;
     info: any,
     setInfo: any
+    packages: any
+    setPackages: any
+    setOffModals: any
 }
-const Modal = ({ open, offModal, info, setInfo }: Props) => {
+const Modal = ({ open, offModal, info, setInfo, packages, setPackages, setOffModals }: Props) => {
     // const [offModals, setOffModals] = useState(false)
     const sum = (num: any) => {
         offModal(num)
+        setOffModals(num)
     }
+
     return (
         <div>
             {open ? (
@@ -56,7 +61,7 @@ const Modal = ({ open, offModal, info, setInfo }: Props) => {
                                                     </button>
                                                 </div> */}
                                             {/* </form> */}
-                                            <FormComponent offModal={sum} info={info} setInfo={setInfo} />
+                                            <FormComponent offModal={sum} info={info} setInfo={setInfo} packages={packages} setPackages={setPackages} />
                                         </div>
                                     </div>
                                 </div>

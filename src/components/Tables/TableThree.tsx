@@ -5,23 +5,40 @@ import Modal from '../Modal/Modal';
 const packageData: Package[] = []
 type Mystate = any;
 
-const TableThree: React.FC = () => {
+type Props = {
+  data: any
+  setData: any
+  openSet: any
+  setOpen: any
+}
+
+const TableThree = ({ data, setData, openSet, setOpen }: Props) => {
   const [openModal, setOpenModal] = useState(false);
-  const [info, setInfo] = useState<Mystate>()
+  const [info, setInfo] = useState<Mystate>();
+  const [packages, setPackages] = useState<any[]>(packageData);
 
   useEffect(() => {
-    console.log(info)
+    console.log(info, 'mama')
+    console.log('New', packages)
+    setData(packages)
+
+
   })
   const onModal: any = () => {
     setOpenModal(true);
+    openSet(openModal)
+    console.log(openSet)
   };
   const offModal: any = (num: boolean) => {
     setOpenModal(num);
   };
+  const offModals: any = (num: boolean) => {
+    setOpen(num)
+  }
 
   return (
     <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
-      <Modal open={openModal} offModal={offModal} info={info} setInfo={setInfo} />
+      <Modal open={openModal || openSet} offModal={offModal} setOffModals={offModals} info={info} setInfo={setInfo} packages={packages} setPackages={setPackages} />
       <div className="max-w-full overflow-x-auto">
         <table className="w-full table-auto">
           <thead>
@@ -43,7 +60,7 @@ const TableThree: React.FC = () => {
               </th>
             </tr>
           </thead>
-          {packageData.length <= 0 &&
+          {packages.length <= 0 &&
             <tbody className='w-full flex items-center translate-x-[75%]'>
               <div className='w-full flex flex-col justify-center items-center  py-6  gap-2'>
                 <span>You don’t have any complete payments yet.</span>
@@ -61,29 +78,36 @@ const TableThree: React.FC = () => {
           <tbody>
 
             {
-              packageData.map((packageItem, key) => (
-                <tr key={key}>
+              packages.map((packageItem) => (
+                <tr key={packageItem.id}>
                   <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
                     <h5 className="font-medium text-black dark:text-white">
                       {packageItem.name}
                     </h5>
-                    <p className="text-sm">${packageItem.category}</p>
+
                   </td>
                   <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                     <p className="text-black dark:text-white">
-                      {packageItem.total_Revenue}
+                      {/* {packageItem.total_Revenue.name} */}
+                      <p className="text-sm">{packageItem.category}</p>
+                    </p>
+                  </td>
+                  <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                    <p className="text-black dark:text-white">
+                      {/* {packageItem.total_Revenue.name} */}
+                      <p className="text-sm">{packageItem.total_Revenue.name.label}</p>
                     </p>
                   </td>
                   <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                     <p
                       className={`inline-flex rounded-full bg-opacity-10 py-1 px-3 text-sm font-medium ${packageItem.status === 'Paid'
                         ? 'bg-success text-success'
-                        : packageItem.status === 'Unpaid'
+                        : 'Unpaid' === 'Unpaid'
                           ? 'bg-danger text-danger'
                           : 'bg-warning text-warning'
                         }`}
                     >
-                      {packageItem.status}
+                      Unpaid
                     </p>
                   </td>
                   <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
