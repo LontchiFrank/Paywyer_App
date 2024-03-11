@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import FormComponent from '../FormComponent/FormComponent';
+import { FaTimes } from 'react-icons/fa';
 
 type Props = {
     open: boolean;
@@ -35,32 +36,15 @@ const Modal = ({ open, offModal, info, setInfo, packages, setPackages, setOffMod
 
                                     <div className="flex ">
                                         <div className="mt-3 w-[100%] text-center sm:mt-0 sm:text-left">
-                                            <h3
-                                                className="text-xl mb-3 font-semibold leading-6 text-gray-900"
-                                                id="modal-title"
-                                            >
-                                                Create Payment
-                                            </h3>
-                                            {/* <form > */}
-                                            {/* <div className="flex items-start mb-6"></div> */}
-                                            {/* <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                                                    <button
-                                                        type="submit"
-                                                        // onClick={(e) => handleSubmit(e)}
-                                                        className="inline-flex w-full justify-center rounded-md bg-[#eec643] px-3 py-2 text-sm font-semibold text-primary shadow-sm hover:bg-opacity-80 sm:ml-3 sm:w-auto"
-                                                    >
-
-                                                        Next
-                                                    </button>
-                                                    <button
-                                                        type="button"
-                                                        onClick={() => offModal(false)}
-                                                        className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                                                    >
-                                                        Cancel
-                                                    </button>
-                                                </div> */}
-                                            {/* </form> */}
+                                            <div className='w-full flex justify-between'>
+                                                <h3
+                                                    className="text-xl mb-3 font-semibold leading-6 text-gray-900"
+                                                    id="modal-title"
+                                                >
+                                                    Create Payment
+                                                </h3>
+                                                <FaTimes style={{ fontSize: '20px' }} className='cursor-pointer' onClick={() => offModal(false)} />
+                                            </div>
                                             <FormComponent offModal={sum} info={info} setInfo={setInfo} packages={packages} setPackages={setPackages} />
                                         </div>
                                     </div>

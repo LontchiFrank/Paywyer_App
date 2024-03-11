@@ -88,7 +88,7 @@ const FormComponent = ({ offModal, info, setInfo, packages, setPackages }: Props
             {/* Add more steps as needed */}
             {/* Stepper component */}
             <div className="flex justify-between mt-24">
-                <button onClick={prevStep} disabled={currentStep === 1} className="bg-gray-200 px-4 py-2 rounded-lg">Previous</button>
+                {currentStep === 1 ? <div></div> : <button onClick={prevStep} className="bg-gray-200 px-4 py-2 rounded-lg">Previous</button>}
                 <button onClick={currentStep == 2 ? handleSubmit : nextStep} className="bg-[#eec643] text-primary px-4 py-2 cursor-pointer rounded-lg">{currentStep !== 2 ? 'Next' : "Submit"}</button>
             </div>
         </div>

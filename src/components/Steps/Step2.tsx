@@ -141,8 +141,8 @@ const Step2 = ({ datas, setDatas }: Props) => {
                     </span> */}
                     <input
                         type='submit'
-                        value='   Add Wallet'
-                        className="inline-flex items-center justify-center rounded-md border border-[#eec643] py-4 px-3 text-center font-medium text-primary hover:bg-opacity-90 lg:px-8 xl:px-10"
+                        value='Add Wallet'
+                        className="inline-flex items-center justify-center cursor-pointer rounded-md border border-[#eec643] py-4 px-3 text-center hover:text-opacity-70 font-medium text-primary hover:bg-opacity-90 lg:px-8 xl:px-10"
                         onClick={handleClick}
                     />
 
