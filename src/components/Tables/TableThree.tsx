@@ -95,7 +95,7 @@ const TableThree = ({ data, setData, openSet, setOpen }: Props) => {
                   <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
                     <p className="text-black dark:text-white">
                       {/* {packageItem.total_Revenue.name} */}
-                      <p className="text-sm">{packageItem.total_Revenue.name.label}</p>
+                      {/* <p className="text-sm">{packageItem.total_Revenue.name.label}</p> */}
                     </p>
                   </td>
                   <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
