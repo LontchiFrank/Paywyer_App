@@ -1,11 +1,11 @@
 // Step2.js
 
 import React, { useState, useEffect } from 'react';
-import { FaPlusCircle, } from 'react-icons/fa';
+// import { FaPlusCircle, } from 'react-icons/fa';
 import { nanoid } from 'nanoid';
 import Select from "react-tailwindcss-select";
-import { BsTrash3 } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
+// import { BsTrash3 } from 'react-icons/bs';
+// import { Link } from 'react-router-dom';
 
 const options = [
     { value: "fox", label: "🦊 Fox" },
@@ -44,7 +44,6 @@ const Step2 = ({ datas, setDatas }: Props) => {
         setForms({ ...forms, network: value })
         // setDatas({ ...datas, total_Revenue: [...total_Revenue, { network: value }] });
     };
-    const [data, setData] = useState<{ id: string }[]>([{ id: '' }]);
 
     const removeData: any = (id: string) => {
         const filter = datas.total_Revenue?.filter((item: any) => item.id !== id)
@@ -70,11 +69,12 @@ const Step2 = ({ datas, setDatas }: Props) => {
         <div className=' h-full'>
             <div className=" mb-10">
                 <div className='mb-8' >
-                    <div className='w-full h-3/4 flex flex-col  mb-8'>
-                        <div className='w-full flex justify-center items-center'>
-                            <div className='w-[90%] flex gap-2 overflow-x-auto mb-3'>
+                    <div className='w-full h-3/4 flex flex-col  mb-4'>
+                        <div className={datas.total_Revenue.length == 0 ? 'w-full flex justify-center items-center' : 'w-full flex flex-col'}>
+                            {datas.total_Revenue.length == 0 ? null : <p className='font-semibold pb-2'>Wallets</p>}
+                            <div className={datas.total_Revenue.length == 0 ? 'hidden' : 'rounded-md border border-gray-300 w-full  p-3 flex gap-2 overflow-x-auto mb-8'}>
                                 {
-                                    datas.total_Revenue?.map((el: any, index: any) =>
+                                    datas.total_Revenue?.map((el: any) =>
                                         <span key={el?.id} id="badge-dismiss-default" className="inline-flex items-center px-2 py-1 me-2 text-sm font-medium text-blue-800 bg-blue-100 rounded dark:bg-blue-900 dark:text-blue-300">
                                             {el?.name?.label}
                                             <button onClick={() => removeData(el?.id)} type="button" className="inline-flex items-center p-1 ms-2 text-sm text-blue-400 bg-transparent rounded-sm hover:bg-blue-200 hover:text-blue-900 dark:hover:bg-blue-800 dark:hover:text-blue-300" data-dismiss-target="#badge-dismiss-default" aria-label="Remove">
@@ -138,15 +138,12 @@ const Step2 = ({ datas, setDatas }: Props) => {
                     </div>
                 </div>
 
-                <div className=' flex gap-2 '>
-                    {/* <span className='flex items-center text-primary hover:text-opacity-60 cursor-pointer' onClick={handleClick}> <FaPlusCircle /></span>
-                    <span className='text-primary hover:text-opacity-60 font-medium cursor-pointer' onClick={handleClick}>
-                        Add Wallet
-                    </span> */}
+                <div className='w-full flex gap-2 '>
+
                     <input
                         type='submit'
                         value='Add Wallet'
-                        className="inline-flex items-center justify-center cursor-pointer rounded-md border border-[#eec643] py-4 px-3 text-center hover:text-opacity-70 font-medium text-primary hover:bg-opacity-90 lg:px-8 xl:px-10"
+                        className="inline-flex w-full items-center justify-center cursor-pointer rounded-md border border-[#eec643] hover:bg-[#eec643] py-3 px-3 text-center hover:text-opacity-70 font-medium text-primary hover:bg-opacity-90 lg:px-8 xl:px-4"
                         onClick={handleClick}
                     />
 

@@ -19,6 +19,7 @@ import ForgotPass from './pages/ForgotPassword/ForgotPass';
 import Reset from './pages/ResetPass/Reset';
 import Hero from './pages/Hero/Hero';
 import Payment from './pages/Payment/Payment';
+import Transactions from './pages/Transactions/Transactions';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -134,6 +135,15 @@ function App() {
             <>
               <PageTitle title="Form Layout | Paywyer" />
               <FormLayout />
+            </>
+          }
+        />
+        <Route
+          path="/transactions"
+          element={
+            <>
+              <PageTitle title="Transactions| Paywyer" />
+              <Transactions />
             </>
           }
         />

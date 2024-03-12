@@ -8,7 +8,7 @@ const productData: Product[] = [
   {
     image: ProductOne,
     name: 'Apple Watch Series 7',
-    category: 'Electronics',
+    category: '20/03/2024',
     price: 296,
     sold: 22,
     profit: 45,
@@ -16,7 +16,7 @@ const productData: Product[] = [
   {
     image: ProductTwo,
     name: 'Macbook Pro M1',
-    category: 'Electronics',
+    category: '20/03/2024',
     price: 546,
     sold: 12,
     profit: 125,
@@ -24,7 +24,7 @@ const productData: Product[] = [
   {
     image: ProductThree,
     name: 'Dell Inspiron 15',
-    category: 'Electronics',
+    category: '20/03/2024',
     price: 443,
     sold: 64,
     profit: 247,
@@ -32,7 +32,7 @@ const productData: Product[] = [
   {
     image: ProductFour,
     name: 'HP Probook 450',
-    category: 'Electronics',
+    category: '20/03/2024',
     price: 499,
     sold: 72,
     profit: 103,
@@ -41,65 +41,82 @@ const productData: Product[] = [
 
 const TableTwo = () => {
   return (
-    <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-      <div className="py-6 px-4 md:px-6 xl:px-7.5">
-        <h4 className="text-xl font-semibold text-black dark:text-white">
-          Top Products
-        </h4>
-      </div>
+    <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+      {/* <Modal open={openModal || openSet} offModal={offModal} setOffModals={offModals} info={info} setInfo={setInfo} packages={packages} setPackages={setPackages} /> */}
+      <div className="max-w-full overflow-x-auto">
+        <table className="w-full table-auto">
+          <thead>
+            <tr className="bg-gray-2 text-left dark:bg-meta-4">
+              <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
+                Transaction ID
+              </th>
+              <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
+                Date & Time
+              </th>
+              <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
+                Status
+              </th>
+              <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
+                Amount
+              </th>
 
-      <div className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5">
-        <div className="col-span-3 flex items-center">
-          <p className="font-medium">Product Name</p>
-        </div>
-        <div className="col-span-2 hidden items-center sm:flex">
-          <p className="font-medium">Category</p>
-        </div>
-        <div className="col-span-1 flex items-center">
-          <p className="font-medium">Price</p>
-        </div>
-        <div className="col-span-1 flex items-center">
-          <p className="font-medium">Sold</p>
-        </div>
-        <div className="col-span-1 flex items-center">
-          <p className="font-medium">Profit</p>
-        </div>
-      </div>
 
-      {productData.map((product, key) => (
-        <div
-          className="grid grid-cols-6 border-t border-stroke py-4.5 px-4 dark:border-strokedark sm:grid-cols-8 md:px-6 2xl:px-7.5"
-          key={key}
-        >
-          <div className="col-span-3 flex items-center">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
-              <div className="h-12.5 w-15 rounded-md">
-                <img src={product.image} alt="Product" />
+
+            </tr>
+          </thead>
+          {/* {productData.length <= 0 &&
+            <tbody className='w-full flex items-center translate-x-[95%]'>
+              <div className='w-full flex flex-col justify-center items-center  py-6  gap-2'>
+                <span>You don’t have any complete payments yet.</span>
+                <div className="mb-5">
+                  <input
+                    type="submit"
+                    onClick={onModal}
+                    value="Create Payment"
+                    className="w-full cursor-pointer rounded-lg border border-[#eec643] bg-[#eec643] p-4 text-primary font-medium transition hover:bg-opacity-90"
+                  />
+                </div>
               </div>
-              <p className="text-sm text-black dark:text-white">
-                {product.name}
-              </p>
-            </div>
-          </div>
-          <div className="col-span-2 hidden items-center sm:flex">
-            <p className="text-sm text-black dark:text-white">
-              {product.category}
-            </p>
-          </div>
-          <div className="col-span-1 flex items-center">
-            <p className="text-sm text-black dark:text-white">
-              ${product.price}
-            </p>
-          </div>
-          <div className="col-span-1 flex items-center">
-            <p className="text-sm text-black dark:text-white">{product.sold}</p>
-          </div>
-          <div className="col-span-1 flex items-center">
-            <p className="text-sm text-meta-3">${product.profit}</p>
-          </div>
-        </div>
-      ))}
+            </tbody>
+          } */}
+          <tbody>
+
+            {
+              productData.map((packageItem, key) => (
+                <tr key={key}>
+                  <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
+                    <h5 className="font-medium text-black dark:text-white">
+                      {packageItem.name}
+                    </h5>
+
+                  </td>
+                  <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                    <p className="text-black dark:text-white">
+                      {/* {packageItem.total_Revenue.name} */}
+                      <p className="text-sm pl-7">{packageItem.category}</p>
+                    </p>
+                  </td>
+                  <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                    <p className="text-black dark:text-white">
+                      {packageItem.price}
+                      {/* <p className="text-sm">{packageItem.total_Revenue.name.label}</p> */}
+                    </p>
+                  </td>
+                  <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                    <p className="text-green-500 dark:text-white">
+                      ${packageItem.profit}
+                      {/* <p className="text-sm">{packageItem.total_Revenue.name.label}</p> */}
+                    </p>
+                  </td>
+
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      </div>
     </div>
+
+
   );
 };
 
