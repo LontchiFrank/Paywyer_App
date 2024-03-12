@@ -20,6 +20,7 @@ import Reset from './pages/ResetPass/Reset';
 import Hero from './pages/Hero/Hero';
 import Payment from './pages/Payment/Payment';
 import Transactions from './pages/Transactions/Transactions';
+import TableInvoice from './components/Tables/TableInvoice';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -102,6 +103,15 @@ function App() {
             </>
           }
         />
+        {/* <Route
+          path="/invoice"
+          element={
+            <>
+              <PageTitle title="Transactions| Paywyer" />
+              <TableInvoice />
+            </>
+          }
+        /> */}
         <Route
           path="/calendar"
           element={
@@ -147,6 +157,7 @@ function App() {
             </>
           }
         />
+
         <Route
           path="/tables"
           element={
