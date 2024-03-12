@@ -18,7 +18,7 @@ const Step1 = ({ data, setData }: Props) => {
     // })
 
     const { name } = data;
-    const Category = ["Donations", "Subscriptions", "POS Terminal link"];
+    const Category = ["Donations", "Subscription", "POS Terminal link"];
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setData({ ...data, [e.target.name]: e.target.value });
         // console.log(event);
