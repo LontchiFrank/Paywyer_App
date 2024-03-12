@@ -330,6 +330,11 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.18.17.tgz#bcb2e042631b3c15792058e189ed879a22b2968b"
   integrity sha512-fGEb8f2BSA3CW7riJVurug65ACLuQAzKq0SSqkY2b2yHHH0MzDfbLyKIGzHwOI/gkHcxM/leuSW6D5w/LMNitA==
 
+"@itsy/vite-css-inject@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@itsy/vite-css-inject/-/vite-css-inject-1.0.2.tgz#a3fe2c83b0f8cb6a080201bb49d0793d1d8f29be"
+  integrity sha512-VYLA45/uye5OxhRdS56d9fLudrPFVhg9geF/MK00/TLFuBR7TJ9IE+2JBEoJuEtGOnYO0wqQ1it0z3cMMffLNg==
+
 "@jridgewell/gen-mapping@^0.3.0", "@jridgewell/gen-mapping@^0.3.2":
   version "0.3.3"
   resolved "https://registry.npmjs.org/@jridgewell/gen-mapping/-/gen-mapping-0.3.3.tgz"
