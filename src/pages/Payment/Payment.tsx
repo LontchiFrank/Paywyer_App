@@ -22,7 +22,7 @@ const Payment: React.FC = () => {
     return (
         <DefaultLayout>
             <div className='w-full pb-9'>
-                <h1 className='text-primary text-[36px] font-[600]'>Payments</h1>
+                <h1 className='text-primary text-[36px] font-[600] dark:text-white '>Payments</h1>
             </div>
 
             <div className='w-full flex justify-between  pb-9'>
