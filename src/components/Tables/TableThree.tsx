@@ -44,6 +44,9 @@ const TableThree = ({ data, setData, openSet, setOpen }: Props) => {
           <thead>
             <tr className="bg-gray-2 text-left dark:bg-meta-4">
               <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
+                Payment ID
+              </th>
+              <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
                 Name
               </th>
               <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
@@ -59,7 +62,7 @@ const TableThree = ({ data, setData, openSet, setOpen }: Props) => {
             </tr>
           </thead>
           {packages.length <= 0 &&
-            <tbody className='w-full flex items-center translate-x-[60%]'>
+            <tbody className='w-full flex items-center translate-x-[95%]'>
               <div className='w-full flex flex-col justify-center items-center  py-6  gap-2'>
                 <span>You don’t have any complete payments yet.</span>
                 <div className="mb-5">
