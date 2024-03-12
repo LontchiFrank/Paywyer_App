@@ -19,15 +19,19 @@ type Props = {
 type Prop = {
     name: any,
     network: any,
-    id: string
 }
 
 const Step2 = ({ datas, setDatas }: Props) => {
     const [forms, setForms] = useState<Prop>({
         name: '',
         network: '',
-        id: nanoid()
+
     });
+    useEffect(() => {
+        console.log("Updated array:", datas);
+        setDatas(datas)
+    }, [datas]);
+    const [info, setInfo] = useState<any>();
     const { name, network } = forms;
     const handleChange = (value: any) => {
         console.log("value:", value);
@@ -42,24 +46,24 @@ const Step2 = ({ datas, setDatas }: Props) => {
     };
     const [data, setData] = useState<{ id: string }[]>([{ id: '' }]);
 
-    // const removeData: any = (id: string) => {
-    //     const filter = data.filter(item => item.id !== id)
-    //     setData(filter)
-    //     console.log(data)
+    const removeData: any = (id: string) => {
+        const filter = datas.total_Revenue?.filter((item: any) => item.id !== id)
+        setDatas({ ...datas, total_Revenue: filter })
+        console.log(datas, 'hey')
 
-    // }
+    }
 
 
     const { total_Revenue } = datas;
     const handleClick: any = () => {
         console.log(forms)
-        const data1 = { ...total_Revenue, forms };
+        // setInfo({ ...forms, id: nanoid() })
+        const infos = { ...forms, id: nanoid() }
+        // const data1 = [...total_Revenue, forms];
         // setData([...data, { id: nanoid() }])
-        setDatas({ ...datas, total_Revenue: [...total_Revenue, forms] })
+        setDatas({ ...datas, total_Revenue: [...total_Revenue, infos] })
     }
-    useEffect(() => {
-        console.log("Updated array:", datas);
-    }, [datas]);
+
 
 
     return (
@@ -70,17 +74,17 @@ const Step2 = ({ datas, setDatas }: Props) => {
                         <div className='w-full flex justify-center items-center'>
                             <div className='w-[90%] flex gap-2 overflow-x-auto mb-3'>
                                 {
-                                    datas.total_Revenue.map((el: any, index: any) =>
-                                        <span key={index} id="badge-dismiss-default" className="inline-flex items-center px-2 py-1 me-2 text-sm font-medium text-blue-800 bg-blue-100 rounded dark:bg-blue-900 dark:text-blue-300">
-                                            {el.name.label}
-                                            <button type="button" className="inline-flex items-center p-1 ms-2 text-sm text-blue-400 bg-transparent rounded-sm hover:bg-blue-200 hover:text-blue-900 dark:hover:bg-blue-800 dark:hover:text-blue-300" data-dismiss-target="#badge-dismiss-default" aria-label="Remove">
-                                                <svg className="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                    datas.total_Revenue?.map((el: any, index: any) =>
+                                        <span key={el?.id} id="badge-dismiss-default" className="inline-flex items-center px-2 py-1 me-2 text-sm font-medium text-blue-800 bg-blue-100 rounded dark:bg-blue-900 dark:text-blue-300">
+                                            {el?.name?.label}
+                                            <button onClick={() => removeData(el?.id)} type="button" className="inline-flex items-center p-1 ms-2 text-sm text-blue-400 bg-transparent rounded-sm hover:bg-blue-200 hover:text-blue-900 dark:hover:bg-blue-800 dark:hover:text-blue-300" data-dismiss-target="#badge-dismiss-default" aria-label="Remove">
+                                                <svg className="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14" >
                                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                                                 </svg>
                                                 <span className="sr-only">Remove badge</span>
                                             </button>
                                         </span>
-                                        // )
+
                                     )
                                 }
                             </div>
