@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import Avatar from 'react-avatar';
 import UserOne from '../../images/user/user-01.png';
 
 const DropdownUser = () => {
@@ -51,8 +51,12 @@ const DropdownUser = () => {
         </span>
 
         <span className="h-12 w-12 rounded-full">
-          {/* <Avatar name='Thomas Anree' size='50px' className='rounded-full text-[20px]' /> */}
-          <img src={UserOne} alt="User" />
+          <Avatar
+            name="Thomas Anree"
+            size="50px"
+            className="rounded-full text-[20px]"
+          />
+          {/* <img src={UserOne} alt="User" /> */}
         </span>
 
         <svg
