@@ -107,7 +107,7 @@ function App() {
           path="/invoice"
           element={
             <>
-              <PageTitle title="Transactions| Paywyer" />
+              <PageTitle title="Invoice| Paywyer" />
               <TableInvoice />
             </>
           }
@@ -140,11 +140,29 @@ function App() {
           }
         />
         <Route
-          path="/forms/form-layout"
+          path="/invoice/create-invoice"
           element={
             <>
-              <PageTitle title="Form Layout | Paywyer" />
-              <FormLayout />
+              <PageTitle title="Create Invoice | Paywyer" />
+              <TableInvoice />
+            </>
+          }
+        />
+        <Route
+          path="/invoice/create-invoice"
+          element={
+            <>
+              <PageTitle title="Create Invoice | Paywyer" />
+              <TableInvoice />
+            </>
+          }
+        />
+        <Route
+          path="/invoice/list-invoice"
+          element={
+            <>
+              <PageTitle title="Lists Invoice | Paywyer" />
+              <TableInvoice />
             </>
           }
         />

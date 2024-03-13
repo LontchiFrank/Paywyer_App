@@ -1,17 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import DefaultLayout from '../../layout/DefaultLayout';
+import { nanoid } from 'nanoid';
+import { BsTrash3 } from 'react-icons/bs';
 
 function TableInvoice() {
+  const [data, setData] = useState<{ id: string }[]>([{ id: '' }]);
+
+  const removeData: any = (id: string) => {
+    const filter = data.filter((item) => item.id !== id);
+    setData(filter);
+    console.log(data);
+  };
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
+  const handleClick: any = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setData([...data, { id: nanoid() }]);
+  };
+
   return (
     <DefaultLayout>
       <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-        <div className="border-b border-stroke px-4 py-4 dark:border-strokedark sm:px-6 xl:px-9">
+        {/* <div className="border-b border-stroke px-4 py-4 dark:border-strokedark sm:px-6 xl:px-9">
           <h3 className="font-medium text-black dark:text-white">Style 2</h3>
-        </div>
+        </div> */}
         <div className="p-4 sm:p-6 xl:p-9">
           <div>
             <div className="mb-10 flex flex-wrap items-center justify-end gap-3.5">
-              <button className="inline-flex items-center gap-2.5 rounded bg-meta-3 px-4 py-[7px] font-medium text-white hover:bg-opacity-90">
+              {/* <button className="inline-flex items-center gap-2.5 rounded bg-meta-3 px-4 py-[7px] font-medium text-white hover:bg-opacity-90">
                 <svg
                   className="fill-current"
                   width="18"
@@ -38,7 +55,7 @@ function TableInvoice() {
                   ></path>
                 </svg>
                 Print
-              </button>
+              </button> */}
               <button className="inline-flex items-center gap-2.5 rounded bg-primary px-4 py-[7px] font-medium text-white hover:bg-opacity-90">
                 <svg
                   className="fill-current"
@@ -72,253 +89,260 @@ function TableInvoice() {
                 Save As PDF
               </button>
             </div>
-            <div className="flex flex-wrap justify-between gap-5">
-              <div>
-                <p className="mb-1.5 font-medium text-black dark:text-white">
-                  Billing From:
-                </p>
-                <h4 className="mb-3 text-xl font-bold text-black dark:text-white">
-                  Super Technologies
-                </h4>
-                <a className="block" href="/invoice">
-                  <span className="font-medium text-black dark:text-white">
-                    Email:{' '}
-                  </span>
-                  contact@example.com
-                </a>
-                <span className="mt-1.5 block">
-                  <span className="font-medium text-black dark:text-white">
-                    Address:{' '}
-                  </span>
-                  2972 Westheimer Rd. Santa Ana.
-                </span>
-              </div>
-              <div>
-                <p className="mb-1.5 font-medium text-black dark:text-white">
-                  Billing To:
-                </p>
-                <h4 className="mb-3 text-xl font-bold text-black dark:text-white">
-                  Devid wilium
-                </h4>
-                <a className="block" href="/invoice">
-                  <span className="font-medium text-black dark:text-white">
-                    Email:{' '}
-                  </span>
-                  contact@example.com
-                </a>
-                <span className="mt-1.5 block">
-                  <span className="font-medium text-black dark:text-white">
-                    Address:{' '}
-                  </span>
-                  New York, USA 2707 Davis Anenue
-                </span>
-              </div>
-            </div>
-            <div className="my-7.5 grid grid-cols-1 border border-stroke dark:border-strokedark xsm:grid-cols-2 sm:grid-cols-4">
-              <div className="border-b border-r border-stroke px-5 py-4 last:border-r-0 dark:border-strokedark sm:border-b-0">
-                <h5 className="mb-1.5 font-bold text-black dark:text-white">
-                  Invoice ID :
-                </h5>
-                <span className="text-sm font-medium"> #STK83084398239 </span>
-              </div>
-              <div className="border-b border-stroke px-5 py-4 last:border-r-0 dark:border-strokedark sm:border-b-0 sm:border-r">
-                <h5 className="mb-1.5 font-bold text-black dark:text-white">
-                  Date Issued :
-                </h5>
-                <span className="text-sm font-medium"> 29, Nov 2027 </span>
-              </div>
-              <div className="border-b border-r border-stroke px-5 py-4 last:border-r-0 dark:border-strokedark xsm:border-b-0">
-                <h5 className="mb-1.5 font-bold text-black dark:text-white">
-                  Due Date :
-                </h5>
-                <span className="text-sm font-medium"> 29, Dec 2027 </span>
-              </div>
-              <div className="border-r border-stroke px-5 py-4 last:border-r-0 dark:border-strokedark">
-                <h5 className="mb-1.5 font-bold text-black dark:text-white">
-                  Due Amount :
-                </h5>
-                <span className="text-sm font-medium"> $2,578.90 </span>
-              </div>
-            </div>
-            <div className="border border-stroke dark:border-strokedark">
-              <div className="max-w-full overflow-x-auto">
-                <div className="min-w-[670px]">
-                  <div className="grid grid-cols-12 border-b border-stroke py-3.5 pl-5 pr-6 dark:border-strokedark">
-                    <div className="col-span-3">
-                      <h5 className="font-medium text-black dark:text-white">
-                        Brand name
-                      </h5>
-                    </div>
-                    <div className="col-span-4">
-                      <h5 className="font-medium text-black dark:text-white">
-                        Description
-                      </h5>
-                    </div>
-                    <div className="col-span-2">
-                      <h5 className="font-medium text-black dark:text-white">
-                        Quantity
-                      </h5>
-                    </div>
-                    <div className="col-span-2">
-                      <h5 className="font-medium text-black dark:text-white">
-                        Price Per Unit
-                      </h5>
-                    </div>
-                    <div className="col-span-1">
-                      <h5 className="text-right font-medium text-black dark:text-white">
-                        Total
-                      </h5>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-12 border-b border-stroke py-3.5 pl-5 pr-6 dark:border-strokedark">
-                    <div className="col-span-3">
-                      <p className="font-medium">Techno</p>
-                    </div>
-                    <div className="col-span-4">
-                      <p className="font-medium">Kemon 24 smart phone</p>
-                    </div>
-                    <div className="col-span-2">
-                      <p className="font-medium">1</p>
-                    </div>
-                    <div className="col-span-2">
-                      <p className="font-medium">$200</p>
-                    </div>
-                    <div className="col-span-1">
-                      <p className="text-right font-medium">$200</p>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-12 border-b border-stroke py-3.5 pl-5 pr-6 dark:border-strokedark">
-                    <div className="col-span-3">
-                      <p className="font-medium">Vivo</p>
-                    </div>
-                    <div className="col-span-4">
-                      <p className="font-medium">Vivo 32 smart phone</p>
-                    </div>
-                    <div className="col-span-2">
-                      <p className="font-medium">3</p>
-                    </div>
-                    <div className="col-span-2">
-                      <p className="font-medium">$300</p>
-                    </div>
-                    <div className="col-span-1">
-                      <p className="text-right font-medium">$900</p>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-12 border-b border-stroke py-3.5 pl-5 pr-6 dark:border-strokedark">
-                    <div className="col-span-3">
-                      <p className="font-medium">Samsung</p>
-                    </div>
-                    <div className="col-span-4">
-                      <p className="font-medium">S23 Ultra</p>
-                    </div>
-                    <div className="col-span-2">
-                      <p className="font-medium">1</p>
-                    </div>
-                    <div className="col-span-2">
-                      <p className="font-medium">$1300</p>
-                    </div>
-                    <div className="col-span-1">
-                      <p className="text-right font-medium">$1300</p>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-12 border-b border-stroke py-3.5 pl-5 pr-6 dark:border-strokedark">
-                    <div className="col-span-3">
-                      <p className="font-medium">Apple</p>
-                    </div>
-                    <div className="col-span-4">
-                      <p className="font-medium">iPhone 15Pro Max</p>
-                    </div>
-                    <div className="col-span-2">
-                      <p className="font-medium">2</p>
-                    </div>
-                    <div className="col-span-2">
-                      <p className="font-medium">$1200</p>
-                    </div>
-                    <div className="col-span-1">
-                      <p className="text-right font-medium">$2400</p>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-12 border-b border-stroke py-3.5 pl-5 pr-6 dark:border-strokedark">
-                    <div className="col-span-3">
-                      <p className="font-medium">Oppo</p>
-                    </div>
-                    <div className="col-span-4">
-                      <p className="font-medium">Fold X</p>
-                    </div>
-                    <div className="col-span-2">
-                      <p className="font-medium">1</p>
-                    </div>
-                    <div className="col-span-2">
-                      <p className="font-medium">$900</p>
-                    </div>
-                    <div className="col-span-1">
-                      <p className="text-right font-medium">$900</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="flex justify-end p-6">
-                <div className="max-w-65 w-full">
-                  <div className="flex flex-col gap-4">
-                    <p className="flex justify-between font-medium text-black dark:text-white">
-                      <span> Subtotal </span>
-                      <span> $4700 </span>
+            <form>
+              <div className="flex flex-wrap justify-between gap-5">
+                <div>
+                  <div className="mb-2">
+                    <p className="mb-1.5 font-medium text-black dark:text-white">
+                      Billing From:
                     </p>
-                    <p className="flex justify-between font-medium text-black dark:text-white">
-                      <span> Shipping Cost (+) </span>
-                      <span> $10.00 </span>
-                    </p>
-                    <p className="flex justify-between font-medium text-black dark:text-white">
-                      <span>
-                        Coupon Discount
-                        <span className="text-meta-3">(10%)</span>
+                    <input
+                      type="text"
+                      placeholder="Enter Company"
+                      className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                    />
+                  </div>
+                  <div className="mb-2">
+                    <a className="block" href="/invoice">
+                      <span className="font-medium text-black dark:text-white mb-1.5">
+                        Email:{' '}
                       </span>
-                      <span> $470 </span>
-                    </p>
-                    <p className="flex justify-between font-medium text-black dark:text-white">
-                      <span>
-                        {' '}
-                        Vat <span className="text-red">(5%)</span>{' '}
-                      </span>
-                      <span> $235 </span>
-                    </p>
+                      <input
+                        type="text"
+                        placeholder="Enter your full name"
+                        className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                      />
+                    </a>
                   </div>
-                  <p className="mt-4 flex justify-between border-t border-stroke pt-5 dark:border-strokedark">
+                  <span className="mt-1.5 block">
                     <span className="font-medium text-black dark:text-white">
-                      Total
+                      Address:{' '}
                     </span>
-                    <span className="font-bold text-meta-3"> $4475 </span>
-                  </p>
-                  <button className="float-right mt-10 inline-flex items-center gap-2.5 rounded bg-primary px-7.5 py-2.5 font-medium text-white hover:bg-opacity-90">
-                    Download
-                    <svg
-                      className="fill-current"
-                      width="18"
-                      height="18"
-                      viewBox="0 0 18 18"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g clip-path="url(#clip0_1878_13706)">
-                        <path
-                          d="M16.8754 12.375C16.5379 12.375 16.2285 12.6562 16.2285 13.0219V15.525C16.2285 15.7781 16.0316 15.975 15.7785 15.975H2.22227C1.96914 15.975 1.77227 15.7781 1.77227 15.525V13.0219C1.77227 12.6562 1.46289 12.375 1.12539 12.375C0.787891 12.375 0.478516 12.6562 0.478516 13.0219V15.525C0.478516 16.4812 1.23789 17.2406 2.19414 17.2406H15.7785C16.7348 17.2406 17.4941 16.4812 17.4941 15.525V13.0219C17.5223 12.6562 17.2129 12.375 16.8754 12.375Z"
-                          fill=""
-                        ></path>
-                        <path
-                          d="M8.55055 13.078C8.66305 13.1905 8.8318 13.2468 9.00055 13.2468C9.1693 13.2468 9.30992 13.1905 9.45054 13.078L13.5287 9.1124C13.7818 8.85928 13.7818 8.46553 13.5287 8.2124C13.2755 7.95928 12.8818 7.95928 12.6287 8.2124L9.64742 11.1374V1.40615C9.64742 1.06865 9.36617 0.759277 9.00055 0.759277C8.66305 0.759277 8.35367 1.04053 8.35367 1.40615V11.1374L5.37242 8.2124C5.1193 7.95928 4.72555 7.9874 4.47242 8.2124C4.2193 8.46553 4.24742 8.85928 4.47242 9.1124L8.55055 13.078Z"
-                          fill=""
-                        ></path>
-                      </g>
-                      <defs>
-                        <clipPath id="clip0_1878_13706">
-                          <rect width="18" height="18" fill="white"></rect>
-                        </clipPath>
-                      </defs>
-                    </svg>
-                  </button>
+                    <input
+                      type="text"
+                      placeholder="Enter your full name"
+                      className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                    />
+                  </span>
+                </div>
+                <div>
+                  <div className="mb-2">
+                    <p className="mb-1.5 font-medium text-black dark:text-white">
+                      Billing To:
+                    </p>
+                    <input
+                      type="text"
+                      placeholder="Enter Company"
+                      className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                    />
+                  </div>
+                  <div className="mb-2">
+                    <a className="block" href="/invoice">
+                      <span className="font-medium text-black dark:text-white mb-1.5">
+                        Email:{' '}
+                      </span>
+                      <input
+                        type="text"
+                        placeholder="Enter your full name"
+                        className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                      />
+                    </a>
+                  </div>
+                  <span className="mt-1.5 block">
+                    <span className="font-medium text-black dark:text-white">
+                      Address:{' '}
+                    </span>
+                    <input
+                      type="text"
+                      placeholder="Enter your full name"
+                      className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                    />
+                  </span>
                 </div>
               </div>
-            </div>
+              <div className="my-7.5 grid grid-cols-1 border border-stroke dark:border-strokedark xsm:grid-cols-2 sm:grid-cols-4">
+                <div className="border-b border-r border-stroke px-5 py-4 last:border-r-0 dark:border-strokedark sm:border-b-0">
+                  <h5 className="mb-1.5 font-bold text-black dark:text-white">
+                    Invoice ID :
+                  </h5>
+                  <span className="text-sm font-medium"> #STK83084398239 </span>
+                </div>
+                <div className="border-b border-stroke px-5 py-4 last:border-r-0 dark:border-strokedark sm:border-b-0 sm:border-r">
+                  <h5 className="mb-1.5 font-bold text-black dark:text-white">
+                    Date Issued :
+                  </h5>
+                  <span className="text-sm font-medium">
+                    {' '}
+                    <input
+                      type="date"
+                      className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                    />{' '}
+                  </span>
+                </div>
+                <div className="border-b border-r border-stroke px-5 py-4 last:border-r-0 dark:border-strokedark xsm:border-b-0">
+                  <h5 className="mb-1.5 font-bold text-black dark:text-white">
+                    Due Date :
+                  </h5>
+                  <span className="text-sm font-medium">
+                    {' '}
+                    <input
+                      type="date"
+                      className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                    />
+                  </span>
+                </div>
+                <div className="border-r border-stroke px-5 py-4 last:border-r-0 dark:border-strokedark">
+                  <h5 className="mb-1.5 font-bold text-black dark:text-white">
+                    Due Amount :
+                  </h5>
+                  <span className="text-sm font-medium">
+                    <input
+                      type="number"
+                      placeholder="E.g $4,300"
+                      className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                    />
+                  </span>
+                </div>
+              </div>
+              {/* <div className="w-full "> */}
+              <div className="w-full flex justify-end py-5">
+                <button
+                  onClick={(e) => handleClick(e)}
+                  className="float-right inline-flex items-center gap-2.5 rounded bg-[#eec643] px-7.5 py-2.5 font-medium text-primary hover:bg-opacity-90"
+                >
+                  Add Row
+                </button>
+                {/* {/* </div> */}
+              </div>
+
+              <div className="border border-stroke dark:border-strokedark">
+                <div className="max-w-full overflow-x-auto">
+                  <div className="min-w-[670px]">
+                    <div className="grid grid-cols-14 border-b  border-stroke py-3.5 pl-5 pr-6 dark:border-strokedark">
+                      <div className="col-span-3 ">
+                        <h5 className="font-medium text-black dark:text-white">
+                          Service
+                        </h5>
+                      </div>
+                      <div className="col-span-4">
+                        <h5 className="font-medium text-black dark:text-white">
+                          Description
+                        </h5>
+                      </div>
+                      <div className="col-span-2">
+                        <h5 className="font-medium text-black dark:text-white">
+                          Quantity
+                        </h5>
+                      </div>
+                      <div className="col-span-2">
+                        <h5 className="font-medium text-black dark:text-white">
+                          Price Per Unit
+                        </h5>
+                      </div>
+                      <div className="col-span-1">
+                        <h5 className="text-right font-medium text-black dark:text-white">
+                          Total
+                        </h5>
+                      </div>
+                    </div>
+                    {data?.map((el) => (
+                      <div
+                        key={el.id}
+                        className="grid grid-cols-14 border-b gap-4  border-stroke py-3.5 pl-5 pr-6 dark:border-strokedark"
+                      >
+                        <div className="col-span-3">
+                          <input
+                            type="text"
+                            placeholder="Enter Service"
+                            className="w-[250px] rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                          />
+                        </div>
+                        <div className="col-span-4">
+                          <input
+                            type="text"
+                            placeholder="Enter desription"
+                            className="w-[80%] rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                          />
+                        </div>
+                        <div className="col-span-2">
+                          <input
+                            type="number"
+                            placeholder="E.g 1"
+                            className="w-[100%] rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                          />
+                        </div>
+                        <div className="col-span-2">
+                          <input
+                            type="text"
+                            placeholder="E.g $20"
+                            className="w-[100%] rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                          />
+                        </div>
+                        <div className="col-span-2">
+                          <input
+                            type="text"
+                            placeholder="Enter Total"
+                            className="w-[100%] rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                          />
+                        </div>
+                        <div
+                          className="col-span-1 flex justify-end items-center"
+                          onClick={() => removeData(el.id)}
+                        >
+                          <BsTrash3
+                            className="cursor-pointer"
+                            style={{ color: 'red' }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="flex justify-end py-10 px-6">
+                  <div className="max-w-65 w-full">
+                    <div className="flex flex-col gap-4">
+                      {/* <p className="flex justify-between font-medium text-black dark:text-white">
+                        <span> Subtotal </span>
+                        <span> $4700 </span>
+                      </p> */}
+                      {/* <p className="flex justify-between font-medium text-black dark:text-white">
+                        <span> Shipping Cost (+) </span>
+                        <span> $10.00 </span>
+                      </p> */}
+                      {/* <p className="flex justify-between font-medium text-black dark:text-white">
+                        <span>
+                          Total
+                          <span className="text-meta-3">(10%)</span>
+                        </span>
+                        <span> $470 </span>
+                      </p> */}
+                      <p className="flex justify-between font-medium text-black dark:text-white">
+                        <span>
+                          {' '}
+                          Vat <span className="text-red"></span>{' '}
+                        </span>
+                        <span> $235 </span>
+                      </p>
+                    </div>
+                    <p className="mt-4 flex justify-between border-t border-stroke pt-5 dark:border-strokedark">
+                      <span className="font-medium text-black dark:text-white">
+                        Total
+                      </span>
+                      <span className="font-bold text-meta-3"> $4475 </span>
+                    </p>
+                    <div className=" flex justify-end gap-3">
+                      <button className="float-right mt-10 inline-flex items-center gap-2.5 rounded bg-primary px-7.5 py-2.5 font-medium text-white hover:bg-opacity-90">
+                        Save
+                      </button>
+                      <button className="float-right mt-10 inline-flex items-center gap-2.5 rounded bg-[#eec643] px-7.5 py-2.5 font-medium text-primary hover:bg-opacity-90">
+                        Send
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>

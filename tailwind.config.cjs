@@ -19,6 +19,9 @@ module.exports = {
       ...defaultTheme.screens,
     },
     extend: {
+      gridTemplateColumns: {
+        14: 'repeat(14, minmax(0, 1fr))',
+      },
       colors: {
         current: 'currentColor',
         transparent: 'transparent',
