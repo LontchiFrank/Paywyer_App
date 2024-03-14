@@ -21,6 +21,7 @@ import Hero from './pages/Hero/Hero';
 import Payment from './pages/Payment/Payment';
 import Transactions from './pages/Transactions/Transactions';
 import TableInvoice from './components/Tables/TableInvoice';
+import Invoices from './pages/Invoices/Invoices';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -161,8 +162,8 @@ function App() {
           path="/invoice/list-invoice"
           element={
             <>
-              <PageTitle title="Lists Invoice | Paywyer" />
-              <TableInvoice />
+              <PageTitle title="Invoices | Paywyer" />
+              <Invoices />
             </>
           }
         />

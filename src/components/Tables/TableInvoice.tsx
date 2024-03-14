@@ -4,58 +4,90 @@ import { nanoid } from 'nanoid';
 import { BsTrash3 } from 'react-icons/bs';
 
 function TableInvoice() {
-  const [data, setData] = useState<{ id: string }[]>([{ id: '' }]);
+  const [data, setData] = useState<any>([
+    {
+      id: nanoid(),
+      service: '',
+      description: '',
+      quantity: 0,
+      price_per_unit: 200,
+      total: 0,
+    },
+  ]);
+  const { service, description, quantity, price_per_unit, total } = data;
 
-  const removeData: any = (id: string) => {
-    const filter = data.filter((item) => item.id !== id);
-    setData(filter);
-    console.log(data);
+  const [formData, setFormData] = useState<any>({
+    billing_from: '',
+    billing_to: '',
+    email_from: '',
+    email_to: '',
+    address_to: '',
+    address_from: '',
+    date_issued: '',
+    due_date: '',
+    due_amount: 100,
+  });
+  const [services, setServices] = useState<any>([
+    {
+      id: '',
+      service: '',
+      description: '',
+      quantity: 0,
+      price_per_unit: 200,
+      total: 0,
+    },
+  ]);
+
+  const {
+    billing_from,
+    billing_to,
+    email_from,
+    email_to,
+    address_to,
+    address_from,
+    date_issued,
+    due_amount,
+    due_date,
+  } = formData;
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    // console.log(event);
   };
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
+  const handleChange1 = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    id: string,
+  ) => {
+    const dataTemp = [...data];
+    const index = dataTemp.findIndex((item: any) => item.id == id);
+    const activeObj = { ...dataTemp[index], [e.target.name]: e.target.value };
+
+    dataTemp[index] = activeObj;
+    setData([...dataTemp]);
+  };
+  console.log(data);
+  //   console.log(formData);
+  const removeData: any = (id: string) => {
+    const filter = data.filter((item: any) => item.id !== id);
+    setData(filter);
+  };
+
   const handleClick: any = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setData([...data, { id: nanoid() }]);
   };
-
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    setFormData({ ...formData, data });
+    console.log('Data', formData);
+  };
+  //   console.log(services);
   return (
     <DefaultLayout>
       <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-        {/* <div className="border-b border-stroke px-4 py-4 dark:border-strokedark sm:px-6 xl:px-9">
-          <h3 className="font-medium text-black dark:text-white">Style 2</h3>
-        </div> */}
         <div className="p-4 sm:p-6 xl:p-9">
           <div>
             <div className="mb-10 flex flex-wrap items-center justify-end gap-3.5">
-              {/* <button className="inline-flex items-center gap-2.5 rounded bg-meta-3 px-4 py-[7px] font-medium text-white hover:bg-opacity-90">
-                <svg
-                  className="fill-current"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 18 18"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M15.3566 4.07803V1.96865C15.3566 1.15303 14.6816 0.478027 13.866 0.478027H4.10664C3.29102 0.478027 2.61602 1.15303 2.61602 1.96865V4.07803C1.82852 4.10615 1.18164 4.75303 1.18164 5.54053V9.59053C1.18164 10.378 1.82852 11.0249 2.61602 11.053V16.0312C2.61602 16.8468 3.29102 17.5218 4.10664 17.5218H13.8941C14.7098 17.5218 15.3848 16.8468 15.3848 16.0312V11.053C16.1723 11.0249 16.8191 10.378 16.8191 9.59053V5.54053C16.791 4.75303 16.1441 4.10615 15.3566 4.07803ZM3.90977 1.96865C3.90977 1.85615 3.99414 1.74365 4.13477 1.74365H13.9223C14.0348 1.74365 14.1473 1.82803 14.1473 1.96865V4.07803H3.90977V1.96865ZM14.091 16.0312C14.091 16.1437 14.0066 16.2562 13.866 16.2562H4.10664C3.99414 16.2562 3.88164 16.1718 3.88164 16.0312V11.053H14.091V16.0312V16.0312ZM15.5254 9.59053C15.5254 9.70303 15.441 9.81553 15.3004 9.81553H2.67227C2.55977 9.81553 2.44727 9.73115 2.44727 9.59053V5.54053C2.44727 5.42803 2.53164 5.31553 2.67227 5.31553H15.3004C15.4129 5.31553 15.5254 5.3999 15.5254 5.54053V9.59053V9.59053Z"
-                    fill=""
-                  ></path>
-                  <path
-                    d="M6.89102 13.2186H11.1098C11.4473 13.2186 11.7566 12.9373 11.7566 12.5717C11.7566 12.2061 11.4754 11.9248 11.1098 11.9248H6.89102C6.55352 11.9248 6.24414 12.2061 6.24414 12.5717C6.24414 12.9373 6.55352 13.2186 6.89102 13.2186Z"
-                    fill=""
-                  ></path>
-                  <path
-                    d="M14.0629 6.5249H11.9535C11.616 6.5249 11.3066 6.80615 11.3066 7.17178C11.3066 7.5374 11.5879 7.81865 11.9535 7.81865H14.0629C14.4004 7.81865 14.7098 7.5374 14.7098 7.17178C14.7098 6.80615 14.4285 6.5249 14.0629 6.5249Z"
-                    fill=""
-                  ></path>
-                  <path
-                    d="M6.89102 15.3562H11.1098C11.4473 15.3562 11.7566 15.075 11.7566 14.7094C11.7566 14.3437 11.4754 14.0625 11.1098 14.0625H6.89102C6.55352 14.0625 6.24414 14.3437 6.24414 14.7094C6.24414 15.075 6.55352 15.3562 6.89102 15.3562Z"
-                    fill=""
-                  ></path>
-                </svg>
-                Print
-              </button> */}
               <button className="inline-flex items-center gap-2.5 rounded bg-primary px-4 py-[7px] font-medium text-white hover:bg-opacity-90">
                 <svg
                   className="fill-current"
@@ -98,21 +130,25 @@ function TableInvoice() {
                     </p>
                     <input
                       type="text"
+                      name="billing_from"
+                      value={billing_from}
+                      onChange={(e) => handleChange(e)}
                       placeholder="Enter Company"
-                      className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                      className="w-full bg-gray rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
                   </div>
                   <div className="mb-2">
-                    <a className="block" href="/invoice">
-                      <span className="font-medium text-black dark:text-white mb-1.5">
-                        Email:{' '}
-                      </span>
-                      <input
-                        type="text"
-                        placeholder="Enter your full name"
-                        className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                      />
-                    </a>
+                    <span className="font-medium text-black dark:text-white mb-1.5">
+                      Email:{' '}
+                    </span>
+                    <input
+                      type="email"
+                      name="email_from"
+                      value={email_from}
+                      onChange={(e) => handleChange(e)}
+                      placeholder="Enter your full name"
+                      className="w-full bg-gray rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                    />
                   </div>
                   <span className="mt-1.5 block">
                     <span className="font-medium text-black dark:text-white">
@@ -120,8 +156,11 @@ function TableInvoice() {
                     </span>
                     <input
                       type="text"
+                      name="address_from"
+                      value={address_from}
+                      onChange={(e) => handleChange(e)}
                       placeholder="Enter your full name"
-                      className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                      className="w-full bg-gray rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
                   </span>
                 </div>
@@ -132,21 +171,25 @@ function TableInvoice() {
                     </p>
                     <input
                       type="text"
+                      name="billing_to"
+                      value={billing_to}
+                      onChange={(e) => handleChange(e)}
                       placeholder="Enter Company"
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
                   </div>
                   <div className="mb-2">
-                    <a className="block" href="/invoice">
-                      <span className="font-medium text-black dark:text-white mb-1.5">
-                        Email:{' '}
-                      </span>
-                      <input
-                        type="text"
-                        placeholder="Enter your full name"
-                        className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
-                      />
-                    </a>
+                    <span className="font-medium text-black dark:text-white mb-1.5">
+                      Email:{' '}
+                    </span>
+                    <input
+                      type="text"
+                      name="email_to"
+                      value={email_to}
+                      onChange={(e) => handleChange(e)}
+                      placeholder="Enter your full name"
+                      className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                    />
                   </div>
                   <span className="mt-1.5 block">
                     <span className="font-medium text-black dark:text-white">
@@ -154,6 +197,9 @@ function TableInvoice() {
                     </span>
                     <input
                       type="text"
+                      name="address_to"
+                      value={address_to}
+                      onChange={(e) => handleChange(e)}
                       placeholder="Enter your full name"
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
@@ -175,6 +221,9 @@ function TableInvoice() {
                     {' '}
                     <input
                       type="date"
+                      name="date_issued"
+                      value={date_issued}
+                      onChange={(e) => handleChange(e)}
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />{' '}
                   </span>
@@ -187,6 +236,9 @@ function TableInvoice() {
                     {' '}
                     <input
                       type="date"
+                      name="due_date"
+                      value={due_date}
+                      onChange={(e) => handleChange(e)}
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
                   </span>
@@ -198,6 +250,9 @@ function TableInvoice() {
                   <span className="text-sm font-medium">
                     <input
                       type="number"
+                      name="due_amount"
+                      value={due_amount}
+                      onChange={(e) => handleChange(e)}
                       placeholder="E.g $4,300"
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
@@ -245,7 +300,7 @@ function TableInvoice() {
                         </h5>
                       </div>
                     </div>
-                    {data?.map((el) => (
+                    {data?.map((el: any) => (
                       <div
                         key={el.id}
                         className="grid grid-cols-14 border-b gap-4  border-stroke py-3.5 pl-5 pr-6 dark:border-strokedark"
@@ -253,6 +308,11 @@ function TableInvoice() {
                         <div className="col-span-3">
                           <input
                             type="text"
+                            name="service"
+                            value={service}
+                            // name={`service${el.id}`}
+                            // value={service}
+                            onChange={(e) => handleChange1(e, el.id)}
                             placeholder="Enter Service"
                             className="w-[250px] rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                           />
@@ -260,6 +320,10 @@ function TableInvoice() {
                         <div className="col-span-4">
                           <input
                             type="text"
+                            // name={`description${el.id}`}
+                            name="description"
+                            value={description}
+                            onChange={(e) => handleChange1(e, el.id)}
                             placeholder="Enter desription"
                             className="w-[80%] rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                           />
@@ -267,13 +331,21 @@ function TableInvoice() {
                         <div className="col-span-2">
                           <input
                             type="number"
+                            // name={`quantity${el.id}`}
+                            name="quantity"
+                            value={quantity}
+                            onChange={(e) => handleChange1(e, el.id)}
                             placeholder="E.g 1"
                             className="w-[100%] rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                           />
                         </div>
                         <div className="col-span-2">
                           <input
-                            type="text"
+                            type="number"
+                            // name={`price_per_unit${el.id}`}
+                            name="price_per_unit"
+                            value={price_per_unit}
+                            onChange={(e) => handleChange1(e, el.id)}
                             placeholder="E.g $20"
                             className="w-[100%] rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                           />
@@ -281,6 +353,10 @@ function TableInvoice() {
                         <div className="col-span-2">
                           <input
                             type="text"
+                            // name={`total${el.id}`}
+                            name="total"
+                            value={total}
+                            onChange={(e) => handleChange1(e, el.id)}
                             placeholder="Enter Total"
                             className="w-[100%] rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                           />
@@ -302,21 +378,6 @@ function TableInvoice() {
                 <div className="flex justify-end py-10 px-6">
                   <div className="max-w-65 w-full">
                     <div className="flex flex-col gap-4">
-                      {/* <p className="flex justify-between font-medium text-black dark:text-white">
-                        <span> Subtotal </span>
-                        <span> $4700 </span>
-                      </p> */}
-                      {/* <p className="flex justify-between font-medium text-black dark:text-white">
-                        <span> Shipping Cost (+) </span>
-                        <span> $10.00 </span>
-                      </p> */}
-                      {/* <p className="flex justify-between font-medium text-black dark:text-white">
-                        <span>
-                          Total
-                          <span className="text-meta-3">(10%)</span>
-                        </span>
-                        <span> $470 </span>
-                      </p> */}
                       <p className="flex justify-between font-medium text-black dark:text-white">
                         <span>
                           {' '}
@@ -332,7 +393,10 @@ function TableInvoice() {
                       <span className="font-bold text-meta-3"> $4475 </span>
                     </p>
                     <div className=" flex justify-end gap-3">
-                      <button className="float-right mt-10 inline-flex items-center gap-2.5 rounded bg-primary px-7.5 py-2.5 font-medium text-white hover:bg-opacity-90">
+                      <button
+                        onClick={(e) => handleSubmit(e)}
+                        className="float-right mt-10 inline-flex items-center gap-2.5 rounded bg-primary px-7.5 py-2.5 font-medium text-white hover:bg-opacity-90"
+                      >
                         Save
                       </button>
                       <button className="float-right mt-10 inline-flex items-center gap-2.5 rounded bg-[#eec643] px-7.5 py-2.5 font-medium text-primary hover:bg-opacity-90">

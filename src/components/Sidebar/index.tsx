@@ -310,7 +310,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                                 (isActive && '!text-white')
                               }
                             >
-                              Lists Invoice
+                              Invoices
                             </NavLink>
                           </li>
                         </ul>
