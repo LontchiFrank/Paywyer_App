@@ -4,6 +4,15 @@ import { nanoid } from 'nanoid';
 import { BsTrash3 } from 'react-icons/bs';
 
 function TableInvoice() {
+  type Data = {
+    id: string;
+    service: string;
+    description: string;
+    quantity: number;
+    price_per_unit: number;
+    total: number;
+  };
+
   const [data, setData] = useState<any>([
     {
       id: nanoid(),
@@ -81,6 +90,10 @@ function TableInvoice() {
     setFormData({ ...formData, data });
     console.log('Data', formData);
   };
+
+  const totalAmount = data.map((el: any) => el.total);
+  console.log(totalAmount);
+
   //   console.log(services);
   return (
     <DefaultLayout>
@@ -352,7 +365,7 @@ function TableInvoice() {
                         </div>
                         <div className="col-span-2">
                           <input
-                            type="text"
+                            type="number"
                             // name={`total${el.id}`}
                             name="total"
                             value={total}
