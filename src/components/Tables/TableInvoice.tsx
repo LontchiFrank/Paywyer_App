@@ -80,6 +80,17 @@ function TableInvoice() {
     const filter = data.filter((item: any) => item.id !== id);
     setData(filter);
   };
+  const totalAmount = data.map((el: any) => el.total);
+  const tots = totalAmount.map(Number);
+  console.log(tots);
+  let sum = 0;
+  tots.forEach((element: any) => {
+    sum += element;
+  });
+  //   ((x: any) => {
+  //     sum += x;
+  //   });
+  console.log(sum);
 
   const handleClick: any = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -87,12 +98,12 @@ function TableInvoice() {
   };
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    setFormData({ ...formData, data });
-    console.log('Data', formData);
+    const dataSelect = data;
+    setFormData({ ...formData, dataSelect });
+    localStorage.setItem('data', JSON.stringify(formData));
   };
 
-  const totalAmount = data.map((el: any) => el.total);
-  console.log(totalAmount);
+  console.log('Data', formData);
 
   //   console.log(services);
   return (
@@ -403,7 +414,7 @@ function TableInvoice() {
                       <span className="font-medium text-black dark:text-white">
                         Total
                       </span>
-                      <span className="font-bold text-meta-3"> $4475 </span>
+                      <span className="font-bold text-meta-3">${sum} </span>
                     </p>
                     <div className=" flex justify-end gap-3">
                       <button
