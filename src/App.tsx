@@ -22,6 +22,7 @@ import Payment from './pages/Payment/Payment';
 import Transactions from './pages/Transactions/Transactions';
 import TableInvoice from './components/Tables/TableInvoice';
 import Invoices from './pages/Invoices/Invoices';
+import Support from './pages/Support/Support';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -192,6 +193,15 @@ function App() {
             <>
               <PageTitle title="Settings | Paywyer" />
               <Settings />
+            </>
+          }
+        />
+        <Route
+          path="/supports"
+          element={
+            <>
+              <PageTitle title="Support | Paywyer" />
+              <Support />
             </>
           }
         />

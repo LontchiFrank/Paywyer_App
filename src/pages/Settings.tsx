@@ -5,6 +5,7 @@ import DefaultLayout from '../layout/DefaultLayout';
 // import Select from "react-tailwindcss-select";
 import { FaKey, FaTimes } from 'react-icons/fa';
 import { useState } from 'react';
+import SwitcherThree from '../components/Switchers/SwitcherThree';
 
 const Settings = () => {
   const Category = ['ID Card', 'Passport'];
@@ -13,6 +14,7 @@ const Settings = () => {
   const [selectedPassport, setSelectedPassport] = useState<File>();
   const [selectedIDFront, setSelectedFront] = useState<File>();
   const [selectedIDBack, setSelectedIDBack] = useState<File>();
+  const [open, setOpen] = useState<any>(false);
 
   const handleImagePassportChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -29,6 +31,7 @@ const Settings = () => {
       reader.readAsDataURL(file);
     }
   };
+  console.log(open);
 
   const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -191,7 +194,7 @@ const Settings = () => {
             <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
               <div className="border-b border-stroke py-4 px-7 dark:border-strokedark">
                 <h3 className="font-medium text-black dark:text-white">
-                  Two Factor Authentication
+                  Two Factor Authentication (Recommended)
                 </h3>
               </div>
               <div className="p-7">
@@ -200,7 +203,12 @@ const Settings = () => {
                     A verification code has been sent to your email. This code
                     will be valid in 15minutes.
                   </div>
-                  <div className="mb-5.5">
+                  <div className="flex justify-between">
+                    <label>Enable 2FA</label>
+                    <SwitcherThree open={open} setOpen={setOpen} />
+                  </div>
+
+                  {/* <div className="mb-5.5">
                     <label
                       className="mb-3 block text-sm font-medium text-black dark:text-white"
                       htmlFor="emailAddress"
@@ -228,7 +236,7 @@ const Settings = () => {
                         </button>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </form>
               </div>
             </div>
