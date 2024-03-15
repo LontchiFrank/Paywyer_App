@@ -24,7 +24,7 @@ function TableInvoice() {
     },
   ]);
   const { service, description, quantity, price_per_unit, total } = data;
-
+  const [holdData, setHoldData] = useState<any>([]);
   const [formData, setFormData] = useState<any>({
     billing_from: '',
     billing_to: '',
@@ -87,9 +87,6 @@ function TableInvoice() {
   tots.forEach((element: any) => {
     sum += element;
   });
-  //   ((x: any) => {
-  //     sum += x;
-  //   });
   console.log(sum);
 
   const handleClick: any = (e: React.FormEvent<HTMLFormElement>) => {
@@ -99,11 +96,15 @@ function TableInvoice() {
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     const dataSelect = data;
-    setFormData({ ...formData, dataSelect });
-    localStorage.setItem('data', JSON.stringify(formData));
+    const pata = { ...formData, dataSelect };
+    // setFormData();
+    setHoldData((prevState: any) => [...prevState, pata]);
+    setFormData(pata);
   };
 
+  localStorage.setItem('data', JSON.stringify(holdData));
   console.log('Data', formData);
+  console.log('Mama', holdData);
 
   //   console.log(services);
   return (
@@ -153,6 +154,7 @@ function TableInvoice() {
                       Billing From:
                     </p>
                     <input
+                      required
                       type="text"
                       name="billing_from"
                       value={billing_from}
@@ -167,6 +169,7 @@ function TableInvoice() {
                     </span>
                     <input
                       type="email"
+                      required
                       name="email_from"
                       value={email_from}
                       onChange={(e) => handleChange(e)}
@@ -180,6 +183,7 @@ function TableInvoice() {
                     </span>
                     <input
                       type="text"
+                      required
                       name="address_from"
                       value={address_from}
                       onChange={(e) => handleChange(e)}
@@ -196,6 +200,7 @@ function TableInvoice() {
                     <input
                       type="text"
                       name="billing_to"
+                      required
                       value={billing_to}
                       onChange={(e) => handleChange(e)}
                       placeholder="Enter Company"
@@ -209,6 +214,7 @@ function TableInvoice() {
                     <input
                       type="text"
                       name="email_to"
+                      required
                       value={email_to}
                       onChange={(e) => handleChange(e)}
                       placeholder="Enter your full name"
@@ -222,6 +228,7 @@ function TableInvoice() {
                     <input
                       type="text"
                       name="address_to"
+                      required
                       value={address_to}
                       onChange={(e) => handleChange(e)}
                       placeholder="Enter your full name"
@@ -245,6 +252,7 @@ function TableInvoice() {
                     {' '}
                     <input
                       type="date"
+                      required
                       name="date_issued"
                       value={date_issued}
                       onChange={(e) => handleChange(e)}
@@ -260,6 +268,7 @@ function TableInvoice() {
                     {' '}
                     <input
                       type="date"
+                      required
                       name="due_date"
                       value={due_date}
                       onChange={(e) => handleChange(e)}
@@ -275,6 +284,7 @@ function TableInvoice() {
                     <input
                       type="number"
                       name="due_amount"
+                      required
                       value={due_amount}
                       onChange={(e) => handleChange(e)}
                       placeholder="E.g $4,300"
@@ -334,6 +344,7 @@ function TableInvoice() {
                             type="text"
                             name="service"
                             value={service}
+                            required
                             // name={`service${el.id}`}
                             // value={service}
                             onChange={(e) => handleChange1(e, el.id)}
@@ -347,6 +358,7 @@ function TableInvoice() {
                             // name={`description${el.id}`}
                             name="description"
                             value={description}
+                            required
                             onChange={(e) => handleChange1(e, el.id)}
                             placeholder="Enter desription"
                             className="w-[80%] rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
@@ -358,6 +370,7 @@ function TableInvoice() {
                             // name={`quantity${el.id}`}
                             name="quantity"
                             value={quantity}
+                            required
                             onChange={(e) => handleChange1(e, el.id)}
                             placeholder="E.g 1"
                             className="w-[100%] rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
@@ -369,6 +382,7 @@ function TableInvoice() {
                             // name={`price_per_unit${el.id}`}
                             name="price_per_unit"
                             value={price_per_unit}
+                            required
                             onChange={(e) => handleChange1(e, el.id)}
                             placeholder="E.g $20"
                             className="w-[100%] rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
@@ -381,6 +395,7 @@ function TableInvoice() {
                             name="total"
                             value={total}
                             onChange={(e) => handleChange1(e, el.id)}
+                            required
                             placeholder="Enter Total"
                             className="w-[100%] rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                           />

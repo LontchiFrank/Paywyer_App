@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 
 function TableInvoices() {
   const packageData: [] = [];
-  const [packages, setPackages] = useState([
+  const [packages, setPackages] = useState(
     JSON.parse(localStorage.getItem('data') || '') || false,
-  ]);
+  );
 
   return (
     <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
@@ -48,7 +48,7 @@ function TableInvoices() {
                 </div>
               </tbody>
             )}
-            {packages.map((packageItem, key) => (
+            {packages?.map((packageItem: any, key: any) => (
               <tr key={key}>
                 <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
                   <h5 className="font-medium text-black dark:text-white">
