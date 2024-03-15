@@ -160,7 +160,7 @@ function TableInvoice() {
                       value={billing_from}
                       onChange={(e) => handleChange(e)}
                       placeholder="Enter Company"
-                      className="w-full bg-gray rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                      className="w-full border-stroke bg-gray rounded-lg border py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
                   </div>
                   <div className="mb-2">
@@ -174,7 +174,7 @@ function TableInvoice() {
                       value={email_from}
                       onChange={(e) => handleChange(e)}
                       placeholder="Enter your full name"
-                      className="w-full bg-gray rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                      className="w-full bg-gray  rounded-lg border border-stroke  py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
                   </div>
                   <span className="mt-1.5 block">
@@ -188,7 +188,7 @@ function TableInvoice() {
                       value={address_from}
                       onChange={(e) => handleChange(e)}
                       placeholder="Enter your full name"
-                      className="w-full bg-gray rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                      className="w-full bg-gray rounded-lg border border-stroke bg-gray py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
                   </span>
                 </div>
@@ -204,7 +204,7 @@ function TableInvoice() {
                       value={billing_to}
                       onChange={(e) => handleChange(e)}
                       placeholder="Enter Company"
-                      className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                      className="w-full rounded-lg border border-stroke bg-gray py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
                   </div>
                   <div className="mb-2">
@@ -218,7 +218,7 @@ function TableInvoice() {
                       value={email_to}
                       onChange={(e) => handleChange(e)}
                       placeholder="Enter your full name"
-                      className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                      className="w-full rounded-lg border border-stroke bg-gray py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
                   </div>
                   <span className="mt-1.5 block">
@@ -232,7 +232,7 @@ function TableInvoice() {
                       value={address_to}
                       onChange={(e) => handleChange(e)}
                       placeholder="Enter your full name"
-                      className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                      className="w-full rounded-lg border border-stroke bg-gray py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
                   </span>
                 </div>
@@ -256,7 +256,7 @@ function TableInvoice() {
                       name="date_issued"
                       value={date_issued}
                       onChange={(e) => handleChange(e)}
-                      className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                      className="w-full rounded-lg border border-stroke bg-gray py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />{' '}
                   </span>
                 </div>
@@ -272,7 +272,7 @@ function TableInvoice() {
                       name="due_date"
                       value={due_date}
                       onChange={(e) => handleChange(e)}
-                      className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                      className="w-full rounded-lg border border-stroke bg-gray py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
                   </span>
                 </div>
@@ -288,7 +288,7 @@ function TableInvoice() {
                       value={due_amount}
                       onChange={(e) => handleChange(e)}
                       placeholder="E.g $4,300"
-                      className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                      className="w-full rounded-lg border border-stroke bg-gray py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
                   </span>
                 </div>
@@ -349,7 +349,7 @@ function TableInvoice() {
                             // value={service}
                             onChange={(e) => handleChange1(e, el.id)}
                             placeholder="Enter Service"
-                            className="w-[250px] rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            className="w-[250px]  rounded-lg border border-stroke bg-gray py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                           />
                         </div>
                         <div className="col-span-4">
@@ -361,7 +361,7 @@ function TableInvoice() {
                             required
                             onChange={(e) => handleChange1(e, el.id)}
                             placeholder="Enter desription"
-                            className="w-[80%] rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            className="w-[80%] rounded-lg border border-stroke bg-gray py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                           />
                         </div>
                         <div className="col-span-2">
@@ -373,7 +373,7 @@ function TableInvoice() {
                             required
                             onChange={(e) => handleChange1(e, el.id)}
                             placeholder="E.g 1"
-                            className="w-[100%] rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            className="w-[100%] rounded-lg border border-stroke bg-gray py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                           />
                         </div>
                         <div className="col-span-2">
@@ -385,7 +385,7 @@ function TableInvoice() {
                             required
                             onChange={(e) => handleChange1(e, el.id)}
                             placeholder="E.g $20"
-                            className="w-[100%] rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            className="w-[100%] rounded-lg border border-stroke bg-gray py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                           />
                         </div>
                         <div className="col-span-2">
@@ -397,7 +397,7 @@ function TableInvoice() {
                             onChange={(e) => handleChange1(e, el.id)}
                             required
                             placeholder="Enter Total"
-                            className="w-[100%] rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                            className="w-[100%] rounded-lg border border-stroke bg-gray py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                           />
                         </div>
                         <div

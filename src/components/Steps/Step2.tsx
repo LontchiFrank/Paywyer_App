@@ -126,7 +126,8 @@ const Step2 = ({ datas, setDatas }: Props) => {
                   Currency
                 </label>
                 <Select
-                  primaryColor="primary"
+                  //   classNames={`border-stroke bg-gray`}
+                  primaryColor="red"
                   value={name}
                   onChange={handleChange}
                   options={options}
@@ -156,7 +157,7 @@ const Step2 = ({ datas, setDatas }: Props) => {
               type="text"
               id="text"
               name="name"
-              className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-300 dark:placeholder-gray-800 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="border-stroke bg-gray border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-300 dark:placeholder-gray-800 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="1jkjfiojieaeioioiugjhfncviiepqncow"
               required
             />

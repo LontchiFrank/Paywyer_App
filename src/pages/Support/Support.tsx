@@ -29,9 +29,12 @@ function Support() {
         <div className="pt-7 px-7 pb-4">
           <label className="mb-3 block text-black dark:text-white">Email</label>
           <input
-            type="text"
-            placeholder="johndoe@gmail."
-            className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+            className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+            type="email"
+            name="email"
+            id="email"
+            placeholder="johdoe@gmail.com"
+            // defaultValue="+990 3343 7865"
           />
         </div>
         <div className="pt-4 px-7 pb-4">
@@ -43,7 +46,7 @@ function Support() {
             name="category"
             // onClick={(e) => console.log(e, "select")}
             onChange={(e) => handleCategory(e)}
-            className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-300 dark:placeholder-gray-400 dark:text-gray-800  dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
           >
             <option>Choose Category</option>
             {options?.map((item: any) => (
@@ -61,7 +64,7 @@ function Support() {
             <input
               type="text"
               placeholder="Enter Transaction ID"
-              className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+              className="w-full rounded-lg border-[1.5px] border-stroke bg-gray py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
             />
           </div>
         ) : null}
@@ -72,7 +75,7 @@ function Support() {
           <textarea
             rows={6}
             placeholder="Type message here"
-            className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+            className="w-full rounded-lg border-[1.5px] border-stroke bg-gray py-3 px-5 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
           ></textarea>
         </div>
         <div className="w-full p-7 flex justify-end ">
