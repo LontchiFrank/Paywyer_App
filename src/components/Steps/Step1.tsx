@@ -1,27 +1,24 @@
 // Step1.js
 
-import React from 'react';
+import React, { useState } from 'react';
 
 type Props = {
   setData: any;
   data: any;
+  errors: any;
+  setErrors: any;
 };
-// interface Payment {
-//     name: string;
-//     category: string;
-// }
+interface Payment {
+  name: string;
+  category: string;
+}
 
-const Step1 = ({ data, setData }: Props) => {
-  // const [formData, setFormData] = useState<Payment>({
-  //     name: "",
-  //     category: ""
-  // })
+const Step1 = ({ data, setData, errors, setErrors }: Props) => {
+  const { name, category } = data;
 
-  const { name } = data;
   const Category = ['Donations', 'Subscription', 'POS Terminal link'];
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setData({ ...data, [e.target.name]: e.target.value });
-    // console.log(event);
   };
 
   const handleCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -47,6 +44,14 @@ const Step1 = ({ data, setData }: Props) => {
           required
           onChange={(e) => handleChange(e)}
         />
+        {/* {errors.name?.isError ? (
+          <span className="text-[12px] text-red-600">
+            {errors.name.message}
+          </span>
+        ) : null} */}
+        {errors.name.length > 0 && (
+          <span className="text-[12px] text-red-600">{errors.name}</span>
+        )}
       </div>
       <div className="mb-6">
         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
@@ -66,6 +71,14 @@ const Step1 = ({ data, setData }: Props) => {
             </option>
           ))}
         </select>
+        {/* {errors.category?.isError ? (
+          <span className="text-[12px] text-red-600">
+            {errors.category.message}
+          </span>
+        ) : null} */}
+        {errors.category.length > 0 && (
+          <span className="text-[12px] text-red-600">{errors.category}</span>
+        )}
       </div>
     </form>
   );

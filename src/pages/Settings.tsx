@@ -211,17 +211,48 @@ const Settings = () => {
                     </div>
                   )}
                   {open && (
-                    <div className="w-full mt-5 flex gap-3 ">
-                      <img
-                        style={{ width: '40%', height: '80%' }}
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgLZC0RA6I6r6rfZ7cJd4aLrKo7KQfxWl-6vKScDC26w&s"
-                      />{' '}
-                      <div>
-                        <span>Place your phone camera on the QR code.</span>
+                    <div>
+                      <div className="w-full mt-5 flex gap-3 ">
+                        <img
+                          style={{ width: '40%', height: '80%' }}
+                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTgLZC0RA6I6r6rfZ7cJd4aLrKo7KQfxWl-6vKScDC26w&s"
+                        />{' '}
+                        <div>
+                          <span>Place your phone camera on the QR code.</span>
+                        </div>
+                      </div>
+                      <div className="mb-5.5  mt-5 ">
+                        <label
+                          className="mb-3 block text-sm font-medium  dark:text-white"
+                          htmlFor="emailAddress"
+                        >
+                          Enter the 6 digits in your phone.
+                        </label>
+                        <div className=" rounded border border-stroke flex">
+                          <span className="pl-4 flex items-center bg-gray">
+                            <FaKey />
+                          </span>
+                          <input
+                            className="w-full bg-gray py-3 pl-2.5 pr-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
+                            type="text"
+                            name=""
+                            id=""
+                            placeholder="Please Enter the Code here"
+                            defaultValue=""
+                          />
+                          <div className="flex justify-end gap-4.5">
+                            <button
+                              className="flex justify-center rounded-r-md bg-primary py-2 px-6 font-medium text-gray hover:bg-opacity-90"
+                              type="submit"
+                            >
+                              Verify
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   )}
-                  {verify && (
+                  {/* {verify && (
                     <div className="mb-5.5  mt-5 ">
                       <label
                         className="mb-3 block text-sm font-medium  dark:text-white"
@@ -251,7 +282,7 @@ const Settings = () => {
                         </div>
                       </div>
                     </div>
-                  )}
+                  )} */}
                 </form>
               </div>
             </div>

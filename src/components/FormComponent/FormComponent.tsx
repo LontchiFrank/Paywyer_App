@@ -19,6 +19,8 @@ interface Payment {
   total_Revenue: [];
 }
 
+type Errors = keyof Omit<Payment, 'id' | 'total_Revenue'>;
+
 const FormComponent = ({
   offModal,
   info,
@@ -35,6 +37,17 @@ const FormComponent = ({
 
   // State to track the current step
   const [currentStep, setCurrentStep] = useState(1);
+  //   const [errors, setErrors] = useState<{
+  //     [key in Errors]?: {
+  //       isError: boolean;
+  //       message: string;
+  //     };
+  //   }>({
+  //     name: { isError: false, message: 'Name is required' },
+  //     category: { isError: false, message: 'Category is required' },
+  //   });
+  const [errors, setErrors] = useState({ name: '', category: '' });
+  const [submitting, setSubmitting] = useState(false);
 
   // Function to handle moving to the next step
   const nextStep = () => {
@@ -52,10 +65,12 @@ const FormComponent = ({
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
     event.preventDefault();
-    const data = { ...formData, id: nanoid() };
-    setInfo(data);
-    setPackages((prevState: any) => [...prevState, data]);
-    offModal(false);
+    if (errors) {
+      const data = { ...formData, id: nanoid() };
+      setInfo(data);
+      setPackages((prevState: any) => [...prevState, data]);
+      offModal(false);
+    }
   };
   useEffect(() => {
     console.log('New Array', packages);
@@ -120,28 +135,38 @@ const FormComponent = ({
       </ol>
 
       {/* Your form fields */}
-      {currentStep === 1 && <Step1 setData={setFormData} data={formData} />}
-      {currentStep === 2 && <Step2 setDatas={setFormData} datas={formData} />}
-      {/* Add more steps as needed */}
-      {/* Stepper component */}
-      <div className="flex justify-between mt-24">
-        {currentStep === 1 ? (
-          <div></div>
-        ) : (
-          <button
-            onClick={prevStep}
-            className="bg-gray-200 px-4 py-2 rounded-lg"
-          >
-            Previous
-          </button>
+      <form>
+        {currentStep === 1 && (
+          <Step1
+            setData={setFormData}
+            data={formData}
+            errors={errors}
+            setErrors={setErrors}
+            //   setValid={setValidation}
+          />
         )}
-        <button
-          onClick={currentStep == 2 ? handleSubmit : nextStep}
-          className="bg-[#eec643] text-primary px-4 py-2 cursor-pointer rounded-lg"
-        >
-          {currentStep !== 2 ? 'Next' : 'Submit'}
-        </button>
-      </div>
+        {currentStep === 2 && <Step2 setDatas={setFormData} datas={formData} />}
+        {/* Stepper component */}
+        <div className="flex justify-between mt-24">
+          {currentStep === 1 ? (
+            <div></div>
+          ) : (
+            <button
+              onClick={prevStep}
+              className="bg-gray-200 px-4 py-2 rounded-lg"
+            >
+              Previous
+            </button>
+          )}
+          <button
+            type="submit"
+            onClick={currentStep == 2 ? handleSubmit : nextStep}
+            className="bg-[#eec643] text-primary px-4 py-2 cursor-pointer rounded-lg"
+          >
+            {currentStep !== 2 ? 'Next' : 'Submit'}
+          </button>
+        </div>
+      </form>
     </div>
   );
 };
