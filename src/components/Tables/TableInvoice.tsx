@@ -36,6 +36,48 @@ function TableInvoice() {
     due_date: '',
     due_amount: 100,
   });
+  const [errors, setErrors] = useState({
+    billing_from: '',
+    billing_to: '',
+    email_from: '',
+    email_to: '',
+    address_to: '',
+    address_from: '',
+    date_issued: '',
+    due_date: '',
+    due_amount: 100,
+  });
+
+  const validateStep1 = () => {
+    let step1Errors: any = {};
+    if (!formData.billing_from.trim()) {
+      step1Errors.billing_from = 'Billing from is required';
+    }
+    if (!formData.billing_to.trim()) {
+      step1Errors.billing_to = 'Billing to is required';
+    }
+    if (!formData.email_from.trim()) {
+      step1Errors.email_from = 'Email from is required';
+    }
+    if (!formData.email_to.trim()) {
+      step1Errors.email_to = 'Email to is required';
+    }
+    if (!formData.address_to.trim()) {
+      step1Errors.address_to = 'Address to is required';
+    }
+    if (!formData.address_from.trim()) {
+      step1Errors.address_from = 'Address from is required';
+    }
+    if (!formData.date_issued.trim()) {
+      step1Errors.date_issued = 'Date issued is required';
+    }
+    if (!formData.due_date.trim()) {
+      step1Errors.due_date = 'Due date is required';
+    }
+    setErrors({ ...errors, ...step1Errors });
+    return Object.keys(step1Errors).length === 0;
+  };
+
   const [services, setServices] = useState<any>([
     {
       id: '',
@@ -60,8 +102,42 @@ function TableInvoice() {
   } = formData;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // const {billing_from}=e.target;
     setFormData({ ...formData, [e.target.name]: e.target.value });
     // console.log(event);
+    setErrors({
+      ...errors,
+      billing_from: '',
+      billing_to: '',
+    });
+    // setErrors({
+    //   ...errors,
+    //   billing_to: '',
+    // });
+    // setErrors({
+    //   ...errors,
+    //   email_from: '',
+    // });
+    // setErrors({
+    //   ...errors,
+    //   email_to: '',
+    // });
+    // setErrors({
+    //   ...errors,
+    //   address_to: '',
+    // });
+    // setErrors({
+    //   ...errors,
+    //   address_from: '',
+    // });
+    // setErrors({
+    //   ...errors,
+    //   date_issued: '',
+    // });
+    // setErrors({
+    //   ...errors,
+    //   due_date: '',
+    // });
   };
   const handleChange1 = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -93,13 +169,16 @@ function TableInvoice() {
     e.preventDefault();
     setData([...data, { id: nanoid() }]);
   };
+
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    const dataSelect = data;
-    const pata = { ...formData, dataSelect };
-    // setFormData();
-    setHoldData((prevState: any) => [...prevState, pata]);
-    setFormData(pata);
+    if (validateStep1()) {
+      const dataSelect = data;
+      const pata = { ...formData, dataSelect };
+      // setFormData();
+      setHoldData((prevState: any) => [...prevState, pata]);
+      setFormData(pata);
+    }
   };
 
   localStorage.setItem('data', JSON.stringify(holdData));
@@ -163,6 +242,11 @@ function TableInvoice() {
                       className="w-full border-stroke bg-gray rounded-lg border py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
                   </div>
+                  {errors.billing_from == '' ? null : (
+                    <div className="text-red-600 text-[13px]">
+                      {errors.billing_from}
+                    </div>
+                  )}
                   <div className="mb-2">
                     <span className="font-medium text-black dark:text-white mb-1.5">
                       Email:{' '}
@@ -177,6 +261,11 @@ function TableInvoice() {
                       className="w-full bg-gray  rounded-lg border border-stroke  py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
                   </div>
+                  {errors.email_from == '' ? null : (
+                    <div className="text-red-600 text-[13px]">
+                      {errors.email_from}
+                    </div>
+                  )}
                   <span className="mt-1.5 block">
                     <span className="font-medium text-black dark:text-white">
                       Address:{' '}
@@ -188,9 +277,14 @@ function TableInvoice() {
                       value={address_from}
                       onChange={(e) => handleChange(e)}
                       placeholder="Enter your full name"
-                      className="w-full bg-gray rounded-lg border border-stroke bg-gray py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+                      className="w-full bg-gray rounded-lg border border-stroke py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
                   </span>
+                  {errors.address_from == '' ? null : (
+                    <div className="text-red-600 text-[13px]">
+                      {errors.address_from}
+                    </div>
+                  )}
                 </div>
                 <div>
                   <div className="mb-2">
@@ -207,6 +301,11 @@ function TableInvoice() {
                       className="w-full rounded-lg border border-stroke bg-gray py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
                   </div>
+                  {errors.billing_to == '' ? null : (
+                    <div className="text-red-600 text-[13px]">
+                      {errors.billing_to}
+                    </div>
+                  )}
                   <div className="mb-2">
                     <span className="font-medium text-black dark:text-white mb-1.5">
                       Email:{' '}
@@ -221,6 +320,11 @@ function TableInvoice() {
                       className="w-full rounded-lg border border-stroke bg-gray py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
                   </div>
+                  {errors.email_to == '' ? null : (
+                    <div className="text-red-600 text-[13px]">
+                      {errors.email_to}
+                    </div>
+                  )}
                   <span className="mt-1.5 block">
                     <span className="font-medium text-black dark:text-white">
                       Address:{' '}
@@ -235,6 +339,11 @@ function TableInvoice() {
                       className="w-full rounded-lg border border-stroke bg-gray py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
                   </span>
+                  {errors.address_to == '' ? null : (
+                    <div className="text-red-600 text-[13px]">
+                      {errors.address_to}
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="my-7.5 grid grid-cols-1 border border-stroke dark:border-strokedark xsm:grid-cols-2 sm:grid-cols-4">
@@ -259,7 +368,13 @@ function TableInvoice() {
                       className="w-full rounded-lg border border-stroke bg-gray py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />{' '}
                   </span>
+                  {errors.date_issued == '' ? null : (
+                    <div className="text-red-600 text-[13px]">
+                      {errors.date_issued}
+                    </div>
+                  )}
                 </div>
+
                 <div className="border-b border-r border-stroke px-5 py-4 last:border-r-0 dark:border-strokedark xsm:border-b-0">
                   <h5 className="mb-1.5 font-bold text-black dark:text-white">
                     Due Date :
@@ -275,6 +390,11 @@ function TableInvoice() {
                       className="w-full rounded-lg border border-stroke bg-gray py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                     />
                   </span>
+                  {errors.due_date == '' ? null : (
+                    <div className="text-red-600 text-[13px]">
+                      {errors.due_date}
+                    </div>
+                  )}
                 </div>
                 <div className="border-r border-stroke px-5 py-4 last:border-r-0 dark:border-strokedark">
                   <h5 className="mb-1.5 font-bold text-black dark:text-white">
@@ -416,16 +536,7 @@ function TableInvoice() {
 
                 <div className="flex justify-end py-10 px-6">
                   <div className="max-w-65 w-full">
-                    <div className="flex flex-col gap-4">
-                      <p className="flex justify-between font-medium text-black dark:text-white">
-                        <span>
-                          {' '}
-                          Vat <span className="text-red"></span>{' '}
-                        </span>
-                        <span> $235 </span>
-                      </p>
-                    </div>
-                    <p className="mt-4 flex justify-between border-t border-stroke pt-5 dark:border-strokedark">
+                    <p className="mt-4 flex justify-between  pt-5 dark:border-strokedark">
                       <span className="font-medium text-black dark:text-white">
                         Total
                       </span>
@@ -433,6 +544,7 @@ function TableInvoice() {
                     </p>
                     <div className=" flex justify-end gap-3">
                       <button
+                        type="submit"
                         onClick={(e) => handleSubmit(e)}
                         className="float-right mt-10 inline-flex items-center gap-2.5 rounded bg-primary px-7.5 py-2.5 font-medium text-white hover:bg-opacity-90"
                       >
