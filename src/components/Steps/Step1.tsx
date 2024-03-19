@@ -1,6 +1,13 @@
 // Step1.js
 
 import React, { useState } from 'react';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+
+const Schema = Yup.object({
+  pay_name: Yup.string().required().max(100),
+  category: Yup.string().required().max(100),
+});
 
 type Props = {
   setData: any;
@@ -14,6 +21,17 @@ interface Payment {
 }
 
 const Step1 = ({ data, setData, errors, setErrors }: Props) => {
+  const formik = useFormik({
+    initialValues: {
+      pay_name: '',
+      category: '',
+    },
+    validationSchema: Schema,
+    onSubmit: function (e) {
+      console.log(formik.isValid);
+    },
+  });
+
   const { name, category } = data;
 
   const Category = ['Donations', 'Subscription', 'POS Terminal link'];
@@ -26,7 +44,13 @@ const Step1 = ({ data, setData, errors, setErrors }: Props) => {
   };
 
   return (
-    <form className="mb-7">
+    <form
+      className="mb-7"
+      onSubmit={(e) => {
+        e.preventDefault();
+        formik.handleSubmit(e);
+      }}
+    >
       <div className="mb-6">
         <label
           className="mb-3 block text-sm font-medium text-black dark:text-white"
@@ -41,16 +65,10 @@ const Step1 = ({ data, setData, errors, setErrors }: Props) => {
           id="name"
           placeholder="Name"
           value={name}
-          required
           onChange={(e) => handleChange(e)}
         />
-        {/* {errors.name?.isError ? (
-          <span className="text-[12px] text-red-600">
-            {errors.name.message}
-          </span>
-        ) : null} */}
-        {errors.name.length > 0 && (
-          <span className="text-[12px] text-red-600">{errors.name}</span>
+        {errors.name == '' ? null : (
+          <div className="text-red-600 text-[13px]">{errors.name}</div>
         )}
       </div>
       <div className="mb-6">
@@ -60,7 +78,7 @@ const Step1 = ({ data, setData, errors, setErrors }: Props) => {
         <select
           id="countries"
           name="category"
-          // onClick={(e) => console.log(e, "select")}
+          onClick={(e) => console.log(e, 'select')}
           onChange={(e) => handleCategory(e)}
           className="w-full rounded border border-stroke bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
         >
@@ -71,13 +89,8 @@ const Step1 = ({ data, setData, errors, setErrors }: Props) => {
             </option>
           ))}
         </select>
-        {/* {errors.category?.isError ? (
-          <span className="text-[12px] text-red-600">
-            {errors.category.message}
-          </span>
-        ) : null} */}
-        {errors.category.length > 0 && (
-          <span className="text-[12px] text-red-600">{errors.category}</span>
+        {errors.category == '' ? null : (
+          <div className="text-red-600 text-[13px]">{errors.category}</div>
         )}
       </div>
     </form>

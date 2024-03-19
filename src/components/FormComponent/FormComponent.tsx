@@ -4,6 +4,13 @@ import React, { useEffect, useState } from 'react';
 import Step1 from '../Steps/Step1';
 import Step2 from '../Steps/Step2';
 import { nanoid } from 'nanoid';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+
+const Schema = Yup.object({
+  pay_name: Yup.string().required().max(100),
+  category: Yup.string().required().max(100),
+});
 
 type Props = {
   offModal: any;
@@ -28,6 +35,19 @@ const FormComponent = ({
   packages,
   setPackages,
 }: Props) => {
+  const formik = useFormik({
+    initialValues: {
+      pay_name: '',
+      category: '',
+    },
+    validationSchema: Schema,
+    onSubmit: function (e) {
+      // e.preventDefault();
+
+      console.log(formik.isValid);
+    },
+  });
+
   const [formData, setFormData] = useState<Payment>({
     id: '',
     name: '',
@@ -37,26 +57,33 @@ const FormComponent = ({
 
   // State to track the current step
   const [currentStep, setCurrentStep] = useState(1);
-  //   const [errors, setErrors] = useState<{
-  //     [key in Errors]?: {
-  //       isError: boolean;
-  //       message: string;
-  //     };
-  //   }>({
-  //     name: { isError: false, message: 'Name is required' },
-  //     category: { isError: false, message: 'Category is required' },
-  //   });
   const [errors, setErrors] = useState({ name: '', category: '' });
-  const [submitting, setSubmitting] = useState(false);
 
   // Function to handle moving to the next step
   const nextStep = () => {
-    setCurrentStep(currentStep + 1);
+    if (currentStep === 1) {
+      if (validateStep1()) {
+        setCurrentStep(currentStep + 1);
+      }
+    } else {
+      setCurrentStep(currentStep + 1);
+    }
   };
 
   // Function to handle moving to the previous step
   const prevStep = () => {
     setCurrentStep(currentStep - 1);
+  };
+  const validateStep1 = () => {
+    let step1Errors: any = {};
+    if (!formData.name.trim()) {
+      step1Errors.name = 'Name is required';
+    }
+    if (!formData.category.trim()) {
+      step1Errors.category = 'Category is required';
+    }
+    setErrors({ ...errors, ...step1Errors });
+    return Object.keys(step1Errors).length === 0;
   };
 
   console.log('Updated array:', packages);
@@ -135,13 +162,19 @@ const FormComponent = ({
       </ol>
 
       {/* Your form fields */}
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          formik.handleSubmit(e);
+        }}
+      >
         {currentStep === 1 && (
           <Step1
             setData={setFormData}
             data={formData}
             errors={errors}
-            setErrors={setErrors}
+            setErrors={{ ...formik.getFieldProps('pay_name') }}
+
             //   setValid={setValidation}
           />
         )}

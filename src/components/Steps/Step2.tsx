@@ -26,6 +26,23 @@ const Step2 = ({ datas, setDatas }: Props) => {
     name: '',
     network: '',
   });
+  const [errors1, setErrors1] = useState<any>({
+    name: '',
+    network: '',
+    wallet_address: '',
+  });
+
+  const validateStep2 = () => {
+    let step2Errors: any = {};
+    if (!forms.name.trim()) {
+      step2Errors.name = 'Currency is required';
+    }
+    if (!forms.network.trim()) {
+      step2Errors.category = 'Network is required';
+    }
+    setErrors1({ ...errors1, ...step2Errors });
+    return Object.keys(step2Errors).length === 0;
+  };
   useEffect(() => {
     console.log('Updated array:', datas);
     setDatas(datas);
@@ -55,9 +72,10 @@ const Step2 = ({ datas, setDatas }: Props) => {
     console.log(forms);
     // setInfo({ ...forms, id: nanoid() })
     const infos = { ...forms, id: nanoid() };
-    // const data1 = [...total_Revenue, forms];
-    // setData([...data, { id: nanoid() }])
-    setDatas({ ...datas, total_Revenue: [...total_Revenue, infos] });
+    if (validateStep2()) {
+      // Form submission logic here
+      setDatas({ ...datas, total_Revenue: [...total_Revenue, infos] });
+    }
   };
 
   return (
@@ -133,6 +151,9 @@ const Step2 = ({ datas, setDatas }: Props) => {
                   options={options}
                   isSearchable
                 />
+                {errors1.name == '' ? null : (
+                  <div className="text-red-600 text-[13px]">{errors1.name}</div>
+                )}
               </div>
               <div className="w-1/2">
                 <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
@@ -145,6 +166,11 @@ const Step2 = ({ datas, setDatas }: Props) => {
                   options={options}
                   isSearchable
                 />
+                {errors1.network == '' ? null : (
+                  <div className="text-red-600 text-[13px]">
+                    {errors1.network}
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -161,6 +187,13 @@ const Step2 = ({ datas, setDatas }: Props) => {
               placeholder="1jkjfiojieaeioioiugjhfncviiepqncow"
               required
             />
+            <div className="text-red-600 text-[13px]">
+              {errors1.wallet_address == '' ? null : (
+                <div className="text-red-600 text-[13px]">
+                  {errors1.wallet_address}
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
