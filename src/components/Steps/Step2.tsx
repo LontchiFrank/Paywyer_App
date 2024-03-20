@@ -70,12 +70,11 @@ const Step2 = ({ datas, setDatas }: Props) => {
   const { total_Revenue } = datas;
   const handleClick: any = () => {
     console.log(forms);
-    // setInfo({ ...forms, id: nanoid() })
+    setInfo({ ...forms, id: nanoid() });
     const infos = { ...forms, id: nanoid() };
-    if (validateStep2()) {
-      // Form submission logic here
-      setDatas({ ...datas, total_Revenue: [...total_Revenue, infos] });
-    }
+
+    // Form submission logic here
+    setDatas({ ...datas, total_Revenue: [...total_Revenue, infos] });
   };
 
   return (

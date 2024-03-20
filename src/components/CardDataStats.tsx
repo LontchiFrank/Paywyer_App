@@ -3,7 +3,7 @@ import React, { ReactNode } from 'react';
 interface CardDataStatsProps {
   title: string;
   total: string;
-  rate: string;
+  // rate: string;
   levelUp?: boolean;
   levelDown?: boolean;
   children: ReactNode;
@@ -12,7 +12,7 @@ interface CardDataStatsProps {
 const CardDataStats: React.FC<CardDataStatsProps> = ({
   title,
   total,
-  rate,
+  // rate,
   levelUp,
   levelDown,
   children,
@@ -36,9 +36,9 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
             levelUp && 'text-meta-3'
           } ${levelDown && 'text-meta-5'} `}
         >
-          {rate}
+          {/* {rate} */}
 
-          {levelUp && (
+          {/* {levelUp && (
             <svg
               className="fill-meta-3"
               width="10"
@@ -52,8 +52,8 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
                 fill=""
               />
             </svg>
-          )}
-          {levelDown && (
+          )} */}
+          {/* {levelDown && (
             <svg
               className="fill-meta-5"
               width="10"
@@ -67,7 +67,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
                 fill=""
               />
             </svg>
-          )}
+          )} */}
         </span>
       </div>
     </div>
