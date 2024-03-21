@@ -105,6 +105,7 @@ const FormComponent = ({
 
   useEffect(() => {
     console.log('New Array', packages);
+    localStorage.setItem('dataInfo', JSON.stringify(packages));
   }, [packages]);
 
   return (
