@@ -23,6 +23,7 @@ import Transactions from './pages/Transactions/Transactions';
 import TableInvoice from './components/Tables/TableInvoice';
 import Invoices from './pages/Invoices/Invoices';
 import Support from './pages/Support/Support';
+import PaymentId from './pages/PaymentID/PaymentId';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -184,6 +185,15 @@ function App() {
             <>
               <PageTitle title="Tables | Paywyer" />
               <Tables />
+            </>
+          }
+        />
+        <Route
+          path={`/paymentId/:id`}
+          element={
+            <>
+              <PageTitle title="View Payment | Paywyer" />
+              <PaymentId />
             </>
           }
         />

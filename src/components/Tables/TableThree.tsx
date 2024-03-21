@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Package } from '../../types/package';
 import Modal from '../Modal/Modal';
+import { Link } from 'react-router-dom';
 
 const packageData: Package[] = [];
 type Mystate = any;
@@ -10,13 +11,21 @@ type Props = {
   setData: any;
   openSet: any;
   setOpen: any;
+  clickCloseModal: any;
 };
 
-const TableThree = ({ data, setData, openSet, setOpen }: Props) => {
+const TableThree = ({
+  data,
+  setData,
+  openSet,
+  setOpen,
+  clickCloseModal,
+}: Props) => {
   const [openModal, setOpenModal] = useState(false);
   const [info, setInfo] = useState<Mystate>();
   const [packages, setPackages] = useState<any[]>(packageData);
 
+  // const arr1 = JSON.parse(localStorage.getItem('data1') || '') || false;
   useEffect(() => {
     console.log(info, 'mama');
     console.log('New', packages);
@@ -33,6 +42,7 @@ const TableThree = ({ data, setData, openSet, setOpen }: Props) => {
   const offModals: any = (num: boolean) => {
     setOpen(num);
   };
+  const arr1 = JSON.parse(localStorage.getItem('dataInfo') || '') || false;
 
   return (
     <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
@@ -40,6 +50,7 @@ const TableThree = ({ data, setData, openSet, setOpen }: Props) => {
         open={openModal || openSet}
         offModal={offModal}
         setOffModals={offModals}
+        clickCloseModal={clickCloseModal}
         info={info}
         setInfo={setInfo}
         packages={packages}
@@ -67,7 +78,7 @@ const TableThree = ({ data, setData, openSet, setOpen }: Props) => {
               </th>
             </tr>
           </thead>
-          {packages.length <= 0 && (
+          {arr1?.length <= 0 && (
             <tbody className="w-full flex items-center translate-x-[95%]">
               <div className="w-full flex flex-col justify-center items-center  py-6  gap-2">
                 <span>You don’t have any complete payments yet.</span>
@@ -83,7 +94,7 @@ const TableThree = ({ data, setData, openSet, setOpen }: Props) => {
             </tbody>
           )}
           <tbody>
-            {packages.map((packageItem) => (
+            {arr1?.map((packageItem: any, index: number) => (
               <tr key={packageItem.id}>
                 <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
                   <h5 className="font-medium text-black dark:text-white">
@@ -129,7 +140,17 @@ const TableThree = ({ data, setData, openSet, setOpen }: Props) => {
                         />
                       </svg>
                     </button> */}
-                    <button className="hover:text-primary">View</button>
+                    <Link
+                      to={`/paymentId/${packageItem.id}`}
+                      state={{
+                        item: packageItem,
+                        originalArr: arr1,
+                        index: index,
+                      }}
+                    >
+                      {' '}
+                      <button className="hover:text-primary">View</button>
+                    </Link>
                   </div>
                 </td>
               </tr>

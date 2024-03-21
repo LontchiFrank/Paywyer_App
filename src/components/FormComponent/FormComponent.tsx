@@ -96,12 +96,17 @@ const FormComponent = ({
       const data = { ...formData, id: nanoid() };
       setInfo(data);
       setPackages((prevState: any) => [...prevState, data]);
+      localStorage.setItem('dataInfo', JSON.stringify(packages));
+
       offModal(false);
     }
   };
+  console.log('New Array', packages);
+
   useEffect(() => {
     console.log('New Array', packages);
   }, [packages]);
+
   return (
     <div>
       <ol className="flex items-center justify-between w-full p-3 space-x-2 text-sm font-medium text-center text-gray-500 bg-white mb-10  border-b-[1px] border-gray-200 dark:text-gray-400 sm:text-base dark:bg-gray-800 dark:border-gray-700 sm:p-4 sm:space-x-4 rtl:space-x-reverse">

@@ -15,7 +15,10 @@ const Payment: React.FC = () => {
   const handleClick1 = () => {
     setOpenModal(true);
   };
-
+  const handleClick2 = (num: any) => {
+    setOpenModal(num);
+  };
+  const datas = JSON.parse(localStorage.getItem('dataInfo') || '') || false;
   console.log(arr);
   return (
     <DefaultLayout>
@@ -48,7 +51,7 @@ const Payment: React.FC = () => {
             />
           </div>
         </div>
-        {arr?.length == 0 ? null : (
+        {datas?.length == 0 ? null : (
           <div className="">
             <input
               type="submit"
@@ -64,6 +67,7 @@ const Payment: React.FC = () => {
         data={arr}
         setData={setArr}
         openSet={openModal}
+        clickCloseModal={handleClick2}
         setOpen={setOpenModal}
       />
     </DefaultLayout>

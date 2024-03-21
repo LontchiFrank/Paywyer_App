@@ -10,6 +10,7 @@ type Props = {
   packages: any;
   setPackages: any;
   setOffModals: any;
+  clickCloseModal: any;
 };
 const Modal = ({
   open,
@@ -19,6 +20,7 @@ const Modal = ({
   packages,
   setPackages,
   setOffModals,
+  clickCloseModal,
 }: Props) => {
   // const [offModals, setOffModals] = useState(false)
   const sum = (num: any) => {
@@ -53,7 +55,10 @@ const Modal = ({
                         <FaTimes
                           style={{ fontSize: '20px' }}
                           className="cursor-pointer"
-                          onClick={() => offModal(false)}
+                          onClick={() => {
+                            offModal(false);
+                            clickCloseModal(false);
+                          }}
                         />
                       </div>
                       <FormComponent
