@@ -543,7 +543,7 @@ function TableInvoice() {
                       </span>
                       <span className="font-bold text-meta-3">${sum} </span>
                     </p>
-                    <div className=" flex justify-end gap-3">
+                    <div className=" flex justify-start gap-3">
                       <button
                         type="submit"
                         onClick={(e) => handleSubmit(e)}

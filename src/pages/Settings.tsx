@@ -201,8 +201,8 @@ const Settings = () => {
               <div className="p-7">
                 <form action="#">
                   <div className="mb-4 flex items-center gap-3">
-                    A verification code has been sent to your email. This code
-                    will be valid in 15minutes.
+                    {/* A verification code has been sent to your email. This code
+                    will be valid in 15minutes. */}
                   </div>
                   {verify ? null : (
                     <div className="flex justify-between">
