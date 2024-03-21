@@ -113,7 +113,7 @@ function PaymentId() {
         <div className="p-6 sm:p-6 xl:p-12">
           <div className='"rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark mb-3'>
             <div className="w-full">
-              <span className="text-[12px]">Currencies</span>
+              <span className="text-[12px] dark:text-white">Currencies</span>
               {dataArray?.length == 0 && null}
               <div
                 className={
@@ -160,7 +160,7 @@ function PaymentId() {
             <div className="w-full flex flex-col gap-3 ">
               <div className="w-full flex gap-3">
                 <div className="w-1/2">
-                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     Currency
                   </label>
                   <Select
@@ -176,7 +176,7 @@ function PaymentId() {
             )} */}
                 </div>
                 <div className="w-1/2">
-                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                     Network
                   </label>
                   <Select
@@ -258,7 +258,7 @@ function PaymentId() {
           <div className="w-full mt-7  ">
             <span className="text-[18px] font-bold">Developer</span>
             <div className="w-full mt-6 mb-3">
-              <div className="w-full inline-flex rounded border border-stroke bg-gray">
+              <div className="w-full inline-flex rounded border border-stroke bg-gray focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4">
                 <input
                   className="w-full  bg-gray py-3 px-4.5 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-meta-4 dark:text-white dark:focus:border-primary"
                   ref={inputRef}
@@ -289,7 +289,7 @@ function PaymentId() {
                     certain.
                   </span>
                 </div>
-                <button className="w-[340px] border-red-700 bg-[#ffffff] font-medium  rounded border px-6 py-3 hover:bg-red-700 cursor-pointer  hover:text-white  ">
+                <button className="w-[340px] border-red-700 bg-[#ffffff] font-medium  rounded border px-6 py-3 hover:bg-red-700 dark:hover:border-red-700 cursor-pointer focus:border-primary focus-visible:outline-none   dark:bg-meta-4 dark:hover:bg-red-700 hover:text-white  ">
                   Delete Payment
                 </button>
               </div>
