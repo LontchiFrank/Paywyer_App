@@ -180,8 +180,9 @@ function TableInvoice() {
       setFormData(pata);
     }
   };
-
-  localStorage.setItem('data', JSON.stringify(holdData));
+  useEffect(() => {
+    localStorage.setItem('data', JSON.stringify(holdData));
+  }, [holdData]);
   console.log('Data', formData);
   console.log('Mama', holdData);
 

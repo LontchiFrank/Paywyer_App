@@ -4,10 +4,8 @@ import { Link } from 'react-router-dom';
 
 function TableInvoices() {
   const packageData: [] = [];
-  const [packages, setPackages] = useState(
-    JSON.parse(localStorage.getItem('data') || '') || false,
-  );
-
+  const [packages, setPackages] = useState();
+  const pack = JSON.parse(localStorage.getItem('data') || '') || false;
   return (
     <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
       {/* <Modal open={openModal || openSet} offModal={offModal} setOffModals={offModals} info={info} setInfo={setInfo} packages={packages} setPackages={setPackages} /> */}
@@ -31,7 +29,7 @@ function TableInvoices() {
           </thead>
 
           <tbody>
-            {packages.length <= 0 && (
+            {pack.length <= 0 && (
               <tbody className="w-full flex items-center translate-x-[75%]">
                 <div className="w-full flex flex-col justify-center items-center  py-6  gap-2">
                   <span>You don’t have any complete Invoice yet.</span>
@@ -48,7 +46,7 @@ function TableInvoices() {
                 </div>
               </tbody>
             )}
-            {packages?.map((packageItem: any, key: any) => (
+            {pack?.map((packageItem: any, key: any) => (
               <tr key={key}>
                 <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
                   <h5 className="font-medium text-black dark:text-white">

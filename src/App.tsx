@@ -142,15 +142,7 @@ function App() {
             </>
           }
         />
-        <Route
-          path="/invoice/create-invoice"
-          element={
-            <>
-              <PageTitle title="Create Invoice | Paywyer" />
-              <TableInvoice />
-            </>
-          }
-        />
+
         <Route
           path="/invoice/create-invoice"
           element={
