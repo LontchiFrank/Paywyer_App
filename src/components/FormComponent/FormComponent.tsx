@@ -6,6 +6,7 @@ import Step2 from '../Steps/Step2';
 import { nanoid } from 'nanoid';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import postData, { postApil } from '../../falseapi/postApi';
 
 const Schema = Yup.object({
   pay_name: Yup.string().required().max(100),
@@ -93,14 +94,28 @@ const FormComponent = ({
   ) => {
     event.preventDefault();
     if (errors) {
-      const data = { ...formData, id: nanoid() };
+      const data = { ...formData };
       setInfo(data);
       setPackages((prevState: any) => [...prevState, data]);
       localStorage.setItem('dataInfo', JSON.stringify(packages));
 
       offModal(false);
+      try {
+        const res = postData(
+          'https://65fc85d79fc4425c6530556a.mockapi.io/payment/v1/payments',
+          data,
+        );
+        alert('successfull');
+        console.log(res);
+
+        // Post successful, handle any further actions (e.g., showing a success message)
+      } catch (error) {
+        alert('Failed');
+        // Handle error (e.g., show error message)
+      }
     }
   };
+  console.log(info);
   console.log('New Array', packages);
 
   useEffect(() => {

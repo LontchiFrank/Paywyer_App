@@ -16,6 +16,7 @@
   "dependencies": {
     "@itsy/vite-css-inject": "^1.0.2",
     "apexcharts": "^3.41.0",
+    "axios": "^1.6.8",
     "flatpickr": "^4.6.13",
     "formik": "^2.4.5",
     "headlessui": "^0.0.0",
