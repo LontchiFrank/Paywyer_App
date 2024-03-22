@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Select from 'react-tailwindcss-select';
 import DefaultLayout from '../../layout/DefaultLayout';
@@ -10,6 +10,13 @@ import TransactionPayment from '../Transactions/TransactionPayment';
 import { BiClipboard } from 'react-icons/bi';
 import { BsClipboard, BsClipboard2 } from 'react-icons/bs';
 import { IoMdClipboard } from 'react-icons/io';
+import { useDispatch } from 'react-redux';
+import {
+  editPayment,
+  editPaymentAsync,
+  getAllPaymentByIDAsync,
+} from '../../features/PaymentSlice';
+import ModalDelete from '../../components/Modal/ModalDelete';
 
 const options = [
   { value: 'fox', label: '🦊 Fox' },
@@ -29,6 +36,7 @@ function PaymentId() {
   });
   const [info, setInfo] = useState<any>();
   const [open, setOpen] = useState<boolean>(false);
+  const [openModal, setOpenModal] = useState<boolean>(false);
 
   const dataObject = location.state.item;
   const activeIndex = location.state.index;
@@ -37,62 +45,67 @@ function PaymentId() {
   //   const dataArray = dataObject.total_Revenue;
   //   console.log(dataObject?.total_Revenue);
 
+  const [elArray, setElArray] = useState<any>(dataObject);
   const [dataArray, setDataArray] = useState<any>(dataObject?.total_Revenue);
   const [originalArr, setOriginalArr] = useState<any>(
     location.state.originalArr,
   );
+  const dispatch = useDispatch();
 
   const removeData = (id: string) => {
     let sampleArr = dataArray;
     const filterArray = sampleArr.filter((item: any) => item.id !== id);
     setDataArray(filterArray);
-    let copy = originalArr;
-
-    copy[activeIndex]['total_Revenue'] = filterArray;
-
-    setOriginalArr(copy);
-    localStorage.setItem('dataInfo', JSON.stringify(copy));
-
-    //GET CURRENT ID
-    // let currentIndex: any;
-    // copy.map((item: any, index1: number) => {
-    //   filterArray.map((elem: any, index2: number) => {
-    //     if (item.id === elem.id) {
-    //       currentIndex = index1;
-    //     }
-    //   });
-    // });
-
-    // console.log(originalArr, filterArray);
-
-    // originalArr?.total_Revenue
+    const newObj = { ...elArray, total_Revenue: filterArray };
+    const newCopy = {
+      id: dataObject.id,
+      newObj,
+    };
+    console.log(newCopy);
+    dispatch(editPaymentAsync(newCopy));
+    // copy[activeIndex]['total_Revenue'] = filterArray;
+    // const newCopy={dataObject}
+    // setOriginalArr(copy);
+    // localStorage.setItem('dataInfo', JSON.stringify(copy));
   };
+  console.log(dataObject.id);
   const { name, network } = forms;
+  useEffect(() => {
+    dispatch(getAllPaymentByIDAsync(dataObject.id));
+  }, [dataArray]);
 
   const handleChange = (value: any) => {
     console.log('value:', value);
     setForms({ ...forms });
     console.log(value);
     setForms({ ...forms, name: value });
-
-    // setDatas({ ...datas, total_Revenue: [...total_Revenue, { name: value }] });
   };
   const handleChange1 = (value: any) => {
     console.log('value:', value);
     setForms({ ...forms });
     console.log(value);
     setForms({ ...forms, network: value });
-    // setDatas({ ...datas, total_Revenue: [...total_Revenue, { name: value }] });
   };
   const handleClick = () => {
     setInfo({ ...forms, id: nanoid() });
     const infos = { ...forms, id: nanoid() };
-    setDataArray([...dataArray, infos]);
+    const infoSet = [...dataArray, infos];
+    setDataArray(infoSet);
+    const newObj = {
+      ...elArray,
+      total_Revenue: infoSet,
+    };
+    setElArray(newObj);
+    const newCopy = {
+      id: dataObject.id,
+      newObj,
+    };
+    dispatch(editPaymentAsync(newCopy));
   };
-  let copy = originalArr;
-  copy[activeIndex]['total_Revenue'] = dataArray;
-  localStorage.setItem('dataInfo', JSON.stringify(copy));
-  console.log(dataArray);
+
+  // let copy = originalArr;
+  // copy[activeIndex]['total_Revenue'] = dataArray;
+  // localStorage.setItem('dataInfo', JSON.stringify(copy));
 
   /// Copy Handler
   const inputRef = useRef<HTMLInputElement>(null);
@@ -106,9 +119,16 @@ function PaymentId() {
       setTimeout(() => setOpen(false), 1000);
     }
   };
+  const handleModal = () => {
+    setOpenModal(true);
+  };
+  const handleCloseModal = (num: boolean) => {
+    setOpenModal(num);
+  };
 
   return (
     <DefaultLayout>
+      <ModalDelete open={openModal} close={handleCloseModal} />
       <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <div className="p-6 sm:p-6 xl:p-12">
           <div className='"rounded-sm border border-stroke bg-white py-6 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark mb-3'>
@@ -297,7 +317,10 @@ function PaymentId() {
                     certain.
                   </span>
                 </div>
-                <button className="w-[340px] border-red-700 bg-[#ffffff] font-medium  rounded border px-6 py-3 hover:bg-red-700 dark:hover:border-red-700 cursor-pointer focus:border-primary focus-visible:outline-none   dark:bg-meta-4 dark:hover:bg-red-700 hover:text-white  ">
+                <button
+                  onClick={handleModal}
+                  className="w-[340px] border-red-700 bg-[#ffffff] font-medium  rounded border px-6 py-3 hover:bg-red-700 dark:hover:border-red-700 cursor-pointer focus:border-primary focus-visible:outline-none   dark:bg-meta-4 dark:hover:bg-red-700 hover:text-white  "
+                >
                   Delete Payment
                 </button>
               </div>

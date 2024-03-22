@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import DefaultLayout from '../../layout/DefaultLayout';
 import { nanoid } from 'nanoid';
 import { BsTrash3 } from 'react-icons/bs';
+import { useDispatch } from 'react-redux';
+import { createInvoicesAsync } from '../../features/InvoiceSlice';
 
 function TableInvoice() {
   type Data = {
@@ -150,6 +152,7 @@ function TableInvoice() {
     dataTemp[index] = activeObj;
     setData([...dataTemp]);
   };
+  const dispatch = useDispatch();
   console.log(data);
   //   console.log(formData);
   const removeData: any = (id: string) => {
@@ -178,6 +181,7 @@ function TableInvoice() {
       // setFormData();
       setHoldData((prevState: any) => [...prevState, pata]);
       setFormData(pata);
+      dispatch(createInvoicesAsync(pata));
     }
   };
   useEffect(() => {

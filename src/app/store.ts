@@ -1,6 +1,8 @@
 import { configureStore, } from "@reduxjs/toolkit";
 import paymentSlide from "../features/PaymentSlice";
-import { paymentApi } from "../services/apiPayment";
+import {  paymentApi } from "../services/apiPayment";
+import { invoiceApi } from "../services/apiInvoice";
+import { InvoicesSlide } from "../features/InvoiceSlice";
 // import adminAuthSlide from "../features/adminAuthSlice";
 // import authSlide from "../features/authSlice";
 // import categorySlide from "../features/CategorySlice";
@@ -14,14 +16,16 @@ import { paymentApi } from "../services/apiPayment";
 export const store = configureStore({
   reducer: {
     payments: paymentSlide.reducer,
+    invoice:InvoicesSlide.reducer,
     // admins: adminAuthSlide.reducer,
     // categoryList: categorySlide.reducer,
     // food: foodSlide.reducer,
     [paymentApi.reducerPath]:paymentApi.reducer,
+    [invoiceApi.reducerPath]:invoiceApi.reducer,
     // [categoryApi.reducerPath]:categoryApi.reducer,
     // [postCartApi.reducerPath]:postCartApi.reducer
   },
-     middleware:(getDefaultMiddleware)=>getDefaultMiddleware().concat(paymentApi.middleware
+     middleware:(getDefaultMiddleware)=>getDefaultMiddleware().concat(paymentApi.middleware,invoiceApi.middleware
         // foodApi.middleware,categoryApi.middleware,postCartApi.middleware
         )
 

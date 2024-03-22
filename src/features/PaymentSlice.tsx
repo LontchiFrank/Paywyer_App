@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, Slice } from '@reduxjs/toolkit';
 // import { data } from "autoprefixer";
 import axios from 'axios';
+import { useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -78,6 +79,55 @@ export const createPaymentAsync: any = createAsyncThunk(
     } catch (error: any) {
       throw new Error(error);
 
+      console.log(error);
+    }
+  },
+);
+export const getAllPaymentByIDAsync: any =
+  (id: any) => async (dispatch: any) => {
+    try {
+      const response = await axios.get(`${API_URL}payments${id}`);
+      dispatch(getPayment(response.data));
+    } catch (error: any) {
+      throw new Error(error);
+    }
+  };
+export const editPaymentAsync: any = createAsyncThunk(
+  'Payment/editPayment',
+  async (data: any) => {
+    try {
+      const response: any = await axios.put(
+        `${API_URL}payments/${data.id}`,
+        data.newObj,
+      );
+      console.log(response);
+      editPayment(response.data);
+      toast('Updated Successfully Created', {
+        duration: 4000,
+        position: 'top-center',
+
+        // Styling
+        style: {},
+        className: '',
+
+        // Custom Icon
+        icon: '👏',
+
+        // Change colors of success/error/loading icon
+        iconTheme: {
+          primary: '#000',
+          secondary: '#fff',
+        },
+
+        // Aria
+        ariaProps: {
+          role: 'status',
+          'aria-live': 'polite',
+        },
+      });
+      //   myAlert(true, "Edited successfully");
+      //   window.location.reload();
+    } catch (error: any) {
       console.log(error);
     }
   },

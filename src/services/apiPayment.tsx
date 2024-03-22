@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 // import { foods } from '../models/food.model';
-export interface payment {
+interface payment {
   name: string;
   category: string;
   total_Revenue: [];

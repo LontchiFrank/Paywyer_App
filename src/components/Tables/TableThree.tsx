@@ -78,20 +78,32 @@ const TableThree = ({ setData, openSet, setOpen, clickCloseModal }: Props) => {
               </th>
             </tr>
           </thead>
-          {data && data.length <= 0 && (
-            <tbody className="w-full flex items-center translate-x-[95%]">
-              <div className="w-full flex flex-col justify-center items-center  py-6  gap-2">
-                <span>You don’t have any complete payments yet.</span>
-                <div className="mb-5">
-                  <input
-                    type="submit"
-                    onClick={onModal}
-                    value="Create Payment"
-                    className="w-full cursor-pointer rounded-lg border border-[#eec643] bg-[#eec643] p-4 text-primary font-medium transition hover:bg-opacity-90"
-                  />
-                </div>
+          {isLoading ? (
+            <div className="w-full ">
+              <div className="flex p-4 justify-center items-center  translate-x-[135%]">
+                <img
+                  src="/images/6.svg"
+                  style={{ width: '30px', height: '35px' }}
+                />
               </div>
-            </tbody>
+            </div>
+          ) : (
+            data &&
+            data.length <= 0 && (
+              <tbody className="w-full flex items-center translate-x-[95%]">
+                <div className="w-full flex flex-col justify-center items-center  py-6  gap-2">
+                  <span>You don’t have any complete payments yet.</span>
+                  <div className="mb-5">
+                    <input
+                      type="submit"
+                      onClick={onModal}
+                      value="Create Payment"
+                      className="w-full cursor-pointer rounded-lg border border-[#eec643] bg-[#eec643] p-4 text-primary font-medium transition hover:bg-opacity-90"
+                    />
+                  </div>
+                </div>
+              </tbody>
+            )
           )}
           <tbody>
             {[...(data || [])]
@@ -146,7 +158,7 @@ const TableThree = ({ setData, openSet, setOpen, clickCloseModal }: Props) => {
                         to={`/paymentId/${packageItem.id}`}
                         state={{
                           item: packageItem,
-                          originalArr: arr1,
+                          originalArr: data,
                           index: index,
                         }}
                       >
