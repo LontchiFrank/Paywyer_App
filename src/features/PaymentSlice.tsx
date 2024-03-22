@@ -86,8 +86,10 @@ export const createPaymentAsync: any = createAsyncThunk(
 export const getAllPaymentByIDAsync: any =
   (id: any) => async (dispatch: any) => {
     try {
-      const response = await axios.get(`${API_URL}payments${id}`);
+      const response = await axios.get(`${API_URL}payments/${id}`);
       dispatch(getPayment(response.data));
+      console.log(response.data);
+      //   window.location.reload();
     } catch (error: any) {
       throw new Error(error);
     }

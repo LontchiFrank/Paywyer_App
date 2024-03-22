@@ -10,7 +10,7 @@ import TransactionPayment from '../Transactions/TransactionPayment';
 import { BiClipboard } from 'react-icons/bi';
 import { BsClipboard, BsClipboard2 } from 'react-icons/bs';
 import { IoMdClipboard } from 'react-icons/io';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   editPayment,
   editPaymentAsync,
@@ -44,12 +44,11 @@ function PaymentId() {
   //   console.log(dataObject);
   //   const dataArray = dataObject.total_Revenue;
   //   console.log(dataObject?.total_Revenue);
-
+  const data = useSelector((state: any) => state.payments?.data);
   const [elArray, setElArray] = useState<any>(dataObject);
-  const [dataArray, setDataArray] = useState<any>(dataObject?.total_Revenue);
-  const [originalArr, setOriginalArr] = useState<any>(
-    location.state.originalArr,
-  );
+  const [dataArray, setDataArray] = useState<any>(data?.total_Revenue);
+
+  console.log(data);
   const dispatch = useDispatch();
 
   const removeData = (id: string) => {
@@ -63,16 +62,14 @@ function PaymentId() {
     };
     console.log(newCopy);
     dispatch(editPaymentAsync(newCopy));
-    // copy[activeIndex]['total_Revenue'] = filterArray;
-    // const newCopy={dataObject}
-    // setOriginalArr(copy);
-    // localStorage.setItem('dataInfo', JSON.stringify(copy));
   };
+
   console.log(dataObject.id);
   const { name, network } = forms;
+
   useEffect(() => {
     dispatch(getAllPaymentByIDAsync(dataObject.id));
-  }, [dataArray]);
+  }, []);
 
   const handleChange = (value: any) => {
     console.log('value:', value);
@@ -86,6 +83,7 @@ function PaymentId() {
     console.log(value);
     setForms({ ...forms, network: value });
   };
+
   const handleClick = () => {
     setInfo({ ...forms, id: nanoid() });
     const infos = { ...forms, id: nanoid() };
@@ -102,10 +100,6 @@ function PaymentId() {
     };
     dispatch(editPaymentAsync(newCopy));
   };
-
-  // let copy = originalArr;
-  // copy[activeIndex]['total_Revenue'] = dataArray;
-  // localStorage.setItem('dataInfo', JSON.stringify(copy));
 
   /// Copy Handler
   const inputRef = useRef<HTMLInputElement>(null);
