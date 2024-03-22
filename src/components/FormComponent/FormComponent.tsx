@@ -7,6 +7,8 @@ import { nanoid } from 'nanoid';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import postData, { postApil } from '../../falseapi/postApi';
+import { useDispatch } from 'react-redux';
+import { createPaymentAsync } from '../../features/PaymentSlice';
 
 const Schema = Yup.object({
   pay_name: Yup.string().required().max(100),
@@ -75,6 +77,7 @@ const FormComponent = ({
   const prevStep = () => {
     setCurrentStep(currentStep - 1);
   };
+  const dispatch = useDispatch();
   const validateStep1 = () => {
     let step1Errors: any = {};
     if (!formData.name.trim()) {
@@ -100,19 +103,7 @@ const FormComponent = ({
       localStorage.setItem('dataInfo', JSON.stringify(packages));
 
       offModal(false);
-      try {
-        const res = postData(
-          'https://65fc85d79fc4425c6530556a.mockapi.io/payment/v1/payments',
-          data,
-        );
-        alert('successfull');
-        console.log(res);
-
-        // Post successful, handle any further actions (e.g., showing a success message)
-      } catch (error) {
-        alert('Failed');
-        // Handle error (e.g., show error message)
-      }
+      dispatch(createPaymentAsync(data));
     }
   };
   console.log(info);

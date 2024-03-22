@@ -95,7 +95,7 @@ const Payment: React.FC = () => {
             />
           </div>
         </div>
-        {datas?.length == 0 ? null : (
+        {arr?.length == 0 ? null : (
           <div className="">
             <input
               type="submit"

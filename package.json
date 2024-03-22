@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@itsy/vite-css-inject": "^1.0.2",
+    "@reduxjs/toolkit": "^2.2.2",
     "apexcharts": "^3.41.0",
     "axios": "^1.6.8",
     "flatpickr": "^4.6.13",
@@ -29,10 +30,12 @@
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^5.0.1",
+    "react-redux": "^9.1.0",
     "react-router-dom": "^6.14.2",
     "react-tailwindcss-select": "^1.8.5",
     "react-toastify": "^9.1.3",
     "sort-by": "^0.0.2",
+    "typescript": "^5.4.3",
     "yup": "^1.4.0"
   },
   "devDependencies": {

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Package } from '../../types/package';
 import Modal from '../Modal/Modal';
 import { Link } from 'react-router-dom';
+import { useGetPaymentsQuery } from '../../services/apiPayment';
 
 const packageData: Package[] = [];
 type Mystate = any;
@@ -14,22 +15,18 @@ type Props = {
   clickCloseModal: any;
 };
 
-const TableThree = ({
-  data,
-  setData,
-  openSet,
-  setOpen,
-  clickCloseModal,
-}: Props) => {
+const TableThree = ({ setData, openSet, setOpen, clickCloseModal }: Props) => {
   const [openModal, setOpenModal] = useState(false);
   const [info, setInfo] = useState<Mystate>();
   const [packages, setPackages] = useState<any[]>(packageData);
+  let { data, isLoading, error, isFetching, isSuccess } = useGetPaymentsQuery();
 
   // const arr1 = JSON.parse(localStorage.getItem('data1') || '') || false;
   useEffect(() => {
     console.log(info, 'mama');
     console.log('New', packages);
-    setData(packages);
+
+    setData(data);
   });
   const onModal: any = () => {
     setOpenModal(true);
@@ -44,6 +41,7 @@ const TableThree = ({
   };
   // const arr2 = localStorage.setItem('array', JSON.stringify(data));
   const arr1 = JSON.parse(localStorage.getItem('dataInfo') || '') || false;
+  console.log(data);
   // const arr3 = JSON.parse(localStorage.getItem('array') || '') || false;
 
   return (
@@ -80,7 +78,7 @@ const TableThree = ({
               </th>
             </tr>
           </thead>
-          {arr1?.length <= 0 && (
+          {data && data.length <= 0 && (
             <tbody className="w-full flex items-center translate-x-[95%]">
               <div className="w-full flex flex-col justify-center items-center  py-6  gap-2">
                 <span>You don’t have any complete payments yet.</span>
@@ -96,34 +94,36 @@ const TableThree = ({
             </tbody>
           )}
           <tbody>
-            {arr1?.map((packageItem: any, index: number) => (
-              <tr key={packageItem.id}>
-                <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
-                  <h5 className="font-medium text-black dark:text-white">
-                    {packageItem.id}
-                  </h5>
-                </td>
-                <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
-                  <h5 className="font-medium text-black dark:text-white">
-                    {packageItem.name}
-                  </h5>
-                </td>
-                <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <p className="text-black dark:text-white">
-                    {/* {packageItem.total_Revenue.name} */}
-                    <p className="text-sm">{packageItem.category}</p>
-                  </p>
-                </td>
-                <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <p className="text-black dark:text-white">
-                    $0.00
-                    {/* {packageItem.total_Revenue.name} */}
-                    {/* <p className="text-sm">{packageItem.total_Revenue.name.label}</p> */}
-                  </p>
-                </td>
-                <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                  <div className="flex items-center space-x-3.5">
-                    {/* <button className="hover:text-primary">
+            {[...(data || [])]
+              .reverse()
+              ?.map((packageItem: any, index: number) => (
+                <tr key={packageItem.id}>
+                  <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
+                    <h5 className="font-medium text-black dark:text-white">
+                      {packageItem.id}
+                    </h5>
+                  </td>
+                  <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
+                    <h5 className="font-medium text-black dark:text-white">
+                      {packageItem.name}
+                    </h5>
+                  </td>
+                  <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                    <p className="text-black dark:text-white">
+                      {/* {packageItem.total_Revenue.name} */}
+                      <p className="text-sm">{packageItem.category}</p>
+                    </p>
+                  </td>
+                  <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                    <p className="text-black dark:text-white">
+                      $0.00
+                      {/* {packageItem.total_Revenue.name} */}
+                      {/* <p className="text-sm">{packageItem.total_Revenue.name.label}</p> */}
+                    </p>
+                  </td>
+                  <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                    <div className="flex items-center space-x-3.5">
+                      {/* <button className="hover:text-primary">
                       <svg
                         className="fill-current"
                         width="18"
@@ -142,21 +142,21 @@ const TableThree = ({
                         />
                       </svg>
                     </button> */}
-                    <Link
-                      to={`/paymentId/${packageItem.id}`}
-                      state={{
-                        item: packageItem,
-                        originalArr: arr1,
-                        index: index,
-                      }}
-                    >
-                      {' '}
-                      <button className="hover:text-primary">View</button>
-                    </Link>
-                  </div>
-                </td>
-              </tr>
-            ))}
+                      <Link
+                        to={`/paymentId/${packageItem.id}`}
+                        state={{
+                          item: packageItem,
+                          originalArr: arr1,
+                          index: index,
+                        }}
+                      >
+                        {' '}
+                        <button className="hover:text-primary">View</button>
+                      </Link>
+                    </div>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
