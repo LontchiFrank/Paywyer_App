@@ -46,10 +46,15 @@ function PaymentId() {
   //   console.log(dataObject?.total_Revenue);
   const data = useSelector((state: any) => state.payments?.data);
   const [elArray, setElArray] = useState<any>(dataObject);
-  const [dataArray, setDataArray] = useState<any>(data?.total_Revenue);
+  const [dataArray, setDataArray] = useState<any>();
 
   console.log(data);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllPaymentByIDAsync(dataObject.id));
+    setDataArray(data?.total_Revenue);
+  }, [data]);
 
   const removeData = (id: string) => {
     let sampleArr = dataArray;
@@ -66,10 +71,6 @@ function PaymentId() {
 
   console.log(dataObject.id);
   const { name, network } = forms;
-
-  useEffect(() => {
-    dispatch(getAllPaymentByIDAsync(dataObject.id));
-  }, []);
 
   const handleChange = (value: any) => {
     console.log('value:', value);
@@ -113,6 +114,7 @@ function PaymentId() {
       setTimeout(() => setOpen(false), 1000);
     }
   };
+  console.log(dataArray);
   const handleModal = () => {
     setOpenModal(true);
   };
