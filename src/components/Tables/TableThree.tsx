@@ -40,7 +40,7 @@ const TableThree = ({ setData, openSet, setOpen, clickCloseModal }: Props) => {
     setOpen(num);
   };
   // const arr2 = localStorage.setItem('array', JSON.stringify(data));
-  const arr1 = JSON.parse(localStorage.getItem('dataInfo') || '') || false;
+  // const arr1 = JSON.parse(localStorage.getItem('dataInfo') || '') || false;
   console.log(data);
   // const arr3 = JSON.parse(localStorage.getItem('array') || '') || false;
 

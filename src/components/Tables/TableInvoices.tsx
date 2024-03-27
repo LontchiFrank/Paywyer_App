@@ -5,8 +5,6 @@ import { useGetInvoicesQuery } from '../../services/apiInvoice';
 // import { useGetInvoicesQuery } from '../../services/apiInvoice';
 
 function TableInvoices() {
-  const packageData: [] = [];
-  const [packages, setPackages] = useState();
   const { data, isLoading } = useGetInvoicesQuery();
   // const pack = JSON.parse(localStorage.getItem('data') || '') || false;
   console.log(data);
