@@ -26,6 +26,7 @@ const options = [
 type Prop = {
   name: any;
   network: any;
+  wallet_address: any;
 };
 
 function PaymentId() {
@@ -33,6 +34,7 @@ function PaymentId() {
   const [forms, setForms] = useState<Prop>({
     name: '',
     network: '',
+    wallet_address: '',
   });
   const [info, setInfo] = useState<any>();
   const [open, setOpen] = useState<boolean>(false);
@@ -67,7 +69,7 @@ function PaymentId() {
   };
 
   console.log(dataObject.id);
-  const { name, network } = forms;
+  const { name, network, wallet_address } = forms;
 
   const handleChange = (value: any) => {
     console.log('value:', value);
@@ -80,6 +82,12 @@ function PaymentId() {
     setForms({ ...forms });
     console.log(value);
     setForms({ ...forms, network: value });
+  };
+  const handleChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log('value:', e.target.value);
+    setForms({ ...forms });
+    console.log(e.target.value);
+    setForms({ ...forms, wallet_address: e.target.value });
   };
 
   const handleClick = () => {
@@ -132,7 +140,7 @@ function PaymentId() {
                 className={
                   dataArray?.length == 0
                     ? 'hidden'
-                    : 'rounded-md border border-gray-300 w-full  p-3 flex gap-2 overflow-x-auto mb-8'
+                    : 'rounded-md border border-stroke w-full  p-3 flex gap-2 overflow-x-auto mb-8'
                 }
               >
                 {dataArray?.map((el: any) => (
@@ -199,9 +207,29 @@ function PaymentId() {
                     options={options}
                     isSearchable
                   />
-                  {/* {errors1.network == '' ? null : (
-              <div className="text-red-600 text-[13px]">{errors1.network}</div>
-            )} */}
+                </div>
+                <div className=" w-full">
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
+                    Wallet Address
+                  </label>
+                  <input
+                    type="text"
+                    id="text"
+                    name="name"
+                    value={wallet_address}
+                    onChange={(e) => handleChange2(e)}
+                    // onChange={(e) => handleAddress(e)}
+                    className="border border-gray-300 bg-white  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-300 dark:placeholder-gray-800 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="1jkjfiojieaeioioiugjhfncviiepqncow"
+                    required
+                  />
+                  <div className="text-red-600 text-[13px]">
+                    {/* {errors.wallet_address == '' ? null : (
+                          <div className="text-red-600 text-[13px]">
+                            {errors.wallet_address}
+                          </div>
+                        )} */}
+                  </div>
                 </div>
               </div>
               <div className="flex gap-2 ">

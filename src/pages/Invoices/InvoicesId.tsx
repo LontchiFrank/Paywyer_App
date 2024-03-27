@@ -21,7 +21,7 @@ function InvoicesId() {
     { value: 'Butterfly', label: '🦋 Butterfly' },
     { value: 'Honeybee', label: '🐝 Honeybee' },
   ];
-
+  const dataInvoice = useSelector((state: any) => state.invoices?.data);
   const [data, setData] = useState<any>([
     {
       id: nanoid(),
@@ -48,10 +48,10 @@ function InvoicesId() {
     currencies: dataObject.currencies,
     dataSelect: dataObject.dataSelect,
   });
-  // useEffect(() => {
-  //   dispatch(getInvoiceByIDAsync(dataObject.id));
-  //   // setFormData({ ...formData });
-  // }, []);
+  useEffect(() => {
+    dispatch(getInvoiceByIDAsync(dataObject.id));
+    // setFormData({ ...formData });
+  }, [dataInvoice]);
   const [currency, setCurrency] = useState<any>({
     name: '',
     network: '',
