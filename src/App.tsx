@@ -23,6 +23,7 @@ import Invoices from './pages/Invoices/Invoices';
 import Support from './pages/Support/Support';
 import PaymentId from './pages/PaymentID/PaymentId';
 import { Toaster } from 'react-hot-toast';
+import InvoicesId from './pages/Invoices/InvoicesId';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -159,6 +160,15 @@ function App() {
             <>
               <PageTitle title="Invoices | Paywyer" />
               <Invoices />
+            </>
+          }
+        />
+        <Route
+          path="/invoice/invoiceId/:id"
+          element={
+            <>
+              <PageTitle title="Invoice ID | Paywyer" />
+              <InvoicesId />
             </>
           }
         />

@@ -75,7 +75,7 @@ function Invoices() {
                   className="w-full rounded-lg border border-stroke bg-white py-4 pl-6 pr-10 text-black outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
                 />
 
-                <span className="absolute right-4 top-4">
+                <span className="absolute right-4 top-5">
                   <FaSearch style={{ color: '#b2b9c5', fontSize: '20px' }} />
                 </span>
               </div>
@@ -90,10 +90,10 @@ function Invoices() {
           </div>
           {data?.length == 0 ? null : (
             <div className="">
-              <Link to="/create-invoice">
+              <Link to="/invoice/create-invoice">
                 <input
                   type="submit"
-                  value={`Create Payment`}
+                  value={`Create Invoice`}
                   className="w-full cursor-pointer rounded-lg border border-[#eec643] bg-[#eec643] p-4 text-primary font-medium transition hover:bg-opacity-90"
                 />
               </Link>

@@ -39,11 +39,7 @@ function PaymentId() {
   const [openModal, setOpenModal] = useState<boolean>(false);
 
   const dataObject = location.state.item;
-  const activeIndex = location.state.index;
 
-  //   console.log(dataObject);
-  //   const dataArray = dataObject.total_Revenue;
-  //   console.log(dataObject?.total_Revenue);
   const data = useSelector((state: any) => state.payments?.data);
   const [elArray, setElArray] = useState<any>(dataObject);
   const [dataArray, setDataArray] = useState<any>();
@@ -56,6 +52,7 @@ function PaymentId() {
     setDataArray(data?.total_Revenue);
   }, [data]);
 
+  /* remove currency badge from the array */
   const removeData = (id: string) => {
     let sampleArr = dataArray;
     const filterArray = sampleArr.filter((item: any) => item.id !== id);

@@ -65,6 +65,46 @@ export const createInvoicesAsync: any = createAsyncThunk(
     }
   },
 );
+export const editInvoiceAsync: any = createAsyncThunk(
+  'Invoice/editInvoice',
+  async (data: any) => {
+    try {
+      const response: any = await axios.put(
+        `${API_URL}/Invoice/${data.id}`,
+        data.formData,
+      );
+      console.log(response);
+      editInvoice(response.data);
+      toast('Updated Successfully Created', {
+        duration: 8000,
+        position: 'top-center',
+
+        // Styling
+        style: {},
+        className: '',
+
+        // Custom Icon
+        icon: '👏',
+
+        // Change colors of success/error/loading icon
+        iconTheme: {
+          primary: '#000',
+          secondary: '#fff',
+        },
+
+        // Aria
+        ariaProps: {
+          role: 'status',
+          'aria-live': 'polite',
+        },
+      });
+      //   myAlert(true, "Edited successfully");
+      //   window.location.reload();
+    } catch (error: any) {
+      console.log(error);
+    }
+  },
+);
 
 export const InvoicesSlide: Slice<Invoices> = createSlice({
   name: 'Invoices',
@@ -79,12 +119,12 @@ export const InvoicesSlide: Slice<Invoices> = createSlice({
     getPrivateInvoices: (state, action) => {
       state.data = action.payload;
     },
-    editInvoices: (state, action) => {
+    editInvoice: (state, action) => {
       state.data = arrays.map((item: any) =>
         item.id === action.payload.id ? action.payload : item,
       );
     },
-    deleteInvoices: (state, action) => {
+    deleteInvoice: (state, action) => {
       state.data = arrays.filter((item) => item.id !== action.payload.id);
     },
   },
@@ -97,6 +137,14 @@ export const InvoicesSlide: Slice<Invoices> = createSlice({
       .addCase(createInvoicesAsync.fulfilled, (state) => {
         state.loading = true;
         state.authenticate = true;
+      })
+      .addCase(editInvoiceAsync.pending, (state) => {
+        state.loading = true;
+        state.authenticate = false;
+      })
+      .addCase(editInvoiceAsync.fulfilled, (state) => {
+        state.loading = true;
+        state.authenticate = true;
       });
   },
 });
@@ -104,8 +152,8 @@ export const InvoicesSlide: Slice<Invoices> = createSlice({
 export const {
   getInvoices,
   createInvoices,
-  editInvoices,
-  deleteInvoices,
+  editInvoice,
+  deleteInvoice,
   getPrivateInvoices,
 } = InvoicesSlide.actions;
 export default InvoicesSlide.actions;

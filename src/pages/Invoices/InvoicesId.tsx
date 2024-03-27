@@ -3,18 +3,17 @@ import DefaultLayout from '../../layout/DefaultLayout';
 import { nanoid } from 'nanoid';
 import { BsTrash3 } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
-import { createInvoicesAsync } from '../../features/InvoiceSlice';
+import {
+  createInvoicesAsync,
+  editInvoiceAsync,
+} from '../../features/InvoiceSlice';
+import { useLocation } from 'react-router-dom';
 import Select from 'react-tailwindcss-select';
+import { editPaymentAsync } from '../../features/PaymentSlice';
 
-function TableInvoice() {
-  type Data = {
-    id: string;
-    service: string;
-    description: string;
-    quantity: number;
-    price_per_unit: number;
-    total: number;
-  };
+function InvoicesId() {
+  const location = useLocation();
+  const dataObject = location.state.item;
   const options = [
     { value: 'fox', label: '🦊 Fox' },
     { value: 'Butterfly', label: '🦋 Butterfly' },
@@ -32,19 +31,20 @@ function TableInvoice() {
     },
   ]);
   const load = useSelector((state: any) => state.invoice?.loading);
-  const { service, description, quantity, price_per_unit, total } = data;
+  //   const { service, description, quantity, price_per_unit, total } = data;
   const [holdData, setHoldData] = useState<any>([]);
   const [formData, setFormData] = useState<any>({
-    billing_from: '',
-    billing_to: '',
-    email_from: '',
-    email_to: '',
-    address_to: '',
-    address_from: '',
-    date_issued: '',
-    due_date: '',
-    due_amount: 100,
-    currencies: [],
+    billing_from: dataObject.billing_from,
+    billing_to: dataObject.billing_to,
+    email_from: dataObject.email_from,
+    email_to: dataObject.email_to,
+    address_to: dataObject.address_to,
+    address_from: dataObject.address_from,
+    date_issued: dataObject.date_issued,
+    due_date: dataObject.due_date,
+    due_amount: dataObject.due_amount,
+    currencies: dataObject.currencies,
+    dataSelect: dataObject.dataSelect,
   });
   const [currency, setCurrency] = useState<any>({
     name: '',
@@ -92,15 +92,6 @@ function TableInvoice() {
     if (!formData.due_date.trim()) {
       step1Errors.due_date = 'Due date is required';
     }
-    // if (!currency.name?.trim()) {
-    //   step1Errors.name = 'Currency is required';
-    // }
-    // if (!currency.network?.trim()) {
-    //   step1Errors.network = 'Network is required';
-    // }
-    // if (!currency.wallet_address?.trim()) {
-    //   step1Errors.wallet_address = 'Wallet Address is required';
-    // }
 
     setErrors({ ...errors, ...step1Errors });
     return Object.keys(step1Errors).length === 0;
@@ -127,6 +118,7 @@ function TableInvoice() {
     date_issued,
     due_amount,
     due_date,
+    dataSelect,
     currencies,
   } = formData;
   const { network, name, wallet_address } = currency;
@@ -137,6 +129,7 @@ function TableInvoice() {
   const handleCurrency = (value: any) => {
     setCurrency({ ...currency });
     setCurrency({ ...currency, name: value });
+    // setFormData({ ...formData, currencies: [...currencies, { name: value }] });
     console.log(value);
   };
 
@@ -144,6 +137,10 @@ function TableInvoice() {
   const handleNetwork = (value: any) => {
     setCurrency({ ...currency });
     setCurrency({ ...currency, network: value });
+    // setFormData({
+    //   ...formData,
+    //   currencies: [...currencies, { network: value }],
+    // });
     console.log(value);
   };
 
@@ -152,6 +149,10 @@ function TableInvoice() {
   const handleAddress = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCurrency({ ...currency });
     setCurrency({ ...currency, wallet_address: e.target.value });
+    // setFormData({
+    //   ...formData,
+    //   currencies: [...currencies, { wallet_address: e.target.value }],
+    // });
     // console.log(value);
   };
 
@@ -171,20 +172,29 @@ function TableInvoice() {
     e: React.ChangeEvent<HTMLInputElement>,
     id: string,
   ) => {
-    const dataTemp = [...data];
+    const dataTemp = [...dataSelect];
     const index = dataTemp.findIndex((item: any) => item.id == id);
     const activeObj = { ...dataTemp[index], [e.target.name]: e.target.value };
 
     dataTemp[index] = activeObj;
+    const dataSet = [...dataTemp];
     setData([...dataTemp]);
+
+    setFormData({ ...formData, dataSelect: dataSet });
   };
   console.log(data);
 
   /* Delete function to delete a Row*/
 
   const removeData: any = (id: string) => {
-    const filter = data.filter((item: any) => item.id !== id);
-    setData(filter);
+    const filter = dataSelect.filter((item: any) => item.id !== id);
+    setFormData({ ...formData, dataSelect: filter });
+    // setData(filter);
+  };
+
+  const removeCurrency: any = (id: string) => {
+    const filter = formData.currencies.filter((item: any) => item.id !== id);
+    setFormData({ ...formData, currencies: filter });
   };
 
   /* Calculation to get the sum of the amounts */
@@ -201,7 +211,8 @@ function TableInvoice() {
 
   const handleClick: any = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setData([...data, { id: nanoid() }]);
+    setFormData({ ...formData, dataSelect: [...dataSelect, { id: nanoid() }] });
+    // setData();
   };
 
   /*  Add function to add a wallet currency  in the array  */
@@ -217,19 +228,17 @@ function TableInvoice() {
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     if (validateStep1()) {
-      const dataSelect = data;
-      const pata = { ...formData, dataSelect };
-      // setFormData();
-      setHoldData((prevState: any) => [...prevState, pata]);
-      setFormData(pata);
-      dispatch(createInvoicesAsync(pata));
+      const newCopy = {
+        id: dataObject.id,
+        formData,
+      };
+      dispatch(editInvoiceAsync(newCopy));
     }
   };
 
   console.log('Data', formData);
   console.log('Mama', holdData);
 
-  //   console.log(services);
   return (
     <DefaultLayout>
       <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -498,7 +507,7 @@ function TableInvoice() {
                         </h5>
                       </div>
                     </div>
-                    {data?.map((el: any) => (
+                    {dataSelect?.map((el: any) => (
                       <div
                         key={el.id}
                         className="grid grid-cols-14 border-b gap-4  border-stroke py-3.5 pl-5 pr-6 dark:border-strokedark"
@@ -507,7 +516,7 @@ function TableInvoice() {
                           <input
                             type="text"
                             name="service"
-                            value={service}
+                            value={el.service}
                             required
                             onChange={(e) => handleChange1(e, el.id)}
                             placeholder="Enter Service"
@@ -519,7 +528,7 @@ function TableInvoice() {
                             type="text"
                             // name={`description${el.id}`}
                             name="description"
-                            value={description}
+                            value={el.description}
                             required
                             onChange={(e) => handleChange1(e, el.id)}
                             placeholder="Enter desription"
@@ -531,7 +540,7 @@ function TableInvoice() {
                             type="number"
                             // name={`quantity${el.id}`}
                             name="quantity"
-                            value={quantity}
+                            value={el.quantity}
                             required
                             onChange={(e) => handleChange1(e, el.id)}
                             placeholder="E.g 1"
@@ -543,7 +552,7 @@ function TableInvoice() {
                             type="number"
                             // name={`price_per_unit${el.id}`}
                             name="price_per_unit"
-                            value={price_per_unit}
+                            value={el.price_per_unit}
                             required
                             onChange={(e) => handleChange1(e, el.id)}
                             placeholder="E.g $20"
@@ -555,7 +564,7 @@ function TableInvoice() {
                             type="number"
                             // name={`total${el.id}`}
                             name="total"
-                            value={total}
+                            value={el.total}
                             onChange={(e) => handleChange1(e, el.id)}
                             required
                             placeholder="Enter Total"
@@ -591,7 +600,7 @@ function TableInvoice() {
                       >
                         {el?.name?.label}
                         <button
-                          onClick={() => removeData(el?.id)}
+                          onClick={() => removeCurrency(el?.id)}
                           type="button"
                           className="inline-flex items-center p-1 ms-2 text-sm text-blue-400 bg-transparent rounded-sm hover:bg-blue-200 hover:text-blue-900 dark:hover:bg-blue-800 dark:hover:text-blue-300"
                           data-dismiss-target="#badge-dismiss-default"
@@ -697,13 +706,13 @@ function TableInvoice() {
                       </span>
                       <span className="font-bold text-meta-3">${sum} </span>
                     </p>
-                    <div className=" flex justify-start gap-3">
+                    <div className=" flex  gap-3">
                       <button
                         type="submit"
                         onClick={(e) => handleSubmit(e)}
-                        className="float-right mt-10 inline-flex items-center gap-2.5 rounded bg-primary px-7.5 py-2.5 font-medium text-white hover:bg-opacity-90"
+                        className="float-right mt-10 inline-flex items-center gap-2.5 rounded bg-primary px-12 py-2.5 font-medium text-white hover:bg-opacity-90"
                       >
-                        {load ? (
+                        {/* {load ? (
                           <svg
                             aria-hidden="true"
                             role="status"
@@ -721,10 +730,10 @@ function TableInvoice() {
                               fill="currentColor"
                             ></path>
                           </svg>
-                        ) : null}
+                        ) : null} */}
                         Save
                       </button>
-                      <button className="float-right mt-10 inline-flex items-center gap-2.5 rounded bg-[#eec643] px-7.5 py-2.5 font-medium text-primary hover:bg-opacity-90">
+                      <button className="float-right mt-10 inline-flex items-center gap-2.5 rounded bg-[#eec643] px-12 py-2.5 font-medium text-primary hover:bg-opacity-90">
                         Send
                       </button>
                     </div>
@@ -739,4 +748,4 @@ function TableInvoice() {
   );
 }
 
-export default TableInvoice;
+export default InvoicesId;

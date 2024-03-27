@@ -27,6 +27,9 @@ function TableInvoices() {
               <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
                 Amount
               </th>
+              <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
+                Action
+              </th>
             </tr>
           </thead>
 
@@ -45,12 +48,12 @@ function TableInvoices() {
               data.length <= 0 && (
                 <tbody className="w-full flex items-center translate-x-[95%]">
                   <div className="w-full flex flex-col justify-center items-center  py-6  gap-2">
-                    <span>You don’t have any complete payments yet.</span>
+                    <span>You don’t have any complete Invoice yet.</span>
                     <div className="mb-5">
                       <Link to="/invoice/create-invoice">
                         <input
                           type="submit"
-                          // onClick={onModal}
+                          // onClick={() => console.log('mamam')}
                           value="Create Invoice"
                           className="w-full cursor-pointer rounded-lg border border-[#eec643] bg-[#eec643] p-4 text-primary font-medium transition hover:bg-opacity-90"
                         />
@@ -101,6 +104,18 @@ function TableInvoices() {
                     ${packageItem.due_amount}
                     {/* <p className="text-sm">{packageItem.total_Revenue.name.label}</p> */}
                   </p>
+                </td>
+                <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
+                  <Link
+                    // element={packageItem}
+                    to={`/invoice/invoiceId/${packageItem.id}`}
+                    state={{
+                      item: packageItem,
+                    }}
+                    className=" dark:text-white hover:opacity-90 cursor-pointer hover:underline"
+                  >
+                    View
+                  </Link>
                 </td>
               </tr>
             ))}
