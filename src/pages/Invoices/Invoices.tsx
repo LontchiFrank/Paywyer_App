@@ -3,16 +3,18 @@ import DefaultLayout from '../../layout/DefaultLayout';
 import { FaSearch, FaTimes } from 'react-icons/fa';
 import TableInvoices from '../../components/Tables/TableInvoices';
 import { Link } from 'react-router-dom';
+import { useGetInvoicesQuery } from '../../services/apiInvoice';
 
 function Invoices() {
   const [open, setOpen] = useState(true);
-  const [packages, setPackages] = useState(
-    JSON.parse(localStorage.getItem('data') || '') || false,
-  );
+  // const [packages, setPackages] = useState(
+  //   JSON.parse(localStorage.getItem('data') || '') || false,
+  // );
+  const { data, isLoading } = useGetInvoicesQuery();
   const handleClick = () => {
     setOpen(false);
   };
-  const package1 = JSON.parse(localStorage.getItem('data') || '') || false;
+  // const package1 = JSON.parse(localStorage.getItem('data') || '') || false;
   return (
     <DefaultLayout>
       <div className="w-full pb-9">
@@ -86,7 +88,7 @@ function Invoices() {
               />
             </div>
           </div>
-          {package1?.length == 0 ? null : (
+          {data?.length == 0 ? null : (
             <div className="">
               <Link to="/create-invoice">
                 <input
