@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   createInvoicesAsync,
   editInvoiceAsync,
+  getInvoiceByIDAsync,
 } from '../../features/InvoiceSlice';
 import { useLocation } from 'react-router-dom';
 import Select from 'react-tailwindcss-select';
@@ -13,6 +14,7 @@ import { editPaymentAsync } from '../../features/PaymentSlice';
 
 function InvoicesId() {
   const location = useLocation();
+  const dispatch = useDispatch();
   const dataObject = location.state.item;
   const options = [
     { value: 'fox', label: '🦊 Fox' },
@@ -31,7 +33,7 @@ function InvoicesId() {
     },
   ]);
   const load = useSelector((state: any) => state.invoice?.loading);
-  //   const { service, description, quantity, price_per_unit, total } = data;
+
   const [holdData, setHoldData] = useState<any>([]);
   const [formData, setFormData] = useState<any>({
     billing_from: dataObject.billing_from,
@@ -46,6 +48,10 @@ function InvoicesId() {
     currencies: dataObject.currencies,
     dataSelect: dataObject.dataSelect,
   });
+  // useEffect(() => {
+  //   dispatch(getInvoiceByIDAsync(dataObject.id));
+  //   // setFormData({ ...formData });
+  // }, []);
   const [currency, setCurrency] = useState<any>({
     name: '',
     network: '',
@@ -122,7 +128,6 @@ function InvoicesId() {
     currencies,
   } = formData;
   const { network, name, wallet_address } = currency;
-  const dispatch = useDispatch();
 
   /* handleChange for the Currency */
 
@@ -230,7 +235,7 @@ function InvoicesId() {
     if (validateStep1()) {
       const newCopy = {
         id: dataObject.id,
-        formData,
+        obj: formData,
       };
       dispatch(editInvoiceAsync(newCopy));
     }

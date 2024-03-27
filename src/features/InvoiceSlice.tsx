@@ -65,13 +65,15 @@ export const createInvoicesAsync: any = createAsyncThunk(
     }
   },
 );
+
 export const editInvoiceAsync: any = createAsyncThunk(
   'Invoice/editInvoice',
   async (data: any) => {
+    // const { id, formData } = data;
     try {
       const response: any = await axios.put(
-        `${API_URL}/Invoice/${data.id}`,
-        data.formData,
+        `${API_URL}Invoice/${data.id}`,
+        data.obj,
       );
       console.log(response);
       editInvoice(response.data);
@@ -105,6 +107,17 @@ export const editInvoiceAsync: any = createAsyncThunk(
     }
   },
 );
+
+export const getInvoiceByIDAsync: any = (id: any) => async (dispatch: any) => {
+  try {
+    const response = await axios.get(`${API_URL}Invoice/${id}`);
+    dispatch(getPrivateInvoices(response.data));
+    console.log(response.data);
+    //   window.location.reload();
+  } catch (error: any) {
+    throw new Error(error);
+  }
+};
 
 export const InvoicesSlide: Slice<Invoices> = createSlice({
   name: 'Invoices',
