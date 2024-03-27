@@ -94,7 +94,7 @@ function App() {
           path="/payment"
           element={
             <>
-              <PageTitle title="Reset Password | Paywyer" />
+              <PageTitle title="Payments| Paywyer" />
               <Payment />
             </>
           }
@@ -103,7 +103,7 @@ function App() {
           path="/dashboard"
           element={
             <>
-              <PageTitle title="eCommerce Dashboard | Paywyer" />
+              <PageTitle title=" Dashboard | Paywyer" />
               <ECommerce />
             </>
           }
