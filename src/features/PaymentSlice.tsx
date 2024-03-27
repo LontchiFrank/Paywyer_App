@@ -166,6 +166,14 @@ export const paymentSlide: Slice<Payment> = createSlice({
       .addCase(createPaymentAsync.fulfilled, (state) => {
         state.loading = true;
         state.authenticate = true;
+      })
+      .addCase(editPaymentAsync.pending, (state) => {
+        state.loading = true;
+        state.authenticate = false;
+      })
+      .addCase(editPaymentAsync.fulfilled, (state) => {
+        state.loading = false;
+        state.authenticate = true;
       });
   },
   // [createPaymentAsync.pending]: (state: any) => {

@@ -156,7 +156,7 @@ export const InvoicesSlide: Slice<Invoices> = createSlice({
         state.authenticate = false;
       })
       .addCase(editInvoiceAsync.fulfilled, (state) => {
-        state.loading = true;
+        state.loading = false;
         state.authenticate = true;
       });
   },

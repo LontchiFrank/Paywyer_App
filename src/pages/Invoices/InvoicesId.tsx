@@ -32,7 +32,6 @@ function InvoicesId() {
       total: 0,
     },
   ]);
-  const load = useSelector((state: any) => state.invoice?.loading);
 
   const [holdData, setHoldData] = useState<any>([]);
   const [formData, setFormData] = useState<any>({
@@ -229,6 +228,7 @@ function InvoicesId() {
   };
 
   /*  Click button to save the form */
+  const load = useSelector((state: any) => state.invoice?.loading);
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
@@ -633,7 +633,7 @@ function InvoicesId() {
                   </div>
                   <div className="w-full flex gap-6">
                     <div className="w-[70%]">
-                      <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
+                      <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Currency
                       </label>
                       <Select
@@ -654,7 +654,7 @@ function InvoicesId() {
                       )} */}
                     </div>
                     <div className="w-[70%]">
-                      <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
+                      <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Network
                       </label>
                       <Select
@@ -671,7 +671,7 @@ function InvoicesId() {
                       )} */}
                     </div>
                     <div className=" w-full">
-                      <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
+                      <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white ">
                         Wallet Address
                       </label>
                       <input
@@ -680,7 +680,7 @@ function InvoicesId() {
                         name="name"
                         value={wallet_address}
                         onChange={(e) => handleAddress(e)}
-                        className="border-stroke bg-gray border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-300 dark:placeholder-gray-800 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className="border-stroke bg-gray border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:border-gray-300 dark:placeholder-gray-800 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:bg-form-input"
                         placeholder="1jkjfiojieaeioioiugjhfncviiepqncow"
                         required
                       />
@@ -717,7 +717,7 @@ function InvoicesId() {
                         onClick={(e) => handleSubmit(e)}
                         className="float-right mt-10 inline-flex items-center gap-2.5 rounded bg-primary px-12 py-2.5 font-medium text-white hover:bg-opacity-90"
                       >
-                        {/* {load ? (
+                        {load ? (
                           <svg
                             aria-hidden="true"
                             role="status"
@@ -735,7 +735,7 @@ function InvoicesId() {
                               fill="currentColor"
                             ></path>
                           </svg>
-                        ) : null} */}
+                        ) : null}
                         Save
                       </button>
                       <button className="float-right mt-10 inline-flex items-center gap-2.5 rounded bg-[#eec643] px-12 py-2.5 font-medium text-primary hover:bg-opacity-90">
