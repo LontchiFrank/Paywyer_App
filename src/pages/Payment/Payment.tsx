@@ -21,7 +21,7 @@ const Payment: React.FC = () => {
   const handleClick2 = (num: any) => {
     setOpenModal(num);
   };
-  const datas = JSON.parse(localStorage.getItem('dataInfo') || '') || false;
+  // const datas = JSON.parse(localStorage.getItem('dataInfo') || '') || false;
   console.log(arr);
   return (
     <DefaultLayout>
