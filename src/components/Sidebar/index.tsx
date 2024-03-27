@@ -218,7 +218,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     />
                   </svg> */}
                   <FaMoneyBillWave />
-                  Payment
+                  Payments
                 </NavLink>
               </li>
               {/* <li>
@@ -351,7 +351,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     />
                   </svg> */}
                   <FaMoneyCheck />
-                  Transaction
+                  Transactions
                 </NavLink>
               </li>
               <li>
@@ -416,7 +416,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     />
                   </svg> */}
                   <FaHeadset />
-                  Supports
+                  Support
                 </NavLink>
               </li>
               {/* <!-- Menu Item Profile --> */}

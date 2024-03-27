@@ -303,7 +303,9 @@ function PaymentId() {
             </div>
           </div>
           <div className="w-full mt-4 ">
-            <span className="text-[18px] font-bold">Danger Zone</span>
+            <span className="text-[18px] text-red-700 font-bold">
+              Danger Zone
+            </span>
             <div className="w-full mt-2 p">
               <div className="w-full flex justify-between">
                 <div className="flex flex-col">

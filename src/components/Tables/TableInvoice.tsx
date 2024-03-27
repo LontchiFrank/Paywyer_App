@@ -4,6 +4,7 @@ import { nanoid } from 'nanoid';
 import { BsTrash3 } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 import { createInvoicesAsync } from '../../features/InvoiceSlice';
+import Select from 'react-tailwindcss-select';
 
 function TableInvoice() {
   type Data = {
@@ -14,6 +15,11 @@ function TableInvoice() {
     price_per_unit: number;
     total: number;
   };
+  const options = [
+    { value: 'fox', label: '🦊 Fox' },
+    { value: 'Butterfly', label: '🦋 Butterfly' },
+    { value: 'Honeybee', label: '🐝 Honeybee' },
+  ];
 
   const [data, setData] = useState<any>([
     {
@@ -38,6 +44,11 @@ function TableInvoice() {
     due_date: '',
     due_amount: 100,
   });
+  const [currency, setCurrency] = useState<any>({
+    name: '',
+    network: '',
+    wallet_address: '',
+  });
   const [errors, setErrors] = useState({
     billing_from: '',
     billing_to: '',
@@ -48,6 +59,8 @@ function TableInvoice() {
     date_issued: '',
     due_date: '',
     due_amount: 100,
+    name: '',
+    network: '',
   });
 
   const validateStep1 = () => {
@@ -76,6 +89,12 @@ function TableInvoice() {
     if (!formData.due_date.trim()) {
       step1Errors.due_date = 'Due date is required';
     }
+    if (!formData.name.trim()) {
+      step1Errors.name = 'Currency is required';
+    }
+    if (!formData.network.trim()) {
+      step1Errors.network = 'Network is required';
+    }
     setErrors({ ...errors, ...step1Errors });
     return Object.keys(step1Errors).length === 0;
   };
@@ -102,6 +121,18 @@ function TableInvoice() {
     due_amount,
     due_date,
   } = formData;
+  const { network, name, wallet_address } = currency;
+
+  const handleCurrency = (value: any) => {
+    setCurrency({ ...currency });
+    setCurrency({ ...currency, name: value });
+    console.log(value);
+  };
+  const handleNetwork = (value: any) => {
+    setCurrency({ ...currency });
+    setCurrency({ ...currency, network: value });
+    console.log(value);
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // const {billing_from}=e.target;
@@ -112,34 +143,6 @@ function TableInvoice() {
       billing_from: '',
       billing_to: '',
     });
-    // setErrors({
-    //   ...errors,
-    //   billing_to: '',
-    // });
-    // setErrors({
-    //   ...errors,
-    //   email_from: '',
-    // });
-    // setErrors({
-    //   ...errors,
-    //   email_to: '',
-    // });
-    // setErrors({
-    //   ...errors,
-    //   address_to: '',
-    // });
-    // setErrors({
-    //   ...errors,
-    //   address_from: '',
-    // });
-    // setErrors({
-    //   ...errors,
-    //   date_issued: '',
-    // });
-    // setErrors({
-    //   ...errors,
-    //   due_date: '',
-    // });
   };
   const handleChange1 = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -538,7 +541,57 @@ function TableInvoice() {
                     ))}
                   </div>
                 </div>
-
+                <div className="flex flex-col justify-start py-10 px-6">
+                  <div className="w-full flex gap-6">
+                    <div className="w-[40%]">
+                      <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
+                        Currency
+                      </label>
+                      <Select
+                        // classNames={`border-stroke bg-gray`}
+                        classNames={{
+                          searchContainer: `border-stroke bg-gray`,
+                        }}
+                        primaryColor=""
+                        value={name}
+                        onChange={handleCurrency}
+                        options={options}
+                        isSearchable
+                      />
+                      {errors.name == '' ? null : (
+                        <div className="text-red-600 text-[13px]">
+                          {errors.name}
+                        </div>
+                      )}
+                    </div>
+                    <div className="w-[40%]">
+                      <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
+                        Network
+                      </label>
+                      <Select
+                        primaryColor=""
+                        value={network}
+                        onChange={handleNetwork}
+                        options={options}
+                        isSearchable
+                      />
+                      {errors.network == '' ? null : (
+                        <div className="text-red-600 text-[13px]">
+                          {errors.network}
+                        </div>
+                      )}
+                    </div>
+                    <div className="w-full py-2">
+                      <button
+                        onClick={(e) => handleClick(e)}
+                        className="flex items-center gap-2.5 rounded bg-[#eec643] px-7.5 py-2.5 font-medium text-primary hover:bg-opacity-90"
+                        style={{ marginTop: '13px' }}
+                      >
+                        Add Wallet
+                      </button>
+                    </div>
+                  </div>
+                </div>
                 <div className="flex justify-end py-10 px-6">
                   <div className="max-w-65 w-full">
                     <p className="mt-4 flex justify-between  pt-5 dark:border-strokedark">
